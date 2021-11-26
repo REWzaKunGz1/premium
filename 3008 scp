@@ -473,7 +473,7 @@ local function HBBZ_fake_script() -- TextGui.LocalScript
 	
 	TextButton.MouseButton1Up:Connect(function()
 		for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'GameCube' then
+			if v.Parent.Name == 'Apple' then
 	
 				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
 				local TextLabel = Instance.new('TextLabel') -- makes text label
