@@ -1,4 +1,4 @@
- if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 or game.PlaceId == 2768379856 then
+ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
     _G.Color = Color3.fromRGB(255,0,0)
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
     
@@ -2111,7 +2111,7 @@
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second🕰)
     end
     
     spawn(function()
@@ -2123,7 +2123,7 @@
     end)
     
        
-Client = Main:AddLabel("🤖 (☞ﾟヮﾟ)☞ ")
+Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
     
     Main:AddToggle("Auto Set Spawn Points",true,function(value)
         _G.AutoSetSpawn = value
