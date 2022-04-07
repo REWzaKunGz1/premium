@@ -1,4 +1,4 @@
- if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
+ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 or game.PlaceId == 2768379856 then
     _G.Color = Color3.fromRGB(255,0,0)
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
     
@@ -992,6 +992,8 @@
         World2 = true
     elseif game.PlaceId == 7449423635 then
         World3 = true
+    elseif game.PlaceId ==  2768379856 then
+        World4 = true
     end
     
     function CheckQuest() 
@@ -2081,7 +2083,7 @@
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
-    Toggle.Text = "R"
+    Toggle.Text = "Pado"
     Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
@@ -6181,7 +6183,14 @@
         end)
         tool.Parent = plr.Backpack
     end)
-    
+
+
+     Misc:AddSeperator("animations mod meun")
+
+  Misc:AddButton("yes",function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/gui%20anim'))()
+    end)
+
     Misc:AddButton("Stop All Tween",function()
         topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
         _G.Clip = false
@@ -7564,7 +7573,7 @@ elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId 
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
-    Toggle.Text = "R"
+    Toggle.Text = "Pado"
     Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
@@ -9744,7 +9753,7 @@ elseif game.PlaceId == 6329844902 then
         local uitab = {}
     
         function uitab:AddTab(text,image)
-            local Image = image or 6023426915
+            local Image = image or 9285162096
     
             local PageButton = Instance.new("TextButton")
             PageButton.Name = "PageButton"
@@ -10482,7 +10491,7 @@ elseif game.PlaceId == 6329844902 then
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
-    Toggle.Text = "R"
+    Toggle.Text = "Pado"
     Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
@@ -11502,6 +11511,11 @@ elseif game.PlaceId == 6329844902 then
     Misc:AddToggle("Fly",false,function(value)
         Fly = value
     end)
+
+if game.PlaceId == 2768379856 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("SCP 3008", "Sentinel")
+end)
     
     spawn(function()
         while wait() do
