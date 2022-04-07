@@ -35,7 +35,7 @@
                 )
             local Tween = TweenService:Create(object, TweenInfo.new(0.2), {Position = pos})
             Tween:Play()
-        end
+        end 
     
         topbarobject.InputBegan:Connect(
             function(input)
@@ -2123,7 +2123,7 @@
     end)
     
        
-Client = Main:AddLabel("FPS Server")
+Client = Main:AddLabel("🤖 (☞ﾟヮﾟ)☞ ")
     
     Main:AddToggle("Auto Set Spawn Points",true,function(value)
         _G.AutoSetSpawn = value
