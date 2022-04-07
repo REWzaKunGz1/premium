@@ -11511,11 +11511,6 @@ elseif game.PlaceId == 6329844902 then
     Misc:AddToggle("Fly",false,function(value)
         Fly = value
     end)
-
-if game.PlaceId == 2768379856 then
-    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-    local Window = Library.CreateLib("SCP 3008", "Sentinel")
-end)
     
     spawn(function()
         while wait() do
