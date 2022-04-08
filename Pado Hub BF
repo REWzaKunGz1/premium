@@ -6081,6 +6081,11 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
         game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitInventory.Visible = true
     end)
     
+     Misc:AddButton("Open Awakenings Expert",function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakeningsExpert")
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitInventory.Visible = true
+    end)
+    
     Misc:AddToggle("Highlight Mode",false,function(value)
         if value == true then
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Beli.Visible = false
