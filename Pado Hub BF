@@ -4654,6 +4654,25 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
         end
     end)
     
+      Combat:AddSeperator("Aimbot")
+     
+    spawn(function()
+        while wait() do
+            pcall(function()
+                local MaxDistance = math.huge
+                for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+                    if v.Name ~= game:GetService("Players").LocalPlayer.Name then
+                        local Distance = v:DistanceFromCharacter(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position)
+                        if Distance < MaxDistance then
+                            MaxDistance = Distance
+                            PlayerSelectAimbot = v.Name
+                        end
+                    end
+                end
+            end)
+        end
+    end)
+    
     Combat:AddToggle("Aimbot Gun",false,function(value)
         _G.Aimbot_Gun = value
     end)
@@ -4673,6 +4692,24 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
                 end)
             end
         end
+    end)
+    
+    Combat:AddToggle("Aimbot Skill",false,function(value)
+        _G.Aimbot_Skill = value
+    end)
+    
+    spawn(function()
+        pcall(function()
+            while task.wait() do
+                if _G.Aimbot_Skill and PlayerSelectAimbot ~= nil and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name]:FindFirstChild("MousePos") then
+                    local args = {
+                        [1] = game:GetService("Players"):FindFirstChild(PlayerSelectAimbot).Character.HumanoidRootPart.Position
+                    }
+                    
+                    game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name).RemoteEvent:FireServer(unpack(args))
+                end
+            end
+        end)
     end)
     
     Combat:AddSeperator("PvP")
@@ -5975,6 +6012,10 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
     end)
     
+     Misc:AddButton("Server Hop",function()
+        Hop()
+    end)
+    
     Misc:AddButton("discord",function()
          setclipboard("https://discord.gg/zPPv6jFF")
     end)
@@ -6084,8 +6125,8 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
         end
     end)
     
-    Misc:AddButton("Invisible",function()
-        game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
+    Misc:AddButton("Invisible Tool",function()
+        loadstring(game:HttpGet('https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)'))()
     end)
     
     Misc:AddButton("Click TP Tool",function()
@@ -6470,6 +6511,17 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
             end)
         end
     end)
+    
+    Misc:AddToggle("Auto Click",autoclick,function(value)
+		AuctoClick = value
+	end)
+	spawn(function()
+		while wait() do
+			if AuctoClick then
+				Click()
+			end
+		end
+	end)
     
     Misc:AddToggle("NoClip",_G.NOCLIP,function(value)
         _G.NOCLIP = value
