@@ -6006,7 +6006,7 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,3)
     end)
     
-    Misc:AddSeperator("Server to d")
+    Misc:AddSeperator("Server to discord")
     
     Misc:AddButton("Rejoin Server",function()
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
@@ -6014,7 +6014,7 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
     
     Misc:AddButton("discord",function()
          setclipboard("https://discord.gg/zPPv6jFF")
-       end)
+    end)
        
     Misc:AddSeperator("Ui")
     
@@ -6035,8 +6035,8 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
     end)
     
      Misc:AddButton("Open Awakenings Expert",function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakenings Expert")
-        game:GetService("Players").LocalPlayer.PlayerGui.Main.Awakenings Expert.Visible = true
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getAwakeningsExpert")
+        game:GetService("Players").LocalPlayer.PlayerGui.Main.AwakeningsExpert.Visible = true
     end)
     
     Misc:AddToggle("Highlight Mode",false,function(value)
