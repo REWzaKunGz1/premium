@@ -4654,46 +4654,6 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
         end
     end)
     
-    Combat:AddSeperator("Aimbot")
-     
- 	Combat:AddToggle("Aimbot Skill",false,function(bool)
-		if SelectedKillPlayer == "" and bool then
-			library:Notification("Select Player to Aim")
-		else
-			Skillaimbot = bool
-		end
-	end)
-	spawn(function()
-		while wait() do
-			if KillPlayer then
-				if game.Players:FindFirstChild(SelectedKillPlayer) and (game.Players:FindFirstChild(SelectedKillPlayer).Character.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude >= 300 then
-					KillTween = toTarget(game.Players:FindFirstChild(SelectedKillPlayer).Character.HumanoidRootPart.Position,game.Players:FindFirstChild(SelectedKillPlayer).Character.HumanoidRootPart.CFrame)
-				elseif game.Players:FindFirstChild(SelectedKillPlayer) and (game.Players:FindFirstChild(SelectedKillPlayer).Character.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).magnitude >= 300 then
-					game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(SelectedKillPlayer).Character.HumanoidRootPart.CFrame * CFrame.new(0,25,0)
-					game.Players:FindFirstChild(SelectedKillPlayer).Character.HumanoidRootPart.CanCollide = false
-					game.Players:FindFirstChild(SelectedKillPlayer).Character.HumanoidRootPart.Size = Vector3.new(50,50,50)
-					EquipWeapon(SelectToolWeaponGun)
-					if game.Players.LocalPlayer.Character:FindFirstChild(SelectToolWeaponGun) then
-						spawn(function()
-							pcall(function()
-								local args = {
-									 [1] = game:GetService("Players"):FindFirstChild(PlayerSelectAimbot).Character.HumanoidRootPart.Position,
-                                                                         [2] = game:GetService("Players"):FindFirstChild(PlayerSelectAimbot).Character.HumanoidRootPart
-								}
-								game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun].RemoteFunctionShoot:InvokeServer(unpack(args))
-							end)
-						end)
-					end 
-				end
-			end 
-			if Skillaimbot then
-				if game.Players:FindFirstChild(SelectedKillPlayer) and game.Players:FindFirstChild(SelectedKillPlayer).Character:FindFirstChild("HumanoidRootPart") and game.Players:FindFirstChild(SelectedKillPlayer).Character:FindFirstChild("Humanoid") and game.Players:FindFirstChild(SelectedKillPlayer).Character.Humanoid.Health > 0 then
-					AimBotSkillPosition = game.Players:FindFirstChild(SelectedKillPlayer).Character:FindFirstChild("HumanoidRootPart").Position
-				end
-			end
-		end
-	end)
-    
     Combat:AddToggle("Aimbot Gun",false,function(value)
         _G.Aimbot_Gun = value
     end)
