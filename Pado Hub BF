@@ -2122,9 +2122,6 @@
         end
     end)
     
-       
-Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
-    
     Main:AddToggle("Auto Set Spawn Points",true,function(value)
         _G.AutoSetSpawn = value
     end)
@@ -6143,6 +6140,19 @@ Client = Main:AddLabel("discord https://discord.gg/zPPv6jFF")
         end)
         tool.Parent = plr.Backpack
     end)
+    
+    	Misc:AddButton("Remove Lave",function()
+		for i,v in pairs(game.Workspace:GetDescendants()) do
+			if v.Name == "Lava" then   
+				v:Destroy()
+			end
+		end
+		for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
+			if v.Name == "Lava" then   
+				v:Destroy()
+			end
+		end
+	end)
 
     Misc:AddButton("Stop All Tween",function()
         topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
