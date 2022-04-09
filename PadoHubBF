@@ -2082,7 +2082,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
     Toggle.Text = Pado"
-    Toggle.TextColor3 = Color3.fromRGB(104 , 4, 255)
+    Toggle.TextColor3 = Color3.fromRGB(104,4,255)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
         game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
