@@ -990,9 +990,32 @@
         end
         return uitab
     end
+
+   game:GetService("Players").LocalPlayer.Idled:connect(function()
+        game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        wait(1)
+        game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
     
-
-
+    local ScreenGui = Instance.new("ScreenGui")
+    local Toggle = Instance.new("TextButton")
+    
+    ScreenGui.Name = "ScreenGui"
+    ScreenGui.Parent = game.CoreGui
+    
+    Toggle.Name = "Toggle"
+    Toggle.Parent = ScreenGui
+    Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
+    Toggle.Size = UDim2.new(0, 50, 0, 50)
+    Toggle.Font = Enum.Font.Code
+    Toggle.Text = "Pado"
+    Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
+    Toggle.TextScaled = true
+    Toggle.MouseButton1Down:connect(function()
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
+    end)
    
     local PADOHUB = library:AddWindow("Pado | SCP 3008",Enum.KeyCode.RightControl)
     
@@ -1007,7 +1030,7 @@
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("⏰Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
     end
     
     spawn(function()
@@ -1019,7 +1042,7 @@
     end)
     
     
-    Main:AddLabel("Gui XD")
+    Main:AddLabel("Gui Meun")
     
         Main:AddButton("Esp mod meun",function()
           loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/3008%20scp'))()
