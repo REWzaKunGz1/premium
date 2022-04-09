@@ -1,4 +1,4 @@
-if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
+ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7449423635 then
     _G.Color = Color3.fromRGB(255,0,0)
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
     
@@ -35,7 +35,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
                 )
             local Tween = TweenService:Create(object, TweenInfo.new(0.2), {Position = pos})
             Tween:Play()
-        end
+        end 
     
         topbarobject.InputBegan:Connect(
             function(input)
@@ -992,6 +992,8 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         World2 = true
     elseif game.PlaceId == 7449423635 then
         World3 = true
+    elseif game.PlaceId ==  2768379856 then
+        World4 = true
     end
     
     function CheckQuest() 
@@ -2077,19 +2079,19 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
     
     Toggle.Name = "Toggle"
     Toggle.Parent = ScreenGui
-    Toggle.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
-    Toggle.Text = "R"
-    Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
+    Toggle.Text = "Pado"
+    Toggle.TextColor3 = Color3.fromRGB(111, 0, 255)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
         game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
     end)
     --------------------------------------------------------------------
-    local RenUi = library:AddWindow("Ren Hub | BF",Enum.KeyCode.RightControl)
+    local RenUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
     --------------------------------------------------------------------
     local Main = RenUi:AddTab("Auto Farm","6026568198")
     local Combat = RenUi:AddTab("Combat","7251993295")
@@ -2109,7 +2111,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("⏰Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
     end
     
     spawn(function()
@@ -4649,7 +4651,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         end
     end)
     
-    Combat:AddSeperator("Aimbot")
+      Combat:AddSeperator("Aimbot")
      
     spawn(function()
         while wait() do
@@ -6001,63 +6003,20 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,3)
     end)
     
-    Misc:AddSeperator("Server")
+    Misc:AddSeperator("Server to discord")
     
     Misc:AddButton("Rejoin Server",function()
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
     end)
     
-    Misc:AddButton("Server Hop",function()
+     Misc:AddButton("Server Hop",function()
         Hop()
     end)
     
-    Misc:AddButton("Hop To Lower Player",function()
-        getgenv().AutoTeleport = true
-        getgenv().DontTeleportTheSameNumber = true 
-        getgenv().CopytoClipboard = false
-        if not game:IsLoaded() then
-            print("Game is loading waiting...")
-        end
-        local maxplayers = math.huge
-        local serversmaxplayer;
-        local goodserver;
-        local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100" 
-        function serversearch()
-            for _, v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink)).data) do
-                if type(v) == "table" and v.playing ~= nil and maxplayers > v.playing then
-                    serversmaxplayer = v.maxPlayers
-                    maxplayers = v.playing
-                    goodserver = v.id
-                end
-            end       
-        end
-        function getservers()
-            serversearch()
-            for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink))) do
-                if i == "nextPageCursor" then
-                    if gamelink:find("&cursor=") then
-                        local a = gamelink:find("&cursor=")
-                        local b = gamelink:sub(a)
-                        gamelink = gamelink:gsub(b, "")
-                    end
-                    gamelink = gamelink .. "&cursor=" ..v
-                    getservers()
-                end
-            end
-        end 
-        getservers()
-        if AutoTeleport then
-            if DontTeleportTheSameNumber then 
-                if #game:GetService("Players"):GetPlayers() - 4  == maxplayers then
-                    return warn("It has same number of players (except you)")
-                elseif goodserver == game.JobId then
-                    return warn("Your current server is the most empty server atm") 
-                end
-            end
-            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
-        end
+    Misc:AddButton("discord",function()
+         setclipboard("https://discord.gg/zPPv6jFF")
     end)
-    
+       
     Misc:AddSeperator("Ui")
     
     Misc:AddButton("Open Devil Shop",function()
@@ -6075,7 +6034,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryFruits")
         game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitInventory.Visible = true
     end)
-    
+  
     Misc:AddToggle("Highlight Mode",false,function(value)
         if value == true then
             game:GetService("Players")["LocalPlayer"].PlayerGui.Main.Beli.Visible = false
@@ -6163,8 +6122,8 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         end
     end)
     
-    Misc:AddButton("Invisible",function()
-        game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
+    Misc:AddButton("Invisible Tool",function()
+        loadstring(game:HttpGet('https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)'))()
     end)
     
     Misc:AddButton("Click TP Tool",function()
@@ -6182,9 +6141,28 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         tool.Parent = plr.Backpack
     end)
     
+    	Misc:AddButton("Remove Lave",function()
+		for i,v in pairs(game.Workspace:GetDescendants()) do
+			if v.Name == "Lava" then   
+				v:Destroy()
+			end
+		end
+		for i,v in pairs(game.ReplicatedStorage:GetDescendants()) do
+			if v.Name == "Lava" then   
+				v:Destroy()
+			end
+		end
+	end)
+
     Misc:AddButton("Stop All Tween",function()
         topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
         _G.Clip = false
+    end)
+   
+     Misc:AddSeperator("animations mod meun")
+
+  Misc:AddButton("yes",function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/gui%20anim'))()
     end)
     
     Misc:AddSeperator("Codes")
@@ -6543,6 +6521,17 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
             end)
         end
     end)
+    
+    Misc:AddToggle("Auto Click",autoclick,function(value)
+		AuctoClick = value
+	end)
+	spawn(function()
+		while wait() do
+			if AuctoClick then
+				Click()
+			end
+		end
+	end)
     
     Misc:AddToggle("NoClip",_G.NOCLIP,function(value)
         _G.NOCLIP = value
@@ -7564,7 +7553,7 @@ elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId 
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
-    Toggle.Text = "R"
+    Toggle.Text = "Pado"
     Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
@@ -7948,7 +7937,7 @@ elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId 
         end)
     end
     --
-    local RenUi = library:AddWindow("Ren Hub | KL",Enum.KeyCode.RightControl)
+    local RenUi = library:AddWindow("Pado Hub | KL",Enum.KeyCode.RightControl)
     --
     local Main = RenUi:AddTab("Auto Farm","6026568198")
     local Stats = RenUi:AddTab("Stats","7040410130")
@@ -9744,7 +9733,7 @@ elseif game.PlaceId == 6329844902 then
         local uitab = {}
     
         function uitab:AddTab(text,image)
-            local Image = image or 6023426915
+            local Image = image or 9285162096
     
             local PageButton = Instance.new("TextButton")
             PageButton.Name = "PageButton"
@@ -10482,7 +10471,7 @@ elseif game.PlaceId == 6329844902 then
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
-    Toggle.Text = "R"
+    Toggle.Text = "Pado"
     Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
@@ -10746,7 +10735,7 @@ elseif game.PlaceId == 6329844902 then
     
     FarmMethod = CFrame.new(0,1,2.5)
     --
-    local RenUi = library:AddWindow("Ren Hub | LP",Enum.KeyCode.RightControl)
+    local RenUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
     --
     local Main = RenUi:AddTab("Auto Farm","6026568198")
     local Stats = RenUi:AddTab("Stats","7040410130")
@@ -10764,7 +10753,7 @@ elseif game.PlaceId == 6329844902 then
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("⏰Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
     end
     
     spawn(function()
@@ -11513,7 +11502,4 @@ elseif game.PlaceId == 6329844902 then
         end
     end)
 else
-    game.Players.LocalPlayer:Kick("\224\185\132\224\184\161\224\185\136\224\184\158\224\184\154\224\185\129\224\184\161\224\184\158")
-    wait(1)
-    game:Shutdown()
 end
