@@ -1,4 +1,4 @@
- if game.PlaceId == 2768379856 then
+
        _G.Color = Color3.fromRGB(255,0,0)
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
     
