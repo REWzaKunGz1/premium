@@ -2084,23 +2084,23 @@
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
     Toggle.Text = "Pado"
-    Toggle.TextColor3 = Color3.fromRGB(111, 0, 255)
+    Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
         game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
     end)
     --------------------------------------------------------------------
-    local RenUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
+    local PadoUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
     --------------------------------------------------------------------
-    local Main = RenUi:AddTab("Auto Farm","6026568198")
-    local Combat = RenUi:AddTab("Combat","7251993295")
-    local Stats = RenUi:AddTab("Stats","7040410130")
-    local Teleport = RenUi:AddTab("Teleport","6035190846")
-    local Dungeon = RenUi:AddTab("Dungeon","7044284832")
-    local DevilFruit = RenUi:AddTab("Devil Fruit","7044233235")
-    local Shop = RenUi:AddTab("Shop","6031265976")
-    local Misc = RenUi:AddTab("Misc","6034509993")
+    local Main = PadoUi:AddTab("Auto Farm","6026568198")
+    local Combat = PadoUi:AddTab("Combat","7251993295")
+    local Stats = PadoUi:AddTab("Stats","7040410130")
+    local Teleport = PadoUi:AddTab("Teleport","6035190846")
+    local Dungeon = PadoUi:AddTab("Dungeon","7044284832")
+    local DevilFruit = PadoUi:AddTab("Devil Fruit","7044233235")
+    local Shop = PadoUi:AddTab("Shop","6031265976")
+    local Misc = PadoUi:AddTab("Misc","6034509993")
     --------------------------------------------------------------------
     Main:AddSeperator("Settings")
     
@@ -10735,14 +10735,14 @@ elseif game.PlaceId == 6329844902 then
     
     FarmMethod = CFrame.new(0,1,2.5)
     --
-    local RenUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
+    local PadoUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
     --
-    local Main = RenUi:AddTab("Auto Farm","6026568198")
-    local Stats = RenUi:AddTab("Stats","7040410130")
-    local Combat = RenUi:AddTab("Combat","7251993295")
-    local Teleport = RenUi:AddTab("Teleport","7044226690")
-    local Shop = RenUi:AddTab("Shop","6031265976")
-    local Misc = RenUi:AddTab("Misc","6034900727")
+    local Main = PadoUi:AddTab("Auto Farm","6026568198")
+    local Stats = PadoUi:AddTab("Stats","7040410130")
+    local Combat = PadoUi:AddTab("Combat","7251993295")
+    local Teleport = PadoUi:AddTab("Teleport","7044226690")
+    local Shop = PadoUi:AddTab("Shop","6031265976")
+    local Misc = PadoUi:AddTab("Misc","6034900727")
     --
     Main:AddSeperator("Settings")
     
