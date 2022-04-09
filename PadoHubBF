@@ -2077,28 +2077,28 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
     
     Toggle.Name = "Toggle"
     Toggle.Parent = ScreenGui
-    Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Toggle.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
-    Toggle.Text = Pado"
-    Toggle.TextColor3 = Color3.fromRGB(104,4,255)
+    Toggle.Text = "R"
+    Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
     Toggle.TextScaled = true
     Toggle.MouseButton1Down:connect(function()
         game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
         game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
     end)
     --------------------------------------------------------------------
-    local Pado = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
+    local RenUi = library:AddWindow("Ren Hub | BF",Enum.KeyCode.RightControl)
     --------------------------------------------------------------------
-    local Main = Pado:AddTab("Auto Farm","6026568198")
-    local Combat = Pado:AddTab("Combat","7251993295")
-    local Stats = Pado:AddTab("Stats","7040410130")
-    local Teleport = Pado:AddTab("Teleport","6035190846")
-    local Dungeon = Pado:AddTab("Dungeon","7044284832")
-    local DevilFruit = Pado:AddTab("Devil Fruit","7044233235")
-    local Shop = Pado:AddTab("Shop","6031265976")
-    local Misc = Pado:AddTab("Misc","6034509993")
+    local Main = RenUi:AddTab("Auto Farm","6026568198")
+    local Combat = RenUi:AddTab("Combat","7251993295")
+    local Stats = RenUi:AddTab("Stats","7040410130")
+    local Teleport = RenUi:AddTab("Teleport","6035190846")
+    local Dungeon = RenUi:AddTab("Dungeon","7044284832")
+    local DevilFruit = RenUi:AddTab("Devil Fruit","7044233235")
+    local Shop = RenUi:AddTab("Shop","6031265976")
+    local Misc = RenUi:AddTab("Misc","6034509993")
     --------------------------------------------------------------------
     Main:AddSeperator("Settings")
     
@@ -2109,7 +2109,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("⏰Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
     end
     
     spawn(function()
@@ -6001,7 +6001,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,3)
     end)
     
-    Misc:AddSeperator("Server to discord")
+    Misc:AddSeperator("Server")
     
     Misc:AddButton("Rejoin Server",function()
         game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
@@ -6011,8 +6011,51 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         Hop()
     end)
     
-    Misc:AddButton("discord",function()
-         setclipboard("https://discord.gg/zPPv6jFF")
+    Misc:AddButton("Hop To Lower Player",function()
+        getgenv().AutoTeleport = true
+        getgenv().DontTeleportTheSameNumber = true 
+        getgenv().CopytoClipboard = false
+        if not game:IsLoaded() then
+            print("Game is loading waiting...")
+        end
+        local maxplayers = math.huge
+        local serversmaxplayer;
+        local goodserver;
+        local gamelink = "https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100" 
+        function serversearch()
+            for _, v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink)).data) do
+                if type(v) == "table" and v.playing ~= nil and maxplayers > v.playing then
+                    serversmaxplayer = v.maxPlayers
+                    maxplayers = v.playing
+                    goodserver = v.id
+                end
+            end       
+        end
+        function getservers()
+            serversearch()
+            for i,v in pairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync(gamelink))) do
+                if i == "nextPageCursor" then
+                    if gamelink:find("&cursor=") then
+                        local a = gamelink:find("&cursor=")
+                        local b = gamelink:sub(a)
+                        gamelink = gamelink:gsub(b, "")
+                    end
+                    gamelink = gamelink .. "&cursor=" ..v
+                    getservers()
+                end
+            end
+        end 
+        getservers()
+        if AutoTeleport then
+            if DontTeleportTheSameNumber then 
+                if #game:GetService("Players"):GetPlayers() - 4  == maxplayers then
+                    return warn("It has same number of players (except you)")
+                elseif goodserver == game.JobId then
+                    return warn("Your current server is the most empty server atm") 
+                end
+            end
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, goodserver)
+        end
     end)
     
     Misc:AddSeperator("Ui")
@@ -6120,8 +6163,8 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         end
     end)
     
-    Misc:AddButton("Invisible Tool",function()
-        loadstring(game:HttpGet('https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)'))()
+    Misc:AddButton("Invisible",function()
+        game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
     end)
     
     Misc:AddButton("Click TP Tool",function()
@@ -6522,18 +6565,6 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
     Misc:AddToggle("Skill V",true,function(value)
         _G.SkillV = value
     end)
-    
-      Misc:AddToggle("Auto Click",autoclick,function(value)
-		AuctoClick = value
-	end)
-	spawn(function()
-		while wait() do
-			if AuctoClick then
-				Click()
-			end
-		end
-	end)
-    
 elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId == 5931540094 or game.PlaceId == 5931540094 then
     _G.Color = Color3.fromRGB(255,0,0)
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
@@ -7917,15 +7948,15 @@ elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId 
         end)
     end
     --
-    local Pado = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
+    local RenUi = library:AddWindow("Ren Hub | KL",Enum.KeyCode.RightControl)
     --
-    local Main = Padoi:AddTab("Auto Farm","6026568198")
-    local Stats = Pado:AddTab("Stats","7040410130")
-    local Combat = Pado:AddTab("Combat","7251993295")
-    local Teleport = Pado:AddTab("Teleport","7044226690")
-    local Dungeon = Pado:AddTab("Dungeon","7044284832")
-    local Misc = Pado:AddTab("Misc","6034900727")
-    local Settings = Pado:AddTab("Settings","6034509993")
+    local Main = RenUi:AddTab("Auto Farm","6026568198")
+    local Stats = RenUi:AddTab("Stats","7040410130")
+    local Combat = RenUi:AddTab("Combat","7251993295")
+    local Teleport = RenUi:AddTab("Teleport","7044226690")
+    local Dungeon = RenUi:AddTab("Dungeon","7044284832")
+    local Misc = RenUi:AddTab("Misc","6034900727")
+    local Settings = RenUi:AddTab("Settings","6034509993")
     --
     Main:AddSeperator("Settings")
     
@@ -7936,7 +7967,7 @@ elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId 
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("⏰Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
     end
     
     spawn(function()
@@ -11481,8 +11512,3 @@ elseif game.PlaceId == 6329844902 then
             end)
         end
     end)
-else
-    game.Players.LocalPlayer:Kick("\224\185\132\224\184\161\224\185\136\224\184\158\224\184\154\224\185\129\224\184\161\224\184\158")
-    wait(1)
-    game:Shutdown()
-end
