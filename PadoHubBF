@@ -6158,10 +6158,12 @@
         topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
         _G.Clip = false
     end)
-   
-     Misc:AddSeperator("animations mod meun")
+    
+    Misc:AddButton("Kill you",function()
+        game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
+    end)
 
-  Misc:AddButton("yes",function()
+  Misc:AddButton("animations",function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/gui%20anim'))()
     end)
     
