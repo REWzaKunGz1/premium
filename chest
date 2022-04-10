@@ -31,7 +31,7 @@ TextButton.Position = UDim2.new(0.0482275374, 0, 0.0366036035, 0)
 TextButton.Size = UDim2.new(0, 159, 0, 46)
 TextButton.Font = Enum.Font.GothamBold
 TextButton.Text = "Common"
-TextButton.TextColor3 = Color3.new(0, 0, 0)
+TextButton.TextColor3 = Color3.new(255, 0, 0)
 TextButton.TextSize = 20
 TextButton.MouseButton1Click:Connect(function()
 
@@ -52,7 +52,7 @@ TextButton_2.Position = UDim2.new(0.0482275374, 0, 0.353676766, 0)
 TextButton_2.Size = UDim2.new(0, 159, 0, 46)
 TextButton_2.Font = Enum.Font.GothamBold
 TextButton_2.Text = "Uncommon"
-TextButton_2.TextColor3 = Color3.new(0, 0, 0)
+TextButton_2.TextColor3 = Color3.new(255, 0, 0)
 TextButton_2.TextSize = 20
 TextButton_2.MouseButton1Click:Connect(function()
 
@@ -74,7 +74,7 @@ TextButton_3.Position = UDim2.new(0.0482275374, 0, 0.676847458, 0)
 TextButton_3.Size = UDim2.new(0, 159, 0, 46)
 TextButton_3.Font = Enum.Font.GothamBold
 TextButton_3.Text = "Rare"
-TextButton_3.TextColor3 = Color3.new(0, 0, 0)
+TextButton_3.TextColor3 = Color3.new(255, 0, 0)
 TextButton_3.TextSize = 20
 TextButton_3.MouseButton1Click:Connect(function()
 
