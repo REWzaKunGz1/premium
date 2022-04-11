@@ -6172,6 +6172,34 @@
     Misc:AddButton("Chest",function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/chest'))()
     end)
+    
+    Misc:Toggle("Auto Farm Chest",false,function(v)
+		AutoFarmChest = v
+	end)
+	_G.MagnitudeAdd = 0
+	spawn(function()
+		while wait() do 
+			pcall(function()
+				if AutoFarmChest then
+					for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
+						if v.Name:find("Chest") then
+							if game:GetService("Workspace"):FindFirstChild(v.Name) then
+								if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
+									repeat wait()
+										if game:GetService("Workspace"):FindFirstChild(v.Name) then
+											SlowtoTarget(v.CFrame)
+										end
+									until AutoFarmChest == false or not v.Parent
+									_G.MagnitudeAdd = _G.MagnitudeAdd+1500
+								end
+							end
+						end
+					end
+				end
+			end)
+		end
+	end)
+    
    
     Misc:AddSeperator("Codes")
     
