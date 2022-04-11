@@ -6173,7 +6173,7 @@
     loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/chest'))()
     end)
     
-    Misc:Toggle("Auto Farm Chest",false,function(v)
+    Misc:AddToggle("Auto Farm Chest",false,function(v)
 		AutoFarmChest = v
 	end)
 	_G.MagnitudeAdd = 0
