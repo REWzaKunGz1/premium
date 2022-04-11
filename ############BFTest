@@ -10600,7 +10600,7 @@ if BF then
 		game.Players.localPlayer.PlayerGui.Main.FruitInventory.Visible = true
 	end)
 	MiscTab:Button("Open Color Haki",function()
-		game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true
+		game.Players.localPlayer.PlayerGui.Main.AwakeningsExpert.Visible = true
 	end)
 	MiscTab:Button("Open Title Name",function()
 		local args = {
