@@ -2079,7 +2079,7 @@
     
     Toggle.Name = "Toggle"
     Toggle.Parent = ScreenGui
-    Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
     Toggle.Size = UDim2.new(0, 50, 0, 50)
     Toggle.Font = Enum.Font.Code
