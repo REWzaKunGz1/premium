@@ -6129,13 +6129,9 @@
     Misc:AddButton("Kill you",function()
         game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
     end)
-
-    Misc:AddButton("animations",function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/gui%20anim'))()
-    end)
     
     Misc:AddButton("Chest TP",function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Chest'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Chest%230000'))()
     end)
     
     Misc:AddSeperator("Codes")
