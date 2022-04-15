@@ -15,6 +15,13 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         end
     end
     
+    game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = "Pado";
+    Text = "Pado Hub | Made By REWza";
+    Icon = "rbxthumb://type=Asset&id=6277863536&w=150&h=150"})
+Duration = 16;
+
+    
     local UserInputService = game:GetService("UserInputService")
     local TweenService = game:GetService("TweenService")
     
@@ -984,7 +991,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
         end
         return uitab
     end
-    
+
     --------------------------------------------------------------------
     if game.PlaceId == 2753915549 then
         World1 = true
