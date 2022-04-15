@@ -1,4 +1,12 @@
-loadstring(game:HttpGet('https://github.com/REWzaKunGz1/REWzaKunGz1/blob/main/UI'))()
+local library = loadstring(game:HttpGet("https://github.com/REWzaKunGz1/REWzaKunGz1/blob/main/UI", true))()
+    library:CreateWatermark("Center Hub No.1") -- Config แตกนะเดียวค่อยแก้รอเน็ตมาก่อน By MeowX#0001
+    local CenterHubNo1 = library:CreateWindow("UI EDIT BY NAYPRAMXD :) ",Enum.KeyCode.RightControl)
+    local Tab = CenterHubNo1:CreateTab("TAB CENTERHUB")
+    local Sector1 = Tab:CreateSector("SECTOR CENTERHUB","left")
+    Sector1:AddLabel("LABEL BY CENTERHUB")
+    Sector1:AddToggle("TOGGLE BY CENTERHUB",false,function(t)
+       print(t)
+    end)
     --------------------------------------------------------------------
     if game.PlaceId == 2753915549 then
         World1 = true
