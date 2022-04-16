@@ -6134,8 +6134,6 @@ Duration = 16;
     end)
     
     Misc:AddButton("ANIMATIONS",function()
-        game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
-    end)
     
     Misc:AddButton("",function()
     local animations = {
