@@ -6137,10 +6137,6 @@ Duration = 16;
         game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
     end)
     
-    Misc:AddButton("Chest TP",function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Chest%230000'))()
-    end)
-    
     Misc:AddSeperator("Codes")
     
     local x2Code = {
