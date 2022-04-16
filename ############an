@@ -482,4 +482,4 @@ Exit.MouseButton1Click:Connect(function()
 	Animations:Destroy()
 	LoganWS:Destroy()
 	con:Disconnect()
-end)a
+end)
