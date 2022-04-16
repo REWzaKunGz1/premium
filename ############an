@@ -1,5 +1,4 @@
-Misc:AddButton("",function()
-    local animations = {
+local animations = {
     ["Dophin Dance"] = 5918726674,
     ["Applaud"] = 5915693819,
     ["Country Line  Dance"] = 5915712534,
