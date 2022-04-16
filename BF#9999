@@ -6137,6 +6137,10 @@ Duration = 16;
     loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/anim%231212'))()
     end)
     
+      Misc:AddButton("Kill you",function()
+        game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
+    end)
+    
     Misc:AddSeperator("Codes")
     
     local x2Code = {
