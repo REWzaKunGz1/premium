@@ -4,7 +4,6 @@
 
 local main = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
-local up = Instance.new("TextButton")
 local onof = Instance.new("TextButton")
 local TextLabel = Instance.new("TextLabel")
 local plus = Instance.new("TextButton")
