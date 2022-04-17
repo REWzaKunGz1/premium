@@ -1,9 +1,9 @@
-
-
 -- Instances:
 
 local main = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
+local up = Instance.new("TextButton")
+local down = Instance.new("TextButton")
 local onof = Instance.new("TextButton")
 local TextLabel = Instance.new("TextLabel")
 local plus = Instance.new("TextButton")
@@ -24,7 +24,7 @@ Frame.Size = UDim2.new(0, 190, 0, 57)
 
 onof.Name = "onof"
 onof.Parent = Frame
-onof.BackgroundColor3 = Color3.fromRGB(255, 249, 74)
+onof.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 onof.Position = UDim2.new(0.702823281, 0, 0.491228074, 0)
 onof.Size = UDim2.new(0, 56, 0, 28)
 onof.Font = Enum.Font.SourceSans
@@ -33,7 +33,7 @@ onof.TextColor3 = Color3.fromRGB(0, 0, 0)
 onof.TextSize = 14.000
 
 TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(242, 60, 255)
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 TextLabel.Position = UDim2.new(0.469327301, 0, 0, 0)
 TextLabel.Size = UDim2.new(0, 100, 0, 28)
 TextLabel.Font = Enum.Font.SourceSans
@@ -57,7 +57,7 @@ plus.TextWrapped = true
 
 speed.Name = "speed"
 speed.Parent = Frame
-speed.BackgroundColor3 = Color3.fromRGB(255, 85, 0)
+speed.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 speed.Position = UDim2.new(0.468421042, 0, 0.491228074, 0)
 speed.Size = UDim2.new(0, 44, 0, 28)
 speed.Font = Enum.Font.SourceSans
