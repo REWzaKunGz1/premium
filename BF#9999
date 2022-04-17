@@ -6529,7 +6529,7 @@ Duration = 16;
         end)
     end)
     
-    Misc:AddToggle("Fly",false,function(value)
+    Misc:AddToggle("Fly pc",false,function(value)
         Fly = value
     end)
     
@@ -6541,6 +6541,10 @@ Duration = 16;
                 end
             end)
         end
+    end)
+    
+    Misc:AddToggle("fly Mobile",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/fly%201212'))()
     end)
     
     Misc:AddToggle("Auto Click",autoclick,function(value)
