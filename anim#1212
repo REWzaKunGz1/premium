@@ -243,36 +243,6 @@ StopAnim.TextScaled = true
 StopAnim.TextSize = 14.000
 StopAnim.TextWrapped = true
 
-PauseAnim.Name = "PauseAnim"
-PauseAnim.Parent = MainFrame
-PauseAnim.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-PauseAnim.BackgroundTransparency = 0.750
-PauseAnim.BorderColor3 = Color3.fromRGB(27, 42, 53)
-PauseAnim.BorderSizePixel = 0
-PauseAnim.Size = UDim2.new(0, 219, 0, 28)
-PauseAnim.Font = Enum.Font.GothamSemibold
-PauseAnim.Text = "Pause Game Animations"
-PauseAnim.TextColor3 = Color3.fromRGB(255, 255, 255)
-PauseAnim.TextScaled = true
-PauseAnim.TextSize = 14.000
-PauseAnim.TextWrapped = true
-PauseAnim.LayoutOrder = 6
-
-ReplayAnim.Name = "ReplayAnim"
-ReplayAnim.Parent = MainFrame
-ReplayAnim.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ReplayAnim.BackgroundTransparency = 0.750
-ReplayAnim.BorderColor3 = Color3.fromRGB(27, 42, 53)
-ReplayAnim.BorderSizePixel = 0
-ReplayAnim.Size = UDim2.new(0, 219, 0, 28)
-ReplayAnim.Font = Enum.Font.GothamSemibold
-ReplayAnim.Text = "Replay Game Animations"
-ReplayAnim.TextColor3 = Color3.fromRGB(255, 255, 255)
-ReplayAnim.TextScaled = true
-ReplayAnim.TextSize = 14.000
-ReplayAnim.TextWrapped = true
-ReplayAnim.LayoutOrder = 7
-
 Exit.Name = "Exit"
 Exit.Parent = titleFrame
 Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
