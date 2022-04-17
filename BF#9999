@@ -3224,7 +3224,7 @@ Duration = 16;
         end
     end)
     
-    Main:AddSeperator("Advance Dungeon")
+    Main:AddSeperator("🍡Advance Dungeon🍡")
     
     Main:AddToggle("Auto Advance Dungeon",_G.AutoAdvanceDungeon,function(value)
         _G.AutoAdvanceDungeon = value
@@ -6543,7 +6543,7 @@ Duration = 16;
         end
     end)
     
-    Misc:AddToggle("fly Mobile",function()
+    Misc:AddButton("fly Mobile",function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/fly%201212'))()
     end)
     
