@@ -6177,6 +6177,12 @@ end)
     Misc:AddButton("discord",function()
          setclipboard("https://discord.gg/zPPv6jFF")
     end)
+    
+    Misc:AddButton("Destroy Ui",function()
+        if game.CoreGui:FindFirstChild("UlLib") then
+            game.CoreGui:FindFirstChild("UlLib"):Destroy()
+        end
+    end)
        
     Misc:AddSeperator("Ui")
     
