@@ -2118,7 +2118,7 @@ Duration = 16;
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("⏰Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
     end
     
     spawn(function()
@@ -6630,6 +6630,19 @@ end)
 			end
 		end
 	end)
+	
+	   Misc:AddToggle("Auto Haki", true,function(vu)
+      _G.AutoHakiBuso = vu
+   end)
+     spawn(function()
+      while wait(.1) do
+         if _G.AutoHakiBuso then
+            if not game.Players.LocalPlayer.Character:FindFirstChild("HasBuso") then
+               game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Buso")
+            end
+         end
+      end
+   end)
     
     Misc:AddToggle("NoClip",_G.NOCLIP,function(value)
         _G.NOCLIP = value
@@ -6652,6 +6665,7 @@ end)
     Misc:AddToggle("Skill V",true,function(value)
         _G.SkillV = value
     end)
+    
 elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId == 5931540094 or game.PlaceId == 5931540094 then
     _G.Color = Color3.fromRGB(255,0,0)
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
