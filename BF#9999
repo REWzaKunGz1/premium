@@ -5598,7 +5598,7 @@ Duration = 16;
         end)
     end)
     
-    Main:AddToggle("Kill Aura",_G.KillAura,function(vu)
+    Dungeon:AddToggle("Kill Aura",_G.KillAura,function(vu)
    _G.KillAura = vu
 end)
 
