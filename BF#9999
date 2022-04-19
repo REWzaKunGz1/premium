@@ -5030,7 +5030,7 @@ Duration = 16;
         end
     end)
     
-    Combat:AddButton("Esp",function()
+    Combat:AddToggle("Esp",false,function(value)
 local Holder = Instance.new("Folder", game.CoreGui)
 Holder.Name = "ESP"
 
