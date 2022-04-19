@@ -11616,7 +11616,7 @@ elseif game.PlaceId == 6329844902 then
     Misc:AddToggle("NoClip",_G.NoClip,function(value)
         _G.NoClip = value
     end)
-    
+
     Misc:AddToggle("Fly",false,function(value)
         Fly = value
     end)
@@ -11630,9 +11630,6 @@ elseif game.PlaceId == 6329844902 then
             end)
         end
     end)
-else
-end
-
 _G.FastAttack = false
 end
 
@@ -11662,6 +11659,7 @@ spawn(function()
         end
     end)
 end)
+
 if _G.FastAttack == false then _G.FastAttack = false else _G.FastAttack = false end
 
 local RigC = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework) local VirtualUser = game:GetService('VirtualUser') local kkii = require(game.ReplicatedStorage.Util.CameraShaker) local LocalPlayer = game.Players.LocalPlayer local Framework = { Combat = require(LocalPlayer.PlayerScripts.CombatFramework), Rig = require(LocalPlayer.PlayerScripts.CombatFramework.RigController) } local cd = 0.1 function Attack() spawn(function() while wait() do pcall(function() local Controller = Framework.Combat.activeController if Controller and tick() >= cd then cd = tick() + 0.1 spawn(function() Controller:attack() end) Controller.increment = 4 end end) end end) end
@@ -11673,3 +11671,8 @@ spawn(function()
     end
 end
 end)
+
+spawn(function() game:GetService("RunService").Stepped:Connect(function() if _G.FastAttack == true then game.Players.LocalPlayer.Character.Stun.Value = 0 game.Players.LocalPlayer.Character.Humanoid.Sit = false game.Players.LocalPlayer.Character.Busy.Value = false
+end wait(1) end) end)
+
+spawn(function() while wait() do if sethiddenproperty then sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",99999999999) end if setscriptable then setscriptable(game.Players.LocalPlayer, "SimulationRadius", true) game.Players.LocalPlayer.SimulationRadius = math.huge * math.huge, math.huge * math.huge * 1 / 0 * 1 / 0 * 1 / 0 * 1 / 0 * 1 / 0 end end end)
