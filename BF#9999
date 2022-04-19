@@ -10875,7 +10875,6 @@ elseif game.PlaceId == 6329844902 then
         game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
     end)
 
-    
     FarmMethod = CFrame.new(0,1,2.5)
     --
     local PadoUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
