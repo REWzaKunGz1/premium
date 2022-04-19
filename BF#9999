@@ -5021,6 +5021,43 @@ Duration = 16;
         end
     end)
     
+       Combat:AddSeperator("ESP")
+    
+    Misc:AddToggle("ESP Player",false,function(value)
+        ESPPlayer = value
+        while ESPPlayer do wait()
+            UpdateEspPlayer()
+        end
+    end)
+    
+    Combat:AddToggle("ESP Chest",false,function(value)
+        ChestESP = value
+        while ChestESP do wait()
+            UpdateChestEsp() 
+        end
+    end)
+    
+    Combat:AddToggle("ESP Fruit",false,function(value)
+        DevilFruitESP = value
+        while DevilFruitESP do wait()
+            UpdateBfEsp() 
+        end
+    end)
+    
+    Combat:AddToggle("ESP Flower",false,function(value)
+        FlowerESP = value
+        while FlowerESP do wait()
+            UpdateFlowerEsp() 
+        end
+    end)
+    
+    Combat:AddToggle("ESP Island",IslandESP,function(value)
+        IslandESP = value
+        while IslandESP do wait()
+            UpdateIslandESP() 
+        end
+    end)
+    
     Stats:AddSeperator("Auto Stats")
     
     local Pointstat = Stats:AddLabel("Stat Points")
