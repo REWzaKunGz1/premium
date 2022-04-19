@@ -6132,6 +6132,11 @@ Duration = 16;
 	Misc:AddButton("Open Color Haki",function()
 		game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true
 	end)
+	
+	
+	Misc:AddButton("Open Awakenings Expert",function()
+		game.Players.localPlayer.PlayerGui.Main.ReplicatedStorage.Visible = true
+	end)
   
     Misc:AddToggle("Highlight Mode",false,function(value)
         if value == true then
