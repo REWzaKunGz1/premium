@@ -5598,6 +5598,32 @@ Duration = 16;
         end)
     end)
     
+    Main:AddToggle("Kill Aura",_G.KillAura,function(vu)
+   _G.KillAura = vu
+end)
+
+spawn(function()
+  pcall(function() 
+  while wait() do
+       if _G.KillAura then
+           for i,v in pairs(game.Workspace.Enemies:GetDescendants()) do
+               if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
+                   pcall(function()
+                       repeat wait()
+                           sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+                           v.Humanoid.Health = 0
+                           v.HumanoidRootPart.CanCollide = false
+                           v.HumanoidRootPart.Size = Vector3.new(80,80,80)
+                           v.HumanoidRootPart.Transparency = 1
+                       until not _G.KillAura or not v.Parent or v.Humanoid.Health <= 0
+                   end)
+               end
+           end
+       end
+   end
+  end)
+end)
+    
     Dungeon:AddToggle("Auto Awakener",_G.Auto_Awakener,function(value)
         _G.Auto_Awakener = value
     end)
