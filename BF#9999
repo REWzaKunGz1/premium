@@ -2197,9 +2197,6 @@ end)
 spawn(function() game:GetService("RunService").Stepped:Connect(function() if _G.FastAttack == true then game.Players.LocalPlayer.Character.Stun.Value = 0 game.Players.LocalPlayer.Character.Humanoid.Sit = false game.Players.LocalPlayer.Character.Busy.Value = false
 end wait(1) end) end)
 
-spawn(function() while wait() do if sethiddenproperty then sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",99999999999) end if setscriptable then setscriptable(game.Players.LocalPlayer, "SimulationRadius", true) game.Players.LocalPlayer.SimulationRadius = math.huge * math.huge, math.huge * math.huge * 1 / 0 * 1 / 0 * 1 / 0 * 1 / 0 * 1 / 0 end end end)
-
-    
     Main:AddToggle("Bring Mob",true,function(value)
         _G.BringMonster = value
     end)
