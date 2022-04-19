@@ -1581,7 +1581,7 @@ Duration = 16;
                         else
                             ESP.TextColor3 = Color3.new(255, 0, 0)
                         end
-                        ESP.TextSize = 14
+                        ESP.TextSize = 20
                         ESP.TextStrokeTransparency = 0.500
                         ESP.TextWrapped = true
                         HealthESP.Name = "HealthESP"
@@ -1592,7 +1592,7 @@ Duration = 16;
                         HealthESP.Size = UDim2.new(0, 200, 0, 30)
                         HealthESP.Font = Enum.Font.Gotham
                         HealthESP.TextColor3 = Color3.fromRGB(255, 0, 0)
-                        HealthESP.TextSize = 14
+                        HealthESP.TextSize = 20
                         HealthESP.TextStrokeTransparency = 0.500
                         HealthESP.TextWrapped = true
                         HealthESP.Text = "Health "..math.floor(v.Character.Humanoid.Health).."/"..math.floor(v.Character.Humanoid.MaxHealth)
@@ -10880,7 +10880,7 @@ elseif game.PlaceId == 6329844902 then
         wait(1)
         game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
     end)
-
+    
     FarmMethod = CFrame.new(0,1,2.5)
     --
     local PadoUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
@@ -10901,7 +10901,7 @@ elseif game.PlaceId == 6329844902 then
         local Hour = math.floor(GameTime/(60^2))%24
         local Minute = math.floor(GameTime/(60^1))%60
         local Second = math.floor(GameTime/(60^0))%60
-        Time:Set("⏰Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
+        Time:Set("Hr(s) : "..Hour.." Min(s) : "..Minute.." Sec(s) : "..Second)
     end
     
     spawn(function()
