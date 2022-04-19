@@ -2153,9 +2153,6 @@ end)
     _G.FastAttack = value
 end)
 
-spawn(function() game:GetService("RunService").Stepped:Connect(function() if _G.FastAttack == true then game.Players.LocalPlayer.Character.Stun.Value = 0 game.Players.LocalPlayer.Character.Humanoid.Sit = false game.Players.LocalPlayer.Character.Busy.Value = false
-end wait(1) end) end)
-
     Main:AddToggle("Bring Mob",true,function(value)
         _G.BringMonster = value
     end)
@@ -11676,4 +11673,3 @@ spawn(function()
     end
 end
 end)
-
