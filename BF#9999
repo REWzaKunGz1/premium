@@ -3224,7 +3224,7 @@ Duration = 16;
         end
     end)
     
-    Main:AddSeperator("🍡Advance Dungeon🍡")
+    Main:AddSeperator("Advance Dungeon")
     
     Main:AddToggle("Auto Advance Dungeon",_G.AutoAdvanceDungeon,function(value)
         _G.AutoAdvanceDungeon = value
@@ -4559,6 +4559,42 @@ Duration = 16;
                     end
                 end
             end)
+        end
+    end)
+    
+        Main:AddSeperator("Sea Beats")
+    
+    Main:AddToggle("Auto Sea Beats",_G.AutoSeaBeats,function(value)
+        _G.AutoSeaBeats = value
+    end)
+    
+    Main:AddToggle("Auto Sea Beats Hop",_G.AutoSeaBeats_Hop,function(value)
+        _G.AutoSeaBeats_Hop = value
+    end)
+    
+    spawn(function()
+        while wait() do
+            if _G.AutoSeaBeats then
+                pcall(function()
+                    for i,v in pairs(game:GetService("Workspace").Lives:GetChildren()) do
+                        if game:GetService("Workspace").Lives:FindFirstChild("Sea Beast") then
+                            if v.Name == "Sea Beast" then
+                                repeat task.wait()
+                                    EquipWeapon(_G.SelectWeapon)
+                                    AutoHaki()
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
+                                    game:GetService'VirtualUser':CaptureController()
+                                    game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672),game:GetService("Workspace").Camera.CFrame)
+                                until v.Humanoid.Health <= 0 or not game:GetService("Workspace").Lives:FindFirstChild("Sea Beast") or not _G.AutoSeaBeats or not v.Parent
+                            end
+                        else
+                            if _G.AutoSeaBeats_Hop then
+                                Hop()
+                            end
+                        end
+                    end
+                end)
+            end
         end
     end)
     
