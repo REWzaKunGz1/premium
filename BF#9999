@@ -6178,8 +6178,8 @@ end)
 	
 	
 	Misc:AddButton("Open Awakenings Expert",function()
-		game.Players.localPlayer.PlayerGui.Main.ReplicatedStorage.Visible = true
-	end)
+     game.Players.LocalPlayer.PlayerGui.Main.AwakeningToggler.Visible = true
+end)
   
     Misc:AddToggle("Highlight Mode",false,function(value)
         if value == true then
