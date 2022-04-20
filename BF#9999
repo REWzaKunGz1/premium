@@ -2129,22 +2129,6 @@ Duration = 16;
         end
     end)
     
-    Client = Main:AddLabel("FPS Server")
-
-function UpdateClient()
-    local Ping = game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValueString()
-    local Fps = workspace:GetRealPhysicsFPS()
-    Client:Refresh("Fps : "..Fps.." Ping : "..Ping)
-end
-
-spawn(function()
-    while true do wait(.1)
-    pcall(function()
-        UpdateClient()
-	end)
-    end
-end)
-    
     Main:AddToggle("Auto Set Spawn Points",true,function(value)
         _G.AutoSetSpawn = value
     end)
