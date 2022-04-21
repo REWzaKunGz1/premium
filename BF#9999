@@ -6126,6 +6126,20 @@ end)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Bones","Buy",1,3)
     end)
     
+    ------------Stat------------------
+    
+    Shop:AddSeperator("Stat")
+
+Shop:AddButton("Refund Stat [2500 F]", function()
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","1")
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Refund","2")
+end)
+
+Shop:AddButton("Reroll Race [3000 F]", function()
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","1")
+	game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BlackbeardReward","Reroll","2")
+end)
+    
     Misc:AddSeperator("Server to discord")
     
     Misc:AddButton("Rejoin Server",function()
