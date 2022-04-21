@@ -5073,6 +5073,20 @@ end)
             end
         end
     end)
+   
+       Combat:AddSeperator("SPEED-JUMP") 
+    
+ Combat:AddSlider("walk speed ", 0, 1000, 16, function(value)
+local name = game.Players.LocalPlayer.Name
+game.Workspace.Characters[name].Movement.Disabled = true
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+
+  Combat:AddSlider("Jump Hight ", 0, 1000, 16, function(value)
+local name = game.Players.LocalPlayer.Name
+game.Workspace.Characters[name].Movement.Disabled = true
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end)
     
        Combat:AddSeperator("ESP")
     
