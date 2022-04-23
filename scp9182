@@ -1517,6 +1517,6 @@ end)
 
 Misc:AddSeperator("see Time Night")
 
-Misc:AddButton("Time")
+Misc:AddButton("Time", function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Time%20scp'))()
 end)
