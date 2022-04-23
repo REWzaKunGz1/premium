@@ -1608,7 +1608,7 @@ Main:AddButton("Dr. Bob",function()
 	
 	end)
 
-Main:AddSeperator("ESP Player Mobile")
+Main:AddSeperator("Player Mobile")
 
 Main:AddToggle("ESP Player",false,function(value)
         ESPPlayer = value
@@ -1616,8 +1616,22 @@ Main:AddToggle("ESP Player",false,function(value)
             UpdateEspPlayer()
         end
     end)
+    
+    Main:AddButton("InfiniteJump", function()
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+local InfiniteJump = CreateButton("Infinite Jump: Off", StuffFrame)
+local state = InfiniteJump.Text:sub(string.len("Infinite Jump: ") + 1) --too lazy to count lol
+	local new = state == "Off" and "On" or state == "On" and "Off"
+	InfiniteJumpEnabled = new == "On"
+	InfiniteJump.Text = "Infinite Jump: " .. new
+end)
 
-Main:AddSeperator("ESP Player PC")
+Main:AddSeperator("Player PC")
 
 Main:AddToggle("ESP Boxes", false, function(Value)
    ESP.Boxes = Value  
