@@ -1637,6 +1637,10 @@ Teleport:AddButton("Teleport to Dr. Bob", function()
    teleportToItem("Dr. Bob")
 end)
 
+Teleport:AddButton("Teleport to Lemon Slice", function()
+   teleportToItem("Lemon Slice")
+end)
+
 Misc:AddSeperator("see Time Night")
 
 Misc:AddButton("Time", function()
