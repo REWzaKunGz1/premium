@@ -1042,6 +1042,67 @@ Duration = 16;
                 end
             end
         end
+	
+	    function UpdateEspPlayer()
+        if ESPPlayer then
+            for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+                if not isnil(v.Character) then
+                    if not v.Character.Head:FindFirstChild('NameEsp'..v.Name) then
+                        local BillboardGui = Instance.new("BillboardGui")
+                        local ESP = Instance.new("TextLabel")
+                        local HealthESP = Instance.new("TextLabel")
+                        BillboardGui.Parent = v.Character.Head
+                        BillboardGui.Name = 'NameEsp'..v.Name
+                        BillboardGui.ExtentsOffset = Vector3.new(0, 1, 0)
+                        BillboardGui.Size = UDim2.new(1,200,1,30)
+                        BillboardGui.Adornee = v.Character.Head
+                        BillboardGui.AlwaysOnTop = true
+                        ESP.Name = "ESP"
+                        ESP.Parent = BillboardGui
+                        ESP.TextTransparency = 0
+                        ESP.BackgroundTransparency = 1
+                        ESP.Size = UDim2.new(0, 200, 0, 30)
+                        ESP.Position = UDim2.new(0,25,0,0)
+                        ESP.Font = Enum.Font.Gotham
+                        ESP.Text = (v.Name ..' '.."[ "..round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude/3) ..' M'.." ]")
+                        if v.Team == game:GetService("Players").LocalPlayer.Team then
+                            ESP.TextColor3 = Color3.new(0, 255, 255)
+                        else
+                            ESP.TextColor3 = Color3.new(255, 0, 0)
+                        end
+                        ESP.TextSize = 20
+                        ESP.TextStrokeTransparency = 0.500
+                        ESP.TextWrapped = true
+                        HealthESP.Name = "HealthESP"
+                        HealthESP.Parent = ESP
+                        HealthESP.TextTransparency = 0
+                        HealthESP.BackgroundTransparency = 1
+                        HealthESP.Position = ESP.Position + UDim2.new(0, -25, 0, 15)
+                        HealthESP.Size = UDim2.new(0, 200, 0, 30)
+                        HealthESP.Font = Enum.Font.Gotham
+                        HealthESP.TextColor3 = Color3.fromRGB(255, 0, 0)
+                        HealthESP.TextSize = 20
+                        HealthESP.TextStrokeTransparency = 0.500
+                        HealthESP.TextWrapped = true
+                        HealthESP.Text = "Health "..math.floor(v.Character.Humanoid.Health).."/"..math.floor(v.Character.Humanoid.MaxHealth)
+                    else
+                        v.Character.Head['NameEsp'..v.Name].ESP.Text = (v.Name ..' '..round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude/3) ..' M')
+                        v.Character.Head['NameEsp'..v.Name].ESP.HealthESP.Text = "Health "..math.floor(v.Character.Humanoid.Health).."/"..math.floor(v.Character.Humanoid.MaxHealth)
+                        v.Character.Head:FindFirstChild('NameEsp'..v.Name).ESP.TextTransparency = 0
+                        v.Character.Head:FindFirstChild('NameEsp'..v.Name).ESP.HealthESP.TextTransparency = 0
+                    end
+                end
+            end
+        else
+            for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+                if v.Character.Head:FindFirstChild('NameEsp'..v.Name) then
+                    v.Character.Head:FindFirstChild('NameEsp'..v.Name).ESP.TextTransparency = 1
+                    v.Character.Head:FindFirstChild('NameEsp'..v.Name).ESP.HealthESP.TextTransparency = 1
+                end
+            end
+        end     
+    end
+	
         function Teleport() 
             while wait() do
                 pcall(function()
@@ -1469,7 +1530,39 @@ Main:AddButton("Hotdog",function()
 	
 	end)
 
-Main:AddToggle("ESP", false, function(Value)
+Main:AddSeperator("ESP Player Mobile")
+
+Main:AddButton("ESP Player",false,function(value)
+       for i,v in pairs(game.Players:GetChildren()) do
+            if not v.Character.Head:FindFirstChild("ESP") then
+                local BillboardGui = Instance.new("BillboardGui")
+                local TextLabel = Instance.new("TextLabel")
+                BillboardGui.Parent = v.Character.Head
+                BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+                BillboardGui.Active = true
+                BillboardGui.Name = "ESP"
+                BillboardGui.AlwaysOnTop = true
+                BillboardGui.LightInfluence = 1.000
+                BillboardGui.Size = UDim2.new(0, 200, 0, 50)
+                BillboardGui.StudsOffset = Vector3.new(0, 2.5, 0)
+                TextLabel.Parent = BillboardGui
+                TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                TextLabel.BackgroundTransparency = 1.000
+                TextLabel.Size = UDim2.new(0, 200, 0, 50)
+                TextLabel.Font = Enum.Font.GothamBold
+                TextLabel.Text = v.Name
+                TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                TextLabel.TextScaled = true
+                TextLabel.TextSize = 14.000
+                TextLabel.TextStrokeTransparency = 0.000
+                TextLabel.TextWrapped = true
+            end
+        end
+    end) 
+
+Main:AddSeperator("ESP Player PC")
+
+Main:AddToggle("ESP Boxes", false, function(Value)
    ESP.Boxes = Value  
 end)
 
@@ -1483,14 +1576,6 @@ end)
 
 Main:AddToggle("Show Players", false, function(Value)
    ESP.Players = Value
-end)
-
-Main:AddToggle("Show Employees", false, function(Value)
-   ESP.employeeToggle = Value
-end)
-
-Main:AddToggle("Show Items", false, function(Value)
-   ESP.itemESP = Value
 end)
 
 Teleport:AddSeperator("Teleport food")
