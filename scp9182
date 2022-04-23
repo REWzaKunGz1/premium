@@ -1058,7 +1058,7 @@ Duration = 16;
 -- notify function
 local function notify(message)
    game.StarterGui:SetCore("SendNotification", {
-       Title = "CheatX";
+       Title = "Pado";
        Text = message;
        Icon = "";
        Duration = 5;
@@ -1469,6 +1469,8 @@ Main:AddToggle("Show Items", false, function(Value)
    ESP.itemESP = Value
 end)
 
+Teleport:AddSeperator("Teleport food")
+
 Teleport:AddButton("Teleport to Hotdog", function()
    teleportToItem("Hotdog")
 end)
@@ -1507,4 +1509,14 @@ end)
 
 Teleport:AddButton("Teleport to Banana", function()
    teleportToItem("Banana")
+end)
+
+Teleport:AddButton("Teleport to Striped Donut", function()
+   teleportToItem("Striped Donut")
+end)
+
+Misc:AddSeperator("see Time Night")
+
+Misc:AddButton("Time")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Time%20scp'))()
 end)
