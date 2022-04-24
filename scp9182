@@ -5,7 +5,7 @@
     
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then repeat wait() until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") end
         
-    wait(1)
+    wait()
     
     do
         local ui = game.CoreGui:FindFirstChild("UlLib")
