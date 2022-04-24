@@ -1532,7 +1532,7 @@ Main:AddButton("Dr. Bob",function()
 	
 	end)
 
-Main:AddSeperator("Player Mobile")
+Main:AddSeperator("Player")
     
     Main:AddButton("InfiniteJump", function()
 local InfiniteJumpEnabled = true
