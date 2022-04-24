@@ -3942,14 +3942,15 @@ function ui:W1n(text,text2,text2Pos,toclose)
 	return uitop
 end
 
-local win = ui:W1n("HUB YOU","GUI",0.30,Enum.KeyCode.RightControl)
+local win = ui:W1n("Pado hub | SCP","GUI",0.30,Enum.KeyCode.RightControl)
 
 local Tap = win:Tap("Main")
+
+local Tap = win:Tap("esp")
 
 local AutoFarm = Tap:newpage()
 
 AutoFarm:Title("Main")
-
 
 AutoFarm:Title("Title")
 AutoFarm:Label("Label")
