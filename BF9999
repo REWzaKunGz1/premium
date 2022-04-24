@@ -5528,6 +5528,11 @@ end)
         StopTween(_G.TeleportIsland)
     end)
     
+     Teleport:AddButton("Stop All Tween",function()
+        topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
+        _G.Clip = false
+    end)
+    
     Dungeon:AddLine()
     
     local TimeRaid = Dungeon:AddLabel("Wait For Dungeon")
@@ -6246,11 +6251,6 @@ end)
 			end
 		end
 	end)
-
-    Misc:AddButton("Stop All Tween",function()
-        topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-        _G.Clip = false
-    end)
     
     Misc:AddButton("ANIMATIONS",function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/anim%231212'))()
