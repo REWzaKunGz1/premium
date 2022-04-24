@@ -997,13 +997,33 @@ Duration = 16;
         return uitab
     end
     
-
-
+ 
+ 
+ local ScreenGui = Instance.new("ScreenGui")
+    local Toggle = Instance.new("TextButton")
+    
+    ScreenGui.Name = "ScreenGui"
+    ScreenGui.Parent = game.CoreGui
+    
+    Toggle.Name = "Toggle"
+    Toggle.Parent = ScreenGui
+    Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    Toggle.Position = UDim2.new(0, 0, 0.491228074, 0)
+    Toggle.Size = UDim2.new(0, 44, 0, 28)
+    Toggle.Font = Enum.Font.Code
+    Toggle.Text = "OPEN CLOSE"
+    Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
+    Toggle.TextScaled = true
+    Toggle.MouseButton1Down:connect(function()
+        game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+        game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
+    end)
    
     local SOMEXHUB = library:AddWindow("Pado Hub | SCP ",Enum.KeyCode.RightControl)
     
-    local Main = SOMEXHUB:AddTab("Main1","6026568198")
-    local Combat = SOMEXHUB:AddTab("Main2","7251993295")
+    local Main = SOMEXHUB:AddTab("Player-ESP","6026568198")
+    local Combat = SOMEXHUB:AddTab("Teleport","7251993295")
+    local Misc = SOMEXHUB:AddTab("Misc","6034509993")
     
     Main:AddSeperator("Main1")
     
