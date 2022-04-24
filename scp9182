@@ -1025,7 +1025,7 @@ Duration = 16;
     local Combat = SOMEXHUB:AddTab("Teleport","7251993295")
     local Misc = SOMEXHUB:AddTab("Misc","6034509993")
     
-    Main:AddSeperator("Main1")
+    Main:AddSeperator("Server Time")
     
     Time = Main:AddLabel("Server Time")
     
@@ -1065,6 +1065,382 @@ for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
 				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
 				TextLabel.Text = "Banana" -- what the label says
 				TextLabel.TextColor3 = Color3.new(0.721569, 0.721569, 0.356863) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+	
+	Main:AddButton("Pizza",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Pizza' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Pizza" -- what the label says
+				TextLabel.TextColor3 = Color3.new(1, 0.333333, 0) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("EmployeESP",function()
+repeat
+			wait(10)
+			for i,v in pairs(game.Workspace.GameObjects.Physical.Employees:GetDescendants()) do
+				if v.Name == 'BillboardGui' then
+					v:Destroy()
+				end
+			end
+			wait(0.1)
+			for i,v in pairs(game.Workspace.GameObjects.Physical.Employees:GetDescendants()) do
+				if v.Parent.Name == 'HumanoidRootPart' then
+					local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+					local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+					BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+					BillboardGui.AlwaysOnTop = true -- if its on top or not
+					BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+					BillboardGui.StudsOffset = Vector3.new(0,2,0)
+					BillboardGui.MaxDistance = 265
+	
+					TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+					TextLabel.BackgroundTransparency = 1 -- transparency
+					TextLabel.Size = UDim2.new(1, 5, 1, 5) -- size
+					TextLabel.Text = v.Parent.Parent.Name -- what the label says
+					TextLabel.TextColor3 = Color3.new(1, 0, 0) -- color
+					TextLabel.TextScaled = false -- if the text is scaled or not
+				end
+			end
+		until game.Workspace.Camera.FieldOfView == 1
+	end)
+
+Main:AddButton("MedKit",function()
+for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Medkit' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "MedKit" -- what the label says
+				TextLabel.TextColor3 = Color3.new(1, 0, 0) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Meatballs",function()
+for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Meatballs' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Meatballs" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.807843, 0.564706, 0.435294) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Apple",function()
+for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Apple' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Apple" -- what the label says
+				TextLabel.TextColor3 = Color3.new(1, 0.333333, 0.333333) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Lemon",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Lemon' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Lemon" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.6, 0.6, 0) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Burger",function()
+for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Burger' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Burger" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.713725, 0.376471, 0.152941) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Striped Donut",function()
+for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Striped Donut' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Striped Donut" -- what the label says
+				TextLabel.TextColor3 = Color3.new(1, 1, 1) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Chips",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Chips' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Chips" -- what the label says
+				TextLabel.TextColor3 = Color3.new(1, 0.666667, 0.498039) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Ice Cream",function()
+for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Ice Cream' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+				BillboardGui.MaxDistance = 300
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Ice Cream" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.333333, 1, 0.498039) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+
+Main:AddButton("Chocolate",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Chocolate' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Chocolate" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+	
+Main:AddButton("Hotdog",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Hotdog' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Hotdog" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+	
+Main:AddButton("Dr. Bob",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Dr. Bob' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Dr. Bob" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+	
+	Main:AddButton("Lemon Slice",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Lemon Slice' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Lemon Slice" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
+				TextLabel.TextScaled = false -- if the text is scaled or not
+	
+			end
+		end
+	
+	end)
+	
+	Main:AddButton("Water",function()
+	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
+			if v.Parent.Name == 'Water' then
+	
+				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
+				local TextLabel = Instance.new('TextLabel') -- makes text label
+	
+				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
+				BillboardGui.AlwaysOnTop = true -- if its on top or not
+				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
+				BillboardGui.StudsOffset = Vector3.new(0,2,0)
+	
+				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
+				TextLabel.BackgroundTransparency = 1 -- transparency
+				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
+				TextLabel.Text = "Water" -- what the label says
+				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
 				TextLabel.TextScaled = false -- if the text is scaled or not
 	
 			end
