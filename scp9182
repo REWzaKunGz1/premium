@@ -15,7 +15,7 @@
     wait(1)
     
     do
-        local ui = game.CoreGui:FindFirstChild("SOMEXGUI")
+        local ui = game.CoreGui:FindFirstChild("PadoHub")
         if ui then
             ui:Destroy()
         end
@@ -89,7 +89,7 @@
         local currenttab = ""
     
         local DoctorShiba = Instance.new("ScreenGui")
-        DoctorShiba.Name = "SOMEXGUI"
+        DoctorShiba.Name = "Padohub"
         DoctorShiba.Parent = game.CoreGui
         DoctorShiba.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     
@@ -990,9 +990,6 @@
         end
         return uitab
     end
-    
-
-
    
     local PadoUI = library:AddWindow("Pado Hub | SCP",Enum.KeyCode.RightControl)
     
