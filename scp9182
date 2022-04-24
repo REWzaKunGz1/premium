@@ -1,11 +1,12 @@
-
+if game.PlaceId == 2768379856 then
+    _G.Color = Color3.fromRGB(255,0,0)
     if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
     
     repeat wait() until game:GetService("Players")
     
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then repeat wait() until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") end
         
-    wait()
+    wait(1)
     
     do
         local ui = game.CoreGui:FindFirstChild("UlLib")
