@@ -996,9 +996,8 @@
    
     local PadoUI = library:AddWindow("Pado Hub | SCP",Enum.KeyCode.RightControl)
     
-    local Main = PadoUi:AddTab("Player-ESP","6026568198")
-    local Teleport = PadoUi:AddTab("Teleport","6035190846")
-    local Misc = PadoUi:AddTab("Misc","6034509993")
+    local Main = PadoUIAddTab("Main1","6026568198")
+    local Combat = PadoUI:AddTab("Main2","7251993295")
     
     Main:AddSeperator("Main1")
     
@@ -1030,4 +1029,36 @@
         
     Main:AddButton("Button",function()
     end)
+    
+
+    
+    Weapon = {}
+    
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
+        if v:IsA("Tool") then
+            table.insert(Weapon ,v.Name)
+        end
+    end
+    
+    local SelectWeapona = Main:AddDropdown("Select Weapon",Weapon,function(value)
+        _G.SelectWeapon = value
+    end)
+    
+    Main:AddButton("Refresh Weapon",function()
+        SelectWeapona:Clear()
+        for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
+            SelectWeapona:Add(v.Name)
+        end
+    end)
+    
+    
+     Main:AddTextbox("Textbox", "?", true, function(Value)
+     end)
+
+    
+    _G.Main = 1
+    Main:AddSlider("Select Main",1,100,1,function(value)
+        _G.Main = value
+    end)
+    
     
