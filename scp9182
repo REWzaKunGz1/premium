@@ -1021,11 +1021,6 @@
     
     
     Main:AddLabel("ESP")
-    
-    Main:AddToggle("Toggle",true,function(value)
-        _G.AddToggle = value
-    end)
-    
      
   Main:AddButton("Banana",function()
 for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
