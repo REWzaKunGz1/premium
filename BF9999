@@ -6660,6 +6660,7 @@ Misc:AddButton("Anti AFK", true, function(vu)
 		wait(1)
 		vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
+end)
     
     Misc:AddToggle("NoClip",_G.NOCLIP,function(value)
         _G.NOCLIP = value
