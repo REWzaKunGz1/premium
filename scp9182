@@ -1,4 +1,3 @@
-if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 
 repeat wait() until game:GetService("Players")
     
@@ -12,6 +11,13 @@ repeat wait() until game:GetService("Players")
             ui:Destroy()
         end
     end
+    
+       game:GetService("StarterGui"):SetCore("SendNotification", { 
+    Title = "Pado";
+    Text = "Pado Hub | Made By REWza";
+    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+Duration = 16;
+
    
     local UserInputService = game:GetService("UserInputService")
     local TweenService = game:GetService("TweenService")
