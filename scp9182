@@ -1,25 +1,26 @@
-if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+    
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+        game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        wait(1)
+        game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
 
-repeat wait() until game:GetService("Players")
+    _G.Color = Color3.fromRGB(255,0,0)
+    if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
+    
+    repeat wait() until game:GetService("Players")
     
     if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then repeat wait() until game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") end
         
     wait(1)
     
     do
-        local ui = game.CoreGui:FindFirstChild("UlLib")
+        local ui = game.CoreGui:FindFirstChild("SOMEXGUI")
         if ui then
             ui:Destroy()
         end
     end
     
-       game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = "Pdgsfafsadsadasdo";
-    Text = "Pado Hub | Made By REWza";
-    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
-Duration = 16;
-
-   
     local UserInputService = game:GetService("UserInputService")
     local TweenService = game:GetService("TweenService")
     
@@ -88,7 +89,7 @@ Duration = 16;
         local currenttab = ""
     
         local DoctorShiba = Instance.new("ScreenGui")
-        DoctorShiba.Name = "UlLib"
+        DoctorShiba.Name = "SOMEXGUI"
         DoctorShiba.Parent = game.CoreGui
         DoctorShiba.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     
