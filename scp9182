@@ -3942,7 +3942,7 @@ function ui:W1n(text,text2,text2Pos,toclose)
 	return uitop
 end
 
-local win = ui:W1n("Pado hub | SCP","GUI",0.30,Enum.KeyCode.RightControl)
+local win = ui:W1n("Pado hub | SCP",0.30,Enum.KeyCode.RightControl)
 
 local Tap = win:Tap("Main")
 
