@@ -1149,13 +1149,6 @@ local function teleportToItem(itemName)
        notify("Item position not defined")
    end
 end
-
-local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
-ESP:Toggle(true)
-ESP.Players = false
-ESP.Tracers = false
-ESP.Boxes = false
-ESP.Names = false
  
  local ScreenGui = Instance.new("ScreenGui")
     local Toggle = Instance.new("TextButton")
@@ -1765,24 +1758,6 @@ TextLabel.TextWrapped = true
 TextLabel.Text = v.Name
 end
 end
-end)
-
-Main:AddSeperator("Player PC")
-
-Main:AddToggle("ESP Boxes", false, function(Value)
-   ESP.Boxes = Value  
-end)
-
-Main:AddToggle("ESP Tracers", false, function(Value)
-   ESP.Tracers = Value
-end)
-
-Main:AddToggle("ESP Nametags", false, function(Value)
-   ESP.Names = Value
-end)
-
-Main:AddToggle("Show Players", false, function(Value)
-   ESP.Players = Value
 end)
 
 Teleport:AddSeperator("Teleport food")
