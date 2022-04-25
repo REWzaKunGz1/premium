@@ -4712,6 +4712,113 @@ end)
         end)
     end)
     
+       Combat:AddToggle("Aim Bot Skill And Gun Fov Fully",false,function(a)
+		AimBotFullFunction = a
+	end)
+	
+	Combat:AddToggle("Show Fov",false,function(a)
+		ShowFov = a
+	end)
+	
+	_G.FOVSize = 200
+	
+	Combat:AddSlider("Fov Size",1,700,_G.FOVSize,nil,function(v)
+		_G.FOVSize = v
+	end)
+	
+	local FOVCircle = Drawing.new("Circle")
+	FOVCircle.Thickness = 2
+	FOVCircle.NumSides = 460
+	FOVCircle.Filled = false
+	FOVCircle.Transparency = 0.5
+	FOVCircle.Radius = 200
+	FOVCircle.Color = Color3.fromRGB(255, 0, 0)
+	
+	game:GetService("RunService").Stepped:Connect(function()
+		FOVCircle.Radius = _G.FOVSize
+		FOVCircle.Thickness = 1
+		FOVCircle.NumSides = 11
+		FOVCircle.Position = game:GetService('UserInputService'):GetMouseLocation()
+		if ShowFov then
+			FOVCircle.Visible = true
+		else
+			FOVCircle.Visible = false
+		end
+	end)
+	
+	local lp = game:GetService('Players').LocalPlayer
+	local mouse = lp:GetMouse()
+	spawn(function()
+		while wait() do
+			if AimBotFullFunction then
+				pcall(function()
+					local MaxDist, Closest = math.huge
+					for i,v in pairs(game:GetService("Players"):GetChildren()) do 
+						local Head = v.Character:FindFirstChild("HumanoidRootPart")
+						local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera, Head.Position)
+						local MousePos, TheirPos = Vector2.new(mouse.X, mouse.Y), Vector2.new(Pos.X, Pos.Y)
+						local Dist = (TheirPos - MousePos).Magnitude
+						if Dist < MaxDist and Dist <= _G.FOVSize and v.Name ~= game.Players.LocalPlayer.Name then
+							MaxDist = Dist
+							_G.CharacterAimBot = v
+						end
+					end
+				end)
+			end
+		end
+	end)
+	
+	spawn(function()
+		local gg = getrawmetatable(game)
+		local old = gg.__namecall
+		setreadonly(gg,false)
+		gg.__namecall = newcclosure(function(...)
+			local method = getnamecallmethod()
+			local args = {...}
+			if tostring(method) == "FireServer" then
+				if tostring(args[1]) == "RemoteEvent" then
+					if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
+						if AimBotFullFunction then
+							args[2] = _G.CharacterAimBot.Character.HumanoidRootPart.Position
+							return old(unpack(args))
+						end
+					end
+				end
+			end
+			return old(...)
+		end)
+	end)
+	spawn(function()
+		while wait() do
+			for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
+				if v:IsA("Tool") then
+					if v:FindFirstChild("RemoteFunctionShoot") then 
+						SelectToolWeaponGun = v.Name
+					end
+				end
+			end
+			for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do  
+				if v:IsA("Tool") then
+					if v:FindFirstChild("RemoteFunctionShoot") then 
+						SelectToolWeaponGun = v.Name
+					end
+				end
+			end
+		end
+	end)
+	
+	spawn(function()
+		mouse.Button1Down:Connect(function()
+			if SelectToolWeaponGun ~= nil then
+				if AimBotFullFunction and game.Players.LocalPlayer.Character:FindFirstChild(SelectToolWeaponGun) and game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name) then
+					tool = game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun]
+					v17 = workspace:FindPartOnRayWithIgnoreList(Ray.new(tool.Handle.CFrame.p, (game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position - tool.Handle.CFrame.p).unit * 100), { game.Players.LocalPlayer.Character, workspace._WorldOrigin });
+					game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun].RemoteFunctionShoot:InvokeServer(game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position, (require(game.ReplicatedStorage.Util).Other.hrpFromPart(v17)));
+				end 
+			end
+		end)
+	end)
+    
     Combat:AddSeperator("PvP")
     
     Combat:AddToggle("Enabled PvP",false,function(value)
