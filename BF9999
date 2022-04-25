@@ -6740,7 +6740,7 @@ end)
 	
 	_G.FOVSize = 200
 	
-	Misc:AddSlider("Fov Size",1,700,_G.FOVSize,nil,function(v)
+	Misc:AddSeperator("Fov",1,200,_G.FOVSize,nil,function(v)
 		_G.FOVSize = v
 	end)
 	
