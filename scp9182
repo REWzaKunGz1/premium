@@ -1686,6 +1686,34 @@ end
 end
 end)
 
+    Playerslist = {}
+    
+    for i,v in pairs(game:GetService("Players"):GetChildren()) do
+        table.insert(Playerslist,v.Name)
+    end
+    
+    local SelectedPly = Main:AddDropdown("Select Players",Playerslist,function(value)
+        _G.SelectPly = value
+    end)
+    
+    Main:AddButton("Refresh Player",function()
+        Playerslist = {}
+        SelectedPly:Clear()
+        for i,v in pairs(game:GetService("Players"):GetChildren()) do  
+            SelectedPly:Add(v.Name)
+        end
+    end)
+    
+    Main:AddToggle("Spectate Player",false,function(value)
+        SpectatePlys = value
+        local plr1 = game:GetService("Players").LocalPlayer.Character.Humanoid
+        local plr2 = game:GetService("Players"):FindFirstChild(_G.SelectPly)
+        repeat wait(.1)
+            game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players"):FindFirstChild(_G.SelectPly).Character.Humanoid
+        until SpectatePlys == false 
+        game:GetService("Workspace").Camera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
+end)
+
 Teleport:AddSeperator("Teleport food")
 
 Teleport:AddButton("Teleport to Hotdog", function()
