@@ -6405,6 +6405,10 @@ end)
         game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
     end)
     
+    Misc:AddButton("ChatBot",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Chat%20Bot'))()
+    end)
+    
     Misc:AddSeperator("Codes")
     
     local x2Code = {
