@@ -6730,43 +6730,18 @@ end)
 
     Misc:AddSeperator("Settings PvP PC")
     
-           Misc:AddToggle("Aim Bot Skill And Gun Fov Fully",false,function(a)
+  	Misc:AddToggle("Aim Bot Skill And Gun Fov Fully",false,function(a)
 		AimBotFullFunction = a
-	end)
-	
-	spawn(function()
-		while wait() do
-			for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do  
-				if v:IsA("Tool") then
-					if v:FindFirstChild("RemoteFunctionShoot") then 
-						SelectToolWeaponGun = v.Name
-					end
-				end
-			end
-			for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do  
-				if v:IsA("Tool") then
-					if v:FindFirstChild("RemoteFunctionShoot") then 
-						SelectToolWeaponGun = v.Name
-					end
-				end
-			end
-		end
-	end)
-	
-	spawn(function()
-		mouse.Button1Down:Connect(function()
-			if SelectToolWeaponGun ~= nil then
-				if AimBotFullFunction and game.Players.LocalPlayer.Character:FindFirstChild(SelectToolWeaponGun) and game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name) then
-					tool = game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun]
-					v17 = workspace:FindPartOnRayWithIgnoreList(Ray.new(tool.Handle.CFrame.p, (game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position - tool.Handle.CFrame.p).unit * 100), { game.Players.LocalPlayer.Character, workspace._WorldOrigin });
-					game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun].RemoteFunctionShoot:InvokeServer(game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position, (require(game.ReplicatedStorage.Util).Other.hrpFromPart(v17)));
-				end 
-			end
-		end)
 	end)
 	
 	Misc:AddToggle("Show Fov",false,function(a)
 		ShowFov = a
+	end)
+	
+	_G.FOVSize = 200
+	
+	Misc:AddSlider("Fov Size",1,700,_G.FOVSize,nil,function(v)
+		_G.FOVSize = v
 	end)
 	
 	local FOVCircle = Drawing.new("Circle")
@@ -6829,6 +6804,18 @@ end)
 				end
 			end
 			return old(...)
+		end)
+	end)
+	
+	spawn(function()
+		mouse.Button1Down:Connect(function()
+			if SelectToolWeaponGun ~= nil then
+				if AimBotFullFunction and game.Players.LocalPlayer.Character:FindFirstChild(SelectToolWeaponGun) and game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name) then
+					tool = game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun]
+					v17 = workspace:FindPartOnRayWithIgnoreList(Ray.new(tool.Handle.CFrame.p, (game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position - tool.Handle.CFrame.p).unit * 100), { game.Players.LocalPlayer.Character, workspace._WorldOrigin });
+					game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun].RemoteFunctionShoot:InvokeServer(game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position, (require(game.ReplicatedStorage.Util).Other.hrpFromPart(v17)));
+				end 
+			end
 		end)
 	end)
     
