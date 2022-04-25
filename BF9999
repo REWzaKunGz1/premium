@@ -6769,12 +6769,6 @@ end)
 		ShowFov = a
 	end)
 	
-	_G.FOVSize = 200
-	
-	Misc:AddSlider("Fov Size",1,700,_G.FOVSize,nil,function(v)
-		_G.FOVSize = v
-	end)
-	
 	local FOVCircle = Drawing.new("Circle")
 	FOVCircle.Thickness = 2
 	FOVCircle.NumSides = 460
