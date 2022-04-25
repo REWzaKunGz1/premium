@@ -2087,8 +2087,10 @@ end
     local DevilFruit = PadoUi:AddTab("Devil Fruit","7044233235")
     local Shop = PadoUi:AddTab("Shop","6031265976")
     local Misc = PadoUi:AddTab("Misc","6034509993")
+    local CombatPc = PadoUi:AddTab("Combat Pc","7251993295")
     --------------------------------------------------------------------
-    Main:AddSeperator("Settings")
+    
+      Main:AddSeperator("Settings")
     
     Time = Main:AddLabel("Server Time")
     
@@ -2123,14 +2125,6 @@ end
             end
         end)
     end)
-    
-    Main:AddToggle("Fast Attack",true,function(value)
-    _G.FastAtttk = value
-end)
-
-    Main:AddToggle("Fast Attack 2",false,function(value)
-    _G.FastAttack = value
-end)
 
     Main:AddToggle("Bring Mob",true,function(value)
         _G.BringMonster = value
@@ -6732,7 +6726,9 @@ end)
         end
     end)
     
-           Misc:AddToggle("Aim Bot Skill And Gun Fov Fully",false,function(a)
+     CombatPc:AddSeperator("Settings PvP")
+    
+          CombatPc:AddToggle("Aim Bot Skill And Gun Fov Fully",false,function(a)
 		AimBotFullFunction = a
 	end)
 	
@@ -6767,8 +6763,8 @@ end)
 		end)
 	end)
 	
-	Misc:AddToggle("Show Fov",false,function(a)
-		ShowFov = a
+	CombatPc:AddToggle("Show Fov",false,function(a)
+		_G.ShowFov = a
 	end)
 	
 	_G.FOVSize = 200
@@ -6839,50 +6835,3 @@ end)
 			return old(...)
 		end)
 	end)
-    
-_G.FastAttack = false
-end
-
-local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker) for i,v in pairs(getreg()) do if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then for x,y in pairs(debug.getupvalues(v)) do if typeof(y) == "table" then spawn(function() game:GetService("RunService").RenderStepped:Connect(function() if _G.FastAttack then pcall(function() CameraShaker:Stop() y.activeController.attacking = false y.activeController.increment = 3 y.activeController.hitboxMagnitude = 80 y.activeController.blocking = false y.activeController:attack() y.activeController.timeToNextBlock = false end) end end) end) end end end end
-
-spawn(function() game:GetService("RunService").Stepped:Connect(function() if _G.FastAttack == true then game.Players.LocalPlayer.Character.Stun.Value = 0 game.Players.LocalPlayer.Character.Humanoid.Sit = false game.Players.LocalPlayer.Character.Busy.Value = false
-end wait(1) end) end)
-
-local RigC = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework) 
-local Rig = require(LocalPlayer.PlayerScripts.CombatFramework.RigController)
-local kkii = require(game.ReplicatedStorage.Util.CameraShaker)
-local CameraShaker = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.CameraShaker)
-spawn(function()
-    game:GetService('RunService').Heartbeat:connect(function()
-        if _G.FastAttack then
-            pcall(function()
-        RigC.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-        RigC.activeController.hitboxMagnitude = 100
-        RigC.activeController.attacking = false
-		RigC.activeController.increment = 3
-		RigC.activeController.humanoid.AutoRotate = true
-		RigC.activeController.blocking = false
-		Rig.activeController.focusStart = 0
-        kkii:Stop()
-        CameraShaker.CameraShakeInstance.CameraShakeState = {FadingIn = 3, FadingOut = 2, Sustained = 0, Inactive = 1}
-            end)
-        end
-    end)
-end)
-
-if _G.FastAttack == false then _G.FastAttack = false else _G.FastAttack = false end
-
-local RigC = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework) local VirtualUser = game:GetService('VirtualUser') local kkii = require(game.ReplicatedStorage.Util.CameraShaker) local LocalPlayer = game.Players.LocalPlayer local Framework = { Combat = require(LocalPlayer.PlayerScripts.CombatFramework), Rig = require(LocalPlayer.PlayerScripts.CombatFramework.RigController) } local cd = 0.1 function Attack() spawn(function() while wait() do pcall(function() local Controller = Framework.Combat.activeController if Controller and tick() >= cd then cd = tick() + 0.1 spawn(function() Controller:attack() end) Controller.increment = 4 end end) end end) end
-
-spawn(function()
-    for i = 1,90 do game:GetService('RunService').Heartbeat:wait()
-    if _G.FastAttack then
-    
-    end
-end
-end)
-
-spawn(function() game:GetService("RunService").Stepped:Connect(function() if _G.FastAttack == true then game.Players.LocalPlayer.Character.Stun.Value = 0 game.Players.LocalPlayer.Character.Humanoid.Sit = false game.Players.LocalPlayer.Character.Busy.Value = false
-end wait(1) end) end)
-
-spawn(function() while wait() do if sethiddenproperty then sethiddenproperty(game.Players.LocalPlayer,"SimulationRadius",99999999999) end if setscriptable then setscriptable(game.Players.LocalPlayer, "SimulationRadius", true) game.Players.LocalPlayer.SimulationRadius = math.huge * math.huge, math.huge * math.huge * 1 / 0 * 1 / 0 * 1 / 0 * 1 / 0 * 1 / 0 end end end)
