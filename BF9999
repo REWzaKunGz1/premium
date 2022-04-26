@@ -5026,6 +5026,15 @@ local name = game.Players.LocalPlayer.Name
 game.Workspace.Characters[name].Movement.Disabled = true
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
 end)
+
+Combat:AddButton("Inf Jumps", function()
+    local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+end)
     
        Combat:AddSeperator("ESP")
     
