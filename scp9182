@@ -1153,7 +1153,7 @@ end
     
     local Main = SOMEXHUB:AddTab("Player-ESP","6026568198")
     local Teleport = SOMEXHUB:AddTab("Teleport","7251993295")
-    local Misc = SOMEXHUB:AddTab("Misc","6034509993")
+    local Misc = SOMEXHUB:AddTab("Setting","6034509993")
     
     Main:AddSeperator("Server Time")
     
@@ -1227,7 +1227,7 @@ for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
 	
 	end)
 
-Main:AddButton("EmployeESP",function()
+Main:AddButton("SCP ESP",function()
 repeat
 			wait(10)
 			for i,v in pairs(game.Workspace.GameObjects.Physical.Employees:GetDescendants()) do
@@ -1803,8 +1803,17 @@ Teleport:AddButton("Teleport to Water", function()
    teleportToItem("Water")
 end)
 
-Misc:AddSeperator("see Time Night")
+Misc:AddSeperator("Setting")
 
+Misc:AddButton("Rejoin",function()
+		local ts = game:GetService("TeleportService")
+		local p = game:GetService("Players").LocalPlayer
+		ts:Teleport(game.PlaceId, p)
+	end)
+	local function HttpGet(url)
+		return game:GetService("HttpService"):JSONDecode(htgetf(url))
+	end
+	
 Misc:AddButton("Time", function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Time%20scp'))()
 end)
