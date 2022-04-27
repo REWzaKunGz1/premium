@@ -2080,7 +2080,7 @@ end
     local PadoUi = library:AddWindow("Pado Hub | BF",Enum.KeyCode.RightControl)
     --------------------------------------------------------------------
     local Main = PadoUi:AddTab("Auto Farm","6026568198")
-    local Combat = PadoUi:AddTab("Combat","7251993295")
+    local Combat = PadoUi:AddTab("Combat Beta","7251993295")
     local Stats = PadoUi:AddTab("Stats","7040410130")
     local Teleport = PadoUi:AddTab("Teleport","6035190846")
     local Dungeon = PadoUi:AddTab("Dungeon","7044284832")
@@ -2124,7 +2124,7 @@ end
         end)
     end)
 
-    Main:AddToggle("Fast Attack PC",false,function(value)
+    Main:AddToggle("Fast Attack",false,function(value)
     _G.FastAttack = value
 end)
 
@@ -2220,6 +2220,78 @@ end)
                                 if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 15 then
                                     if PosMon ~= nil then
                                         topos(PosMon * CFrame.new(5,10,7))
+                                    else
+                                        if OldPos ~= nil then
+                                            topos(OldPos.Position)
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end)
+            end
+        end
+    end)
+
+  Main:AddToggle("Auto Farm Level Under",_G.AutoFarm2,function(value)
+        _G.AutoFarm2 = value
+        StopTween(_G.AutoFarm2)
+    end)
+    
+    spawn(function()
+        while wait() do
+            if _G.AutoFarm2 then
+                pcall(function()
+                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
+                    if not string.find(QuestTitle, NameMon) then
+                        StartMagnet = false
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                    end
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                        StartMagnet = false
+                        CheckQuest()
+                        repeat wait() topos(CFrameQuest) until (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.AutoFarm2
+                        if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
+                            wait(1.2)
+                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
+                            wait(0.5)
+                        end
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                        CheckQuest()
+                        if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
+                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+                                    if v.Name == Mon then
+                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
+                                            repeat task.wait()
+                                                EquipWeapon(_G.SelectWeapon)
+                                                AutoHaki()                                            
+                                                PosMon = v.HumanoidRootPart.CFrame
+                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(5,-20,7))
+                                                v.HumanoidRootPart.CanCollide = false
+                                                v.Humanoid.WalkSpeed = 0
+                                                v.Head.CanCollide = false
+                                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
+                                                StartMagnet = true
+                                                game:GetService'VirtualUser':CaptureController()
+                                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+                                            until not _G.AutoFarm2 or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                                        else
+                                            StartMagnet = false
+                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                            StartMagnet = false
+                            if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
+                                topos(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(5,-20,7))
+                            else
+                                if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 15 then
+                                    if PosMon ~= nil then
+                                        topos(PosMon * CFrame.new(5,-20,7))
                                     else
                                         if OldPos ~= nil then
                                             topos(OldPos.Position)
@@ -6741,127 +6813,6 @@ end)
             end)
         end
     end)
-
-    Misc:AddSeperator("Settings PvP PC")
-    
-  	Misc:AddToggle("Aim Bot Skill And Gun Fov Fully",false,function(a)
-		AimBotFullFunction = a
-	end)
-	
-	Misc:AddToggle("Show Fov",false,function(a)
-		ShowFov = a
-	end)
-	
-	_G.FOVSize = 200
-	
-	Misc:AddSeperator("Fov",1,200,_G.FOVSize,nil,function(v)
-		_G.FOVSize = v
-	end)
-	
-	local FOVCircle = Drawing.new("Circle")
-	FOVCircle.Thickness = 2
-	FOVCircle.NumSides = 460
-	FOVCircle.Filled = false
-	FOVCircle.Transparency = 0.5
-	FOVCircle.Radius = 200
-	FOVCircle.Color = Color3.fromRGB(255, 0, 0)
-	
-	game:GetService("RunService").Stepped:Connect(function()
-		FOVCircle.Radius = _G.FOVSize
-		FOVCircle.Thickness = 1
-		FOVCircle.NumSides = 11
-		FOVCircle.Position = game:GetService('UserInputService'):GetMouseLocation()
-		if ShowFov then
-			FOVCircle.Visible = true
-		else
-			FOVCircle.Visible = false
-		end
-	end)
-	
-	local lp = game:GetService('Players').LocalPlayer
-	local mouse = lp:GetMouse()
-	spawn(function()
-		while wait() do
-			if AimBotFullFunction then
-				pcall(function()
-					local MaxDist, Closest = math.huge
-					for i,v in pairs(game:GetService("Players"):GetChildren()) do 
-						local Head = v.Character:FindFirstChild("HumanoidRootPart")
-						local Pos, Vis = game.Workspace.CurrentCamera.WorldToScreenPoint(game.Workspace.CurrentCamera, Head.Position)
-						local MousePos, TheirPos = Vector2.new(mouse.X, mouse.Y), Vector2.new(Pos.X, Pos.Y)
-						local Dist = (TheirPos - MousePos).Magnitude
-						if Dist < MaxDist and Dist <= _G.FOVSize and v.Name ~= game.Players.LocalPlayer.Name then
-							MaxDist = Dist
-							_G.CharacterAimBot = v
-						end
-					end
-				end)
-			end
-		end
-	end)
-	
-	spawn(function()
-		local gg = getrawmetatable(game)
-		local old = gg.__namecall
-		setreadonly(gg,false)
-		gg.__namecall = newcclosure(function(...)
-			local method = getnamecallmethod()
-			local args = {...}
-			if tostring(method) == "FireServer" then
-				if tostring(args[1]) == "RemoteEvent" then
-					if tostring(args[2]) ~= "true" and tostring(args[2]) ~= "false" then
-						if AimBotFullFunction then
-							args[2] = _G.CharacterAimBot.Character.HumanoidRootPart.Position
-							return old(unpack(args))
-						end
-					end
-				end
-			end
-			return old(...)
-		end)
-	end)
-	
-	spawn(function()
-		mouse.Button1Down:Connect(function()
-			if SelectToolWeaponGun ~= nil then
-				if AimBotFullFunction and game.Players.LocalPlayer.Character:FindFirstChild(SelectToolWeaponGun) and game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name) then
-					tool = game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun]
-					v17 = workspace:FindPartOnRayWithIgnoreList(Ray.new(tool.Handle.CFrame.p, (game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position - tool.Handle.CFrame.p).unit * 100), { game.Players.LocalPlayer.Character, workspace._WorldOrigin });
-					game:GetService("Players").LocalPlayer.Character[SelectToolWeaponGun].RemoteFunctionShoot:InvokeServer(game:GetService("Players"):FindFirstChild(_G.CharacterAimBot.Name).Character.HumanoidRootPart.Position, (require(game.ReplicatedStorage.Util).Other.hrpFromPart(v17)));
-				end 
-			end
-		end)
-	end)
-    
-_G.FastAttack = false
-end
-
-local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker) for i,v in pairs(getreg()) do if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then for x,y in pairs(debug.getupvalues(v)) do if typeof(y) == "table" then spawn(function() game:GetService("RunService").RenderStepped:Connect(function() if _G.FastAttack then pcall(function() CameraShaker:Stop() y.activeController.attacking = false y.activeController.increment = 3 y.activeController.hitboxMagnitude = 80 y.activeController.blocking = false y.activeController:attack() y.activeController.timeToNextBlock = false end) end end) end) end end end end
-
-spawn(function() game:GetService("RunService").Stepped:Connect(function() if _G.FastAttack == true then game.Players.LocalPlayer.Character.Stun.Value = 0 game.Players.LocalPlayer.Character.Humanoid.Sit = false game.Players.LocalPlayer.Character.Busy.Value = false
-end wait(1) end) end)
-
-local RigC = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework) 
-local Rig = require(LocalPlayer.PlayerScripts.CombatFramework.RigController)
-local kkii = require(game.ReplicatedStorage.Util.CameraShaker)
-local CameraShaker = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework.CameraShaker)
-spawn(function()
-    game:GetService('RunService').Heartbeat:connect(function()
-        if _G.FastAttack then
-            pcall(function()
-        RigC.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-        RigC.activeController.hitboxMagnitude = 100
-        RigC.activeController.attacking = false
-		RigC.activeController.increment = 3
-		RigC.activeController.humanoid.AutoRotate = true
-		RigC.activeController.blocking = false
-		Rig.activeController.focusStart = 0
-        kkii:Stop()
-        CameraShaker.CameraShakeInstance.CameraShakeState = {FadingIn = 3, FadingOut = 2, Sustained = 0, Inactive = 1}
-            end)
-        end
-    end)
-end)
 
 if _G.FastAttack == false then _G.FastAttack = false else _G.FastAttack = false end
 
