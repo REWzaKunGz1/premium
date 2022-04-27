@@ -6322,7 +6322,8 @@ end)
         "Sub2Daigrock",
         "Axiore",
         "TantaiGaming",
-        "STRAWHATMAINE"
+        "STRAWHATMAINE
+	"EXP_5B"
     }
     
     Misc:AddButton("Redeem All Codes",function()
@@ -6334,7 +6335,7 @@ end)
         end
     end)
     
-    Misc:AddDropdown("Selected Codes",{"1MLIKES_RESET","THIRDSEA","SUB2GAMERROBOT_RESET1","SUB2UNCLEKIZARU"},function(value)
+    Misc:AddDropdown("Selected Codes",{"1MLIKES_RESET","THIRDSEA","SUB2GAMERROBOT_RESET1","SUB2UNCLEKIZARU","EXP_5B"},function(value)
         _G.CodeSelect = value
     end)
     
