@@ -6322,8 +6322,8 @@ end)
         "Sub2Daigrock",
         "Axiore",
         "TantaiGaming",
-        "STRAWHATMAINE
-	"EXP_5B"
+        "STRAWHATMAINE",
+	"EXP_5B",
     }
     
     Misc:AddButton("Redeem All Codes",function()
