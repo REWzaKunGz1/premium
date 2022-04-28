@@ -1577,6 +1577,15 @@ Main:AddButton("Dr. Bob",function()
 		end
 	
 	end)
+	
+	
+	Main:AddButton("ClearESP",function()
+			for i,v in pairs(game.Workspace.GameObjects.Physical.Items:GetDescendants()) do
+			if v.Name == 'BillboardGui' then
+				v:Destroy()
+			end
+		end
+	end)
 
 Main:AddSeperator("Player")
     
