@@ -2160,7 +2160,7 @@ end)
         end
     end)
     
-    Main:AddSeperator("Main")
+    Main:AddSeperator("Auto Farm Level Game mode")
     
     local AutoFarm = Main:AddToggle("Auto Farm Level",_G.AutoFarm,function(value)
         _G.AutoFarm = value
@@ -2233,8 +2233,8 @@ end)
             end
         end
     end)
-
-  Main:AddToggle("Auto Farm Level Under",_G.AutoFarm2,function(value)
+    
+    Main:AddToggle("Auto Farm Level Under",_G.AutoFarm2,function(value)
         _G.AutoFarm2 = value
         StopTween(_G.AutoFarm2)
     end)
@@ -2305,6 +2305,8 @@ end)
             end
         end
     end)
+    
+    Main:AddSeperator("Main")
     
     if World1 then
         Main:AddToggle("Auto Second Sea",_G.AutoSecondSea,function(value)
@@ -4771,7 +4773,7 @@ end)
             while task.wait() do
                 if _G.Aimbot_Skill and PlayerSelectAimbot ~= nil and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") and game.Players.LocalPlayer.Character[game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name]:FindFirstChild("MousePos") then
                     local args = {
-                        [1] = game:GetService("Players"):FindFirstChild(PlayerSelectAimbot).Character.HumanoidRootPart.Position
+                        [1] = game:GetService("Players"):FindFirstChild(_G.SelectPly).Character.HumanoidRootPart.Position
                     }
                     
                     game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name).RemoteEvent:FireServer(unpack(args))
@@ -6076,19 +6078,6 @@ end)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon")
     end)
     -----Shop----------------
-    Shop:AddSeperator("Accessory")
-    
-    Shop:AddButton("Tomoe Ring",function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Tomoe Ring")
-    end)
-    
-    Shop:AddButton("Black Cape",function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Black Cape")
-    end)
-    
-    Shop:AddButton("Swordsman Hat",function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyItem","Swordsman Hat")
-    end)
     
     Shop:AddSeperator("Sword")
     
