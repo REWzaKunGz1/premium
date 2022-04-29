@@ -6842,7 +6842,7 @@ spawn(function()
         if _G.FastAttack then
             pcall(function()
         RigC.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-        RigC.activeController.hitboxMagnitude = 55
+        RigC.activeController.hitboxMagnitude = 100
         RigC.activeController.attacking = false
 		RigC.activeController.increment = 3
 		RigC.activeController.humanoid.AutoRotate = true
