@@ -2023,34 +2023,6 @@ end
         end
     end)
 
-	local CombatFrameworkROld = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework) 
-	local CombatFrameworkR = getupvalues(CombatFrameworkROld)[2]
-	local CameraShakerR = require(game.ReplicatedStorage.Util.CameraShaker)
-	CameraShakerR:Stop()
-	spawn(function()
-		game:GetService("RunService").Stepped:Connect(function()
-			pcall(function()
-				CombatFrameworkR.activeController.hitboxMagnitude = 55
-				if Usefastattack then
-					if fastattack then
-						if game.Players.LocalPlayer.Character:FindFirstChild("Black Leg") then
-							CombatFrameworkR.activeController.timeToNextAttack = 3
-						elseif game.Players.LocalPlayer.Character:FindFirstChild("Electro") then
-							CombatFrameworkR.activeController.timeToNextAttack = 2
-						else
-							CombatFrameworkR.activeController.timeToNextAttack = 0
-						end
-						CombatFrameworkR.activeController.attacking = false
-						CombatFrameworkR.activeController.increment = 3
-						CombatFrameworkR.activeController.blocking = false
-						CombatFrameworkR.activeController.timeToNextBlock = 0
-						game.Players.LocalPlayer.Character.Humanoid.Sit = false	
-					end
-				end
-			end)
-		end)
-	end)
-	
 	spawn(function()
 		game:GetService("RunService").Stepped:Connect(function()
 			pcall(function()
@@ -2164,12 +2136,7 @@ end
         end)
     end)
 
-	fastattack = true
-	Main:AddToggle("Fast Attack 1",false,function(value)
-		_G.fastattack = value
-	end)
-
-    Main:AddToggle("Fast Attack 2",false,function(value)
+    Main:AddToggle("Fast Attack",true,function(value)
     _G.FastAttack = value
     end)
 
@@ -2219,12 +2186,12 @@ end
                     local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                     if not string.find(QuestTitle, NameMon) then
                         StartMagnet = false
-                        Usefastattack = false
+                        _G.FastAttack = false
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                     end
                     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                         StartMagnet = false
-                        Usefastattack = false
+                        _G.FastAttack = false
                         CheckQuest()
                         repeat wait() topos(CFrameQuest) until (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.AutoFarm
                         if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
@@ -2240,7 +2207,7 @@ end
                                     if v.Name == Mon then
                                         if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
                                             repeat task.wait()
-                                                Usefastattack = true
+                                                _G.FastAttack = true
                                                 EquipWeapon(_G.SelectWeapon)
                                                 AutoHaki()                                            
                                                 PosMon = v.HumanoidRootPart.CFrame
@@ -2255,7 +2222,7 @@ end
                                             until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                         else
                                             StartMagnet = false
-                                            Usefastattack = false
+                                            _G.FastAttack = false
                                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                                         end
                                     end
@@ -2263,7 +2230,7 @@ end
                             end
                         else
                             StartMagnet = false
-                            Usefastattack = false
+                            _G.FastAttack = false
                             if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
                                 topos(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(5,10,7))
                             else
@@ -2296,12 +2263,12 @@ end
                     local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                     if not string.find(QuestTitle, NameMon) then
                         StartMagnet = false
-                        Usefastattack = false
+                        _G.FastAttack = false
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                     end
                     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                         StartMagnet = false
-                        Usefastattack = false
+                        _G.FastAttack = false
                         CheckQuest()
                         repeat wait() topos(CFrameQuest) until (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.AutoFarm2
                         if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
@@ -2317,7 +2284,7 @@ end
                                     if v.Name == Mon then
                                         if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
                                             repeat task.wait()
-                                                Usefastattack = true
+                                                _G.FastAttack = true
                                                 EquipWeapon(_G.SelectWeapon)
                                                 AutoHaki()                                            
                                                 PosMon = v.HumanoidRootPart.CFrame
@@ -2332,6 +2299,7 @@ end
                                             until not _G.AutoFarm2 or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                                         else
                                             StartMagnet = false
+                                            _G.FastAttack = false
                                             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                                         end
                                     end
@@ -2339,7 +2307,7 @@ end
                             end
                         else
                             StartMagnet = false
-                            Usefastattack = false
+                            _G.FastAttack = false
                             if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
                                 topos(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(5,-20,7))
                             else
@@ -6874,7 +6842,7 @@ spawn(function()
         if _G.FastAttack then
             pcall(function()
         RigC.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-        RigC.activeController.hitboxMagnitude = 100
+        RigC.activeController.hitboxMagnitude = 55
         RigC.activeController.attacking = false
 		RigC.activeController.increment = 3
 		RigC.activeController.humanoid.AutoRotate = true
