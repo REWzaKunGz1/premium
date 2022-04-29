@@ -2166,7 +2166,7 @@ end
 
 	fastattack = true
 	Main:AddToggle("Fast Attack 1",false,function(value)
-		fastattack = value
+		_G.fastattack = value
 	end)
 
     Main:AddToggle("Fast Attack 2",false,function(value)
