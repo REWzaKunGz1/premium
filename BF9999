@@ -5622,6 +5622,16 @@ end)
         _G.Clip = false
     end)
     
+    Teleport:AddSeperator("Run")
+    
+     Teleport:AddButton("Tp Cursed Ship",function()
+   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6502.6787109375, 82.97440338134766, -123.21551513671875)
+    end)
+
+ Teleport:AddButton("Tp Manslon",function()
+   game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-299.40179443359375, 305.7559509277344, 593.5430908203125)
+    end)
+    
     Dungeon:AddLine()
     
     local TimeRaid = Dungeon:AddLabel("Wait For Dungeon")
