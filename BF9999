@@ -4842,6 +4842,10 @@ end
         wait()
     end)
     
+     Combat:AddButton("PlayerHunter",function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("PlayerHunter")
+    end)
+    
     Combat:AddSeperator("Bounty")
     
     local Current = Combat:AddLabel("Current Bounties :")
