@@ -2251,7 +2251,7 @@ end
         end
     end)
     
-   Main:AddToggle("Auto Farm Level Under",_G.AutoFarm2,function(value)
+ Main:AddToggle("Auto Farm Level Down",_G.AutoFarm2,function(value)
         _G.AutoFarm2 = value
         StopTween(_G.AutoFarm2)
     end)
