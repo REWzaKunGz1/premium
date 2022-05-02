@@ -2172,7 +2172,7 @@ end
         end
     end)
     
-    Main:AddSeperator("Auto Farm Level mode")
+    Main:AddSeperator("Main")
   
     local AutoFarm = Main:AddToggle("Auto Farm Level",_G.AutoFarm,function(value)
         _G.AutoFarm = value
@@ -2250,85 +2250,6 @@ end
             end
         end
     end)
-    
- Main:AddToggle("Auto Farm Level Down",_G.AutoFarm2,function(value)
-        _G.AutoFarm2 = value
-        StopTween(_G.AutoFarm2)
-    end)
-    
-    spawn(function()
-        while wait() do
-            if _G.AutoFarm2 then
-                pcall(function()
-                    local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
-                    if not string.find(QuestTitle, NameMon) then
-                        StartMagnet = false
-                        _G.FastAttack = false
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                    end
-                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                        StartMagnet = false
-                        _G.FastAttack = false
-                        CheckQuest()
-                        repeat wait() topos(CFrameQuest) until (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.AutoFarm2
-                        if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
-                            wait(1.2)
-                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LevelQuest)
-                            wait(0.5)
-                        end
-                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                        CheckQuest()
-                        if game:GetService("Workspace").Enemies:FindFirstChild(Mon) then
-                            for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                                if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
-                                    if v.Name == Mon then
-                                        if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
-                                            repeat task.wait()
-                                                _G.FastAttack = true
-                                                EquipWeapon(_G.SelectWeapon)
-                                                AutoHaki()                                            
-                                                PosMon = v.HumanoidRootPart.CFrame
-                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(5,-20,7))
-                                                v.HumanoidRootPart.CanCollide = false
-                                                v.Humanoid.WalkSpeed = 0
-                                                v.Head.CanCollide = false
-                                                v.HumanoidRootPart.Size = Vector3.new(50,50,50)
-                                                StartMagnet = true
-                                                game:GetService'VirtualUser':CaptureController()
-                                                game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-                                            until not _G.AutoFarm2 or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                                        else
-                                            StartMagnet = false
-                                            _G.FastAttack = false
-                                            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-                                        end
-                                    end
-                                end
-                            end
-                        else
-                            StartMagnet = false
-                            _G.FastAttack = false
-                            if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
-                                topos(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(5,-20,7))
-                            else
-                                if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 15 then
-                                    if PosMon ~= nil then
-                                        topos(PosMon * CFrame.new(5,-20,7))
-                                    else
-                                        if OldPos ~= nil then
-                                            topos(OldPos.Position)
-                                        end
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end)
-            end
-        end
-    end)
-
-    Main:AddSeperator("Main")
     
     if World1 then
         Main:AddToggle("Auto Second Sea",_G.AutoSecondSea,function(value)
@@ -5621,20 +5542,26 @@ end)
         topos(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
         _G.Clip = false
     end)
-    
+
+    if World2 then
     Teleport:AddSeperator("Run")
-    
-    Teleport:AddDropdown("Select Tp",{"Manslon 2","Cursed Ship 2"},function(value)
+end
+
+    if World2 then
+    Teleport:AddDropdown("Select Tp",{"Manslon","Cursed Ship"},function(value)
         _G.SelectTp = value
     end)
+end
     
+    if World2 then
     Teleport:AddButton("Tp",function()
-        if _G.SelectTp == "Manslon 2" then
+        if _G.SelectTp == "Manslon" then
              game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-299.40179443359375, 305.7559509277344, 593.5430908203125)
-        elseif _G.SelectTp == "Cursed Ship 2" then
+        elseif _G.SelectTp == "Cursed Ship" then
             game.Players.localPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6502.6787109375, 82.97440338134766, -123.21551513671875)
         end
     end)
+end
     
     Dungeon:AddLine()
     
