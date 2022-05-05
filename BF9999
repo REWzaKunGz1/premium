@@ -6338,7 +6338,7 @@ end)
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SetTeam","Marines") 
     end)
     
-   Misc:AddSeperator("Tool-mob")
+   Misc:AddSeperator("Tool")
     
     Misc:AddButton("Invisible Tool",function()
         loadstring(game:HttpGet("https://gist.githubusercontent.com/skid123skidlol/cd0d2dce51b3f20ad1aac941da06a1a1/raw/f58b98cce7d51e53ade94e7bb460e4f24fb7e0ff/%257BFE%257D%2520Invisible%2520Tool%2520(can%2520hold%2520tools)",true))()
@@ -6379,10 +6379,6 @@ end)
       Misc:AddButton("Kill you",function()
         game:GetService("Players").LocalPlayer.Character.LowerTorso:Destroy()
     end)
-    
-     Misc:AddButton("ChatBot",function()
-     loadstring(game:HttpGet(' https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Chat%20Bot'))()
-     end)
     
     Misc:AddSeperator("Codes")
     
