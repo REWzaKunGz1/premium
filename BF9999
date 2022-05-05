@@ -5131,6 +5131,15 @@ end)
         end
     end)
     
+    Stats:AddButton("Check Points",function()
+                                    game.StarterGui:SetCore("SendNotification", {
+                                        Title = "Points", 
+                                        Text = "My Points = " ..game:GetService("Players")["LocalPlayer"].Data.Points.Value,
+                                        Icon = "",
+                                        Duration = 2.5
+                                    })
+                                end)
+    
     Stats:AddToggle("Auto Melee",_G.Auto_Melee,function(value)
         _G.Auto_Melee = value
     end)
@@ -5209,7 +5218,7 @@ end)
             pcall(function()
                 if _G.Auto_DevilFruit then
                     if game:GetService("Players")["LocalPlayer"].Data.Points.Value ~= 0 then
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Devil Fruit",_G.PointStats)
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Demon Fruit",_G.PointStats)
                     end
                 end
             end)
