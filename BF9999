@@ -2063,6 +2063,112 @@ end
         end)
     end)
     
+    	function SlowtoTarget(CFgo)
+	
+		local tween_s = game:service"TweenService"
+		local info = TweenInfo.new((game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - CFgo.Position).Magnitude/250, Enum.EasingStyle.Linear)
+		local tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = CFgo})
+		tween:Play()
+	
+	end
+	
+	function MytoTarget(CFgo)
+		local tweenfunc = {}
+		if (game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - CFgo.Position).Magnitude <= 20 then
+			pcall(function()
+				tween:Cancel()
+	
+				game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.CFrame = CFgo
+	
+				return
+			end)
+		end
+		local tween_s = game:service"TweenService"
+		local info = TweenInfo.new((game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart.Position - CFgo.Position).Magnitude/275, Enum.EasingStyle.Linear)
+		local tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = CFgo})
+		tween:Play()
+	
+		function tweenfunc:Stop()
+			tween:Cancel()
+		end 
+	
+		if not tween then return tween end
+		return tweenfunc
+	end
+	
+	function toTarget(targetPos, targetCFrame)
+		if FastTween then
+			Distance = (targetPos - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
+			if Distance < 1000 then
+				Speed = 325
+			elseif Distance >= 1000 then
+				Speed = 300
+			end
+		else
+			Distance = (targetPos - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude
+			if Distance < 1000 then
+				Speed = 275
+			elseif Distance >= 1000 then
+				Speed = 250
+			end
+		end
+		local tweenfunc = {}
+	
+		local tween_s = game:service"TweenService"
+		local info = TweenInfo.new((targetPos - game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position).Magnitude/Speed, Enum.EasingStyle.Linear)
+		local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = targetCFrame * CFrame.fromAxisAngle(Vector3.new(1,0,0), math.rad(0))})
+		tween:Play()
+
+		function tweenfunc:Stop()
+			tween:Cancel()
+		end 
+	
+		if StatsBypass == "Bypassed" and UseTP then
+			tween:Cancel()
+			game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"].CFrame = targetCFrame
+		end
+		if not tween then return tween end
+		return tweenfunc
+	end
+	
+	game.Players.LocalPlayer.CharacterAdded:Connect(function()
+		StatsBypass = "NoBypassTP"
+	end)
+	spawn(function()
+		while wait() do
+			pcall(function()
+				if game:GetService("Players").LocalPlayer.Character:FindFirstChild("HasBuso") then
+					if StatsBypass == "Bypassing" or StatsBypass == "Bypassed" then
+						game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(15, false)
+					else
+						game.Players.LocalPlayer.Character.Humanoid:SetStateEnabled(15, true)
+					end
+				end
+			end)
+		end
+	end)
+
+function TP(P)
+		NoClip = true
+		Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+		if Distance < 10 then
+			Speed = 1000
+		elseif Distance < 170 then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+			Speed = 350
+		elseif Distance < 1000 then
+			Speed = 350
+		elseif Distance >= 1000 then
+			Speed = 250
+		end
+		game:GetService("TweenService"):Create(
+			game.Players.LocalPlayer.Character.HumanoidRootPart,
+			TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+			{CFrame = P}
+		):Play()
+		NoClip = false
+	end
+    
     game:GetService("Players").LocalPlayer.Idled:connect(function()
         game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
         wait(1)
@@ -4590,6 +4696,34 @@ wait(1)
             end)
         end
     end)
+    
+    Main:AddToggle("Auto Farm Chest",false,function(v)
+		AutoFarmChest = v
+	end)
+
+	_G.MagnitudeAdd = 0
+	spawn(function()
+		while wait() do 
+			pcall(function()
+				if AutoFarmChest then
+					for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
+						if v.Name:find("Chest") then
+							if game:GetService("Workspace"):FindFirstChild(v.Name) then
+								if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 5000+_G.MagnitudeAdd then
+									repeat wait()
+										if game:GetService("Workspace"):FindFirstChild(v.Name) then
+											SlowtoTarget(v.CFrame)
+										end
+									until AutoFarmChest == false or not v.Parent
+									_G.MagnitudeAdd = _G.MagnitudeAdd+1500
+								end
+							end
+						end
+					end
+				end
+			end)
+		end
+	end)
     
     local plyserv = Combat:AddLabel("Players")
     
