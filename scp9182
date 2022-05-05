@@ -25,7 +25,7 @@
     Title = "Pado";
     Text = "Pado Hub | Made By REWza";
     Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
-Duration = 16;
+Duration = 14;
     
     local UserInputService = game:GetService("UserInputService")
     local TweenService = game:GetService("TweenService")
@@ -1129,25 +1129,44 @@ local function teleportToItem(itemName)
    end
 end
  
- local ScreenGui = Instance.new("ScreenGui")
-    local Toggle = Instance.new("TextButton")
-    
-    ScreenGui.Name = "ScreenGui"
-    ScreenGui.Parent = game.CoreGui
-    
-    Toggle.Name = "Toggle"
-    Toggle.Parent = ScreenGui
-    Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    Toggle.Position = UDim2.new(0, 0, 0.491228074, 0)
-    Toggle.Size = UDim2.new(0, 44, 0, 28)
-    Toggle.Font = Enum.Font.Code
-    Toggle.Text = "OPEN CLOSE"
-    Toggle.TextColor3 = Color3.fromRGB(255, 0, 0)
-    Toggle.TextScaled = true
-    Toggle.MouseButton1Down:connect(function()
-        game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
-        game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
-    end)
+local SOMEXHUBMODILE = Instance.new("ScreenGui")
+local MODILEGUISOMEXHUB = Instance.new("TextButton")
+local MODILEGUISOMEXHUBHUI = Instance.new("UICorner")
+local MODILEMAGE = Instance.new("ImageLabel")
+SOMEXHUBMODILE.Name = "SOMEXHUBMODILE"
+SOMEXHUBMODILE.Parent = game.CoreGui
+SOMEXHUBMODILE.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+MODILEGUISOMEXHUB.Name = "MODILEGUISOMEXHUB"
+MODILEGUISOMEXHUB.Parent = SOMEXHUBMODILE
+MODILEGUISOMEXHUB.BackgroundColor3 = Color3.fromRGB(30,20,20)
+MODILEGUISOMEXHUB.BackgroundTransparency = 0.1
+MODILEGUISOMEXHUB.BorderSizePixel = 0
+MODILEGUISOMEXHUB.Position = UDim2.new(0, 0, 0.491228074, 0)
+MODILEGUISOMEXHUB.Size = UDim2.new(0, 50, 0, 50)
+MODILEGUISOMEXHUB.Font = Enum.Font.SourceSans
+MODILEGUISOMEXHUB.Text = ""
+MODILEGUISOMEXHUB.TextColor3 = Color3.fromRGB(0, 0, 0)
+MODILEGUISOMEXHUB.TextSize = 14.000
+MODILEGUISOMEXHUB.Draggable = true
+MODILEGUISOMEXHUB.MouseButton1Click:Connect(function()
+      game:GetService("VirtualInputManager"):SendKeyEvent(true,305,false,game)
+      game:GetService("VirtualInputManager"):SendKeyEvent(false,305,false,game)
+end)
+do
+if game:GetService("CoreGui"):FindFirstChild("DinoUI") then
+end
+end
+MODILEGUISOMEXHUBHUI.Name = "MODILEGUISOMEXHUBHUI"
+MODILEGUISOMEXHUBHUI.Parent = MODILEGUISOMEXHUB
+MODILEMAGE.Name = "MODILEMAGE"
+MODILEMAGE.Parent = MODILEGUISOMEXHUB
+MODILEMAGE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MODILEMAGE.BackgroundTransparency = 1.000
+MODILEMAGE.BorderSizePixel = 0
+MODILEMAGE.Position = UDim2.new(0.234619886, 0, 0.239034846, 0)
+MODILEMAGE.Size = UDim2.new(0, 25, 0, 25)
+MODILEMAGE.Image = "http://www.roblox.com/asset/?id=6031075938"
+wait(1)
    
     local SOMEXHUB = library:AddWindow("Pado Hub | SCP ",Enum.KeyCode.RightControl)
     
