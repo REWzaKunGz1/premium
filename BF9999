@@ -4697,15 +4697,16 @@ wait(1)
         end
     end)
     
-    Main:AddToggle("Auto Farm Chest",false,function(v)
-		AutoFarmChest = v
+    Main:AddToggle("Auto Farm Chest",_G.AutoFarmChest,function(value)
+		_G.AutoFarmChest = value
+        StopTween(_G.AutoFarmChest)
 	end)
 
 	_G.MagnitudeAdd = 0
 	spawn(function()
 		while wait() do 
 			pcall(function()
-				if AutoFarmChest then
+				if _G.AutoFarmChest then
 					for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
 						if v.Name:find("Chest") then
 							if game:GetService("Workspace"):FindFirstChild(v.Name) then
@@ -4714,7 +4715,7 @@ wait(1)
 										if game:GetService("Workspace"):FindFirstChild(v.Name) then
 											SlowtoTarget(v.CFrame)
 										end
-									until AutoFarmChest == false or not v.Parent
+									until _G.AutoFarmChest == false or not v.Parent
 									_G.MagnitudeAdd = _G.MagnitudeAdd+1500
 								end
 							end
