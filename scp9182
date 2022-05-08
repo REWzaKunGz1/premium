@@ -1173,6 +1173,8 @@ wait(1)
     local Main = SOMEXHUB:AddTab("Player-ESP","6026568198")
     local Teleport = SOMEXHUB:AddTab("Teleport","6035190846")
     local Misc = SOMEXHUB:AddTab("Setting","6034509993")
+    local Map = SOMEXHUB:AddTab("Map","6031075938")
+
     
     Main:AddSeperator("Setting")
     
@@ -1931,3 +1933,9 @@ Misc:AddButton("Rejoin",function()
 Misc:AddButton("Time", function()
 loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Time%20scp'))()
 end)
+
+Map:AddSeperator("Legends Of Speed")
+
+Map:AddSeperator("Blox Fruits")
+
+Map:AddSeperator("SCP 3008")
