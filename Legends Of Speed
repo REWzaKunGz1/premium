@@ -1206,7 +1206,7 @@ Main:AddToggle("Auto Farm Gems",_G.Gems,function(value)
 
 Main:AddSeperator("Hoops")
 
-Main:AddToggle("Auto Hoops",_G.red,function(value)
+Main:AddToggle("Auto Hoops pc",_G.red,function(value)
   _G.red = value
 
 spawn( 
@@ -1224,7 +1224,7 @@ spawn(
 )
 end)
 
-		Main:AddToggle("Auto Hoops 2",_G.Hoops,function(value)
+		Main:AddToggle("Auto Hoops Mobile",_G.Hoops,function(value)
 	_G.Hoops = value
 	wait()
 	while _G.Hoops == true do
