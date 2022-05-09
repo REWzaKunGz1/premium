@@ -6646,7 +6646,7 @@ end)
 	end)
     
     Misc:AddButton("ANIMATIONS",function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/anim%231212'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/anim'))()
     end)
     
       Misc:AddButton("Kill you",function()
