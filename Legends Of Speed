@@ -24,7 +24,7 @@
            game:GetService("StarterGui"):SetCore("SendNotification", { 
     Title = "Pado";
     Text = "Pado Hub | Made By REWza";
-    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+    Icon = "rbxassetid://8825654232"})
 Duration = 14;
     
     local UserInputService = game:GetService("UserInputService")
