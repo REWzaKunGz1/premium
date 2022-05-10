@@ -1,4 +1,4 @@
-    
+   
     game:GetService("Players").LocalPlayer.Idled:connect(function()
         game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
         wait(1)
@@ -24,7 +24,7 @@
            game:GetService("StarterGui"):SetCore("SendNotification", { 
     Title = "Pado";
     Text = "Pado Hub | Made By REWza";
-    Icon = "rbxthumb://type=Asset&id=5107182114&w=150&h=150"})
+    Icon = "rbxassetid://8825656075"})
 Duration = 14;
     
     local UserInputService = game:GetService("UserInputService")
@@ -997,138 +997,7 @@ Duration = 14;
         return uitab
     end
     
-  function Hop()
-        local PlaceID = game.PlaceId
-        local AllIDs = {}
-        local foundAnything = ""
-        local actualHour = os.date("!*t").hour
-        local Deleted = false
-        function TPReturner()
-            local Site;
-            if foundAnything == "" then
-                Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
-            else
-                Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
-            end
-            local ID = ""
-            if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
-                foundAnything = Site.nextPageCursor
-            end
-            local num = 0;
-            for i,v in pairs(Site.data) do
-                local Possible = true
-                ID = tostring(v.id)
-                if tonumber(v.maxPlayers) > tonumber(v.playing) then
-                    for _,Existing in pairs(AllIDs) do
-                        if num ~= 0 then
-                            if ID == tostring(Existing) then
-                                Possible = false
-                            end
-                        else
-                            if tonumber(actualHour) ~= tonumber(Existing) then
-                                local delFile = pcall(function()
-                                    AllIDs = {}
-                                    table.insert(AllIDs, actualHour)
-                                end)
-                            end
-                        end
-                        num = num + 1
-                    end
-                    if Possible == true then
-                        table.insert(AllIDs, ID)
-                        wait()
-                        pcall(function()
-                            wait()
-                            game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
-                        end)
-                        wait(4)
-                    end
-                end
-            end
-        end
-        function Teleport() 
-            while wait() do
-                pcall(function()
-                    TPReturner()
-                    if foundAnything ~= "" then
-                        TPReturner()
-                    end
-                end)
-            end
-        end
-        Teleport()
-    end                   
-    
-      function isnil(thing)
-		return (thing == nil)
-	end
-	local function round(n)
-		return math.floor(tonumber(n) + 0.5)
-	end
-	Number = math.random(1, 1000000)
-	function UpdatePlayerChams()
-		for i,v in pairs(game:GetService'Players':GetChildren()) do
-			pcall(function()
-				if not isnil(v.Character) then
-					if ESPPlayer then
-						if not isnil(v.Character.Head) and not v.Character.Head:FindFirstChild('NameEsp'..Number) then
-							local bill = Instance.new('BillboardGui',v.Character.Head)
-							bill.Name = 'NameEsp'..Number
-							bill.ExtentsOffset = Vector3.new(0, 1, 0)
-							bill.Size = UDim2.new(1,200,1,30)
-							bill.Adornee = v.Character.Head
-							bill.AlwaysOnTop = true
-							local name = Instance.new('TextLabel',bill)
-							name.Font = "GothamBold"
-							name.FontSize = "Size14"
-							name.TextWrapped = true
-							name.Text = (v.Name ..' \n'.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude/3) ..' M')
-							name.Size = UDim2.new(1,0,1,0)
-							name.TextYAlignment = 'Top'
-							name.BackgroundTransparency = 1
-							name.TextStrokeTransparency = 0.5
-							if v.Team == game.Players.LocalPlayer.Team then
-								name.TextColor3 = Color3.new(0,255,0)
-							else
-								name.TextColor3 = Color3.new(255,0,0)
-							end
-						else
-							v.Character.Head['NameEsp'..Number].TextLabel.Text = (v.Name ..' | '.. round((game:GetService('Players').LocalPlayer.Character.Head.Position - v.Character.Head.Position).Magnitude/3) ..' M\nHealth : ' .. round(v.Character.Humanoid.Health*100/v.Character.Humanoid.MaxHealth) .. '%')
-						end
-					else
-						if v.Character.Head:FindFirstChild('NameEsp'..Number) then
-							v.Character.Head:FindFirstChild('NameEsp'..Number):Destroy()
-						end
-					end
-				end
-			end)
-       end
-end
 
--- notify function
-local function notify(message)
-   game.StarterGui:SetCore("SendNotification", {
-       Title = "Pado";
-       Text = message;
-       Icon = "";
-       Duration = 5;
-   })
-end
-
-local function teleportToItem(itemName)
-   local donesearch = false
-   for i,v in pairs(game:GetService("Workspace").GameObjects.Physical.Items:GetDescendants()) do
-       if v.Name == "Root" and v.Parent.Name == itemName then
-           game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-           donesearch = true
-           break
-       end
-   end
-   if donesearch == false then
-       notify("Item position not defined")
-   end
-end
- 
 local SOMEXHUBMODILE = Instance.new("ScreenGui")
 local MODILEGUISOMEXHUB = Instance.new("TextButton")
 local MODILEGUISOMEXHUBHUI = Instance.new("UICorner")
@@ -1168,15 +1037,13 @@ MODILEMAGE.Size = UDim2.new(0, 25, 0, 25)
 MODILEMAGE.Image = "http://www.roblox.com/asset/?id=6031075938"
 wait(1)
    
-    local SOMEXHUB = library:AddWindow("Pado Hub | SCP ",Enum.KeyCode.RightControl)
+    local SOMEXHUB = library:AddWindow("Pado Hub",Enum.KeyCode.RightControl)
     
-    local Main = SOMEXHUB:AddTab("Player-ESP","6026568198")
-    local Teleport = SOMEXHUB:AddTab("Teleport","6035190846")
-    local Misc = SOMEXHUB:AddTab("Setting","6034509993")
+    local Main = SOMEXHUB:AddTab("Auto Farm","6026568198")
+    local Combat = SOMEXHUB:AddTab("Teleport","6035190846")
     local Map = SOMEXHUB:AddTab("Map","6031075938")
 
-    
-    Main:AddSeperator("Setting")
+    Main:AddSeperator("Legends Of Speed")
     
     Time = Main:AddLabel("Server Time")
     
@@ -1195,747 +1062,217 @@ wait(1)
             end)
         end
     end)
-    
-    Main:AddSeperator("Player")
-    
-    Main:AddButton("InfiniteJump", function()
-local InfiniteJumpEnabled = true
-game:GetService("UserInputService").JumpRequest:connect(function()
-	if InfiniteJumpEnabled then
-		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-	end
+
+    Main:AddToggle("AutoFarm",_G.w,function(value)
+  _G.w = value
+
+while _G.w do wait() 
+local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3)
+wait(.1)
+end
+
+while _G.w do wait() 
+local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3)
+wait(.1)
+end
+
+while _G.w do wait()
+local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3)
+wait(.1)
+end
+
+while _G.w do wait() 
+local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3)
+wait(.1)
+end
+
+while _G.w do wait() 
+local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Gem" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Yellow Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Orange Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3) local A_1 = "collectOrb" local A_2 = "Blue Orb" local A_3 = "City" local Event = game:GetService("ReplicatedStorage").rEvents.orbEvent Event:FireServer(A_1, A_2, A_3)
+wait(.1)
+end
 end)
-local InfiniteJump = CreateButton("Infinite Jump: Off", StuffFrame)
-local state = InfiniteJump.Text:sub(string.len("Infinite Jump: ") + 1) --too lazy to count lol
-	local new = state == "Off" and "On" or state == "On" and "Off"
-	InfiniteJumpEnabled = new == "On"
-	InfiniteJump.Text = "Infinite Jump: " .. new
+
+
+Main:AddToggle("AutoRebirth",_G.R,function(value)
+  _G.R = value
+
+while _G.R do wait()
+
+local args = {[1] = "rebirthRequest"}
+game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer(unpack(args))
+wait(.1)
+end
 end)
 
-Main:AddButton("No Fall Damage", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/onllafpsc'))()
-end)
+Main:AddSeperator("Auto Farm Orbs Gems")
 
- Main:AddButton("FullBright", function()
-if not _G.FullBrightExecuted then
-
-	_G.FullBrightEnabled = false
-
-	_G.NormalLightingSettings = {
-		Brightness = game:GetService("Lighting").Brightness,
-		ClockTime = game:GetService("Lighting").ClockTime,
-		FogEnd = game:GetService("Lighting").FogEnd,
-		GlobalShadows = game:GetService("Lighting").GlobalShadows,
-		Ambient = game:GetService("Lighting").Ambient
-	}
-
-	game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
-		if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= _G.NormalLightingSettings.Brightness then
-			_G.NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
-			if not _G.FullBrightEnabled then
-				repeat
-					wait()
-				until _G.FullBrightEnabled
-			end
-			game:GetService("Lighting").Brightness = 1
+Main:AddToggle("Auto Farm Orbs",_G.Gems,function(value)
+	_G.Farm = value
+	wait()
+	while _G.Farm == true do
+		wait()
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Magma City")
+game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","City")
+game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Red Orb","Snow City")
 		end
-	end)
+		end)
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
-		if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= _G.NormalLightingSettings.ClockTime then
-			_G.NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
-			if not _G.FullBrightEnabled then
-				repeat
-					wait()
-				until _G.FullBrightEnabled
-			end
-			game:GetService("Lighting").ClockTime = 12
+Main:AddToggle("Auto Farm Gems",_G.Gems,function(value)
+	_G.Gems = value
+	wait()
+	while _G.Gems == true do
+		wait()
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
+		game.ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb","Gem","City")
 		end
-	end)
+		end)
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
-		if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= _G.NormalLightingSettings.FogEnd then
-			_G.NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
-			if not _G.FullBrightEnabled then
-				repeat
-					wait()
-				until _G.FullBrightEnabled
-			end
-			game:GetService("Lighting").FogEnd = 786543
-		end
-	end)
+Main:AddSeperator("Hoops")
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
-		if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= _G.NormalLightingSettings.GlobalShadows then
-			_G.NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
-			if not _G.FullBrightEnabled then
-				repeat
-					wait()
-				until _G.FullBrightEnabled
-			end
-			game:GetService("Lighting").GlobalShadows = false
-		end
-	end)
+Main:AddToggle("Auto Hoops pc",_G.red,function(value)
+  _G.red = value
 
-	game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
-		if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= _G.NormalLightingSettings.Ambient then
-			_G.NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
-			if not _G.FullBrightEnabled then
-				repeat
-					wait()
-				until _G.FullBrightEnabled
-			end
-			game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
-		end
-	end)
-
-	game:GetService("Lighting").Brightness = 1
-	game:GetService("Lighting").ClockTime = 12
-	game:GetService("Lighting").FogEnd = 786543
-	game:GetService("Lighting").GlobalShadows = false
-	game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
-
-	local LatestValue = true
-	spawn(function()
-		repeat
-			wait()
-		until _G.FullBrightEnabled
-		while wait() do
-			if _G.FullBrightEnabled ~= LatestValue then
-				if not _G.FullBrightEnabled then
-					game:GetService("Lighting").Brightness = _G.NormalLightingSettings.Brightness
-					game:GetService("Lighting").ClockTime = _G.NormalLightingSettings.ClockTime
-					game:GetService("Lighting").FogEnd = _G.NormalLightingSettings.FogEnd
-					game:GetService("Lighting").GlobalShadows = _G.NormalLightingSettings.GlobalShadows
-					game:GetService("Lighting").Ambient = _G.NormalLightingSettings.Ambient
-				else
-					game:GetService("Lighting").Brightness = 1
-					game:GetService("Lighting").ClockTime = 12
-					game:GetService("Lighting").FogEnd = 786543
-					game:GetService("Lighting").GlobalShadows = false
-					game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+spawn( 
+    function()
+        while wait() do
+            if _G.red then
+                for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
+				firetouchinterest(v, game:GetService('Players').LocalPlayer.Character.HumanoidRootPart, 0)
+				wait()
+				firetouchinterest(v, game:GetService('Players').LocalPlayer.Character.HumanoidRootPart, 1)
 				end
-				LatestValue = not LatestValue
-			end
-		end
-	end)
-end
-
-_G.FullBrightExecuted = true
-_G.FullBrightEnabled = not _G.FullBrightEnabled
-end)
-
- Main:AddButton("ESP Name", function()
-for i,v in pairs(game:GetService("Players"):GetChildren()) do
-    if v ~= game:GetService("Players").LocalPlayer then
-    local BillboardGui = Instance.new("BillboardGui")
-local TextLabel = Instance.new("TextLabel")
---Properties:
-BillboardGui.Parent = v.Character
-BillboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-BillboardGui.Active = true
-BillboardGui.AlwaysOnTop = true
-BillboardGui.LightInfluence = 0
-BillboardGui.Size = UDim2.new(0, 200, 0, 50)
-BillboardGui.StudsOffset = Vector3.new(0, 4, 0)
-
-TextLabel.Parent = BillboardGui
-TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-TextLabel.BackgroundTransparency = 1
-TextLabel.BorderSizePixel = 0
-TextLabel.Size = UDim2.new(1, 0, 1, 0)
-TextLabel.Font = Enum.Font.SourceSans
-TextLabel.TextColor3 = Color3.new(0, 1, 0)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14
-TextLabel.TextWrapped = true
-TextLabel.Text = v.Name
-end
-end
-end)
-
-Main:AddToggle("ESP Player",espplyer,function(a)
-		ESPPlayer = a
-		UpdatePlayerChams()
-	end)
-	
-  spawn(function()
-		while wait() do
-			if ESPPlayer then
-				UpdatePlayerChams()
-			end
-		end
-	end)
-	
-	   Playerslist = {}
-    
-    for i,v in pairs(game:GetService("Players"):GetChildren()) do
-        table.insert(Playerslist,v.Name)
-    end
-    
-    local SelectedPly = Main:AddDropdown("Select Players",Playerslist,function(value)
-        _G.SelectPly = value
-    end)
-    
-    Main:AddButton("Refresh Player",function()
-        Playerslist = {}
-        SelectedPly:Clear()
-        for i,v in pairs(game:GetService("Players"):GetChildren()) do  
-            SelectedPly:Add(v.Name)
+            end
         end
-    end)
-
-Main:AddButton("Teleport", function()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[_G.SelectPly].Character.HumanoidRootPart.CFrame
-end)
-    
-    Main:AddSeperator("ESP")
-
-Main:AddButton("Banana",function()
-for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Banana' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Banana" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.721569, 0.721569, 0.356863) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-	
-	Main:AddButton("Pizza",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Pizza' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Pizza" -- what the label says
-				TextLabel.TextColor3 = Color3.new(1, 0.333333, 0) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("SCP ESP",function()
-repeat
-			wait(10)
-			for i,v in pairs(game.Workspace.GameObjects.Physical.Employees:GetDescendants()) do
-				if v.Name == 'BillboardGui' then
-					v:Destroy()
-				end
-			end
-			wait(0.1)
-			for i,v in pairs(game.Workspace.GameObjects.Physical.Employees:GetDescendants()) do
-				if v.Parent.Name == 'HumanoidRootPart' then
-					local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-					local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-					BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-					BillboardGui.AlwaysOnTop = true -- if its on top or not
-					BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-					BillboardGui.StudsOffset = Vector3.new(0,2,0)
-					BillboardGui.MaxDistance = 265
-	
-					TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-					TextLabel.BackgroundTransparency = 1 -- transparency
-					TextLabel.Size = UDim2.new(1, 5, 1, 5) -- size
-					TextLabel.Text = v.Parent.Parent.Name -- what the label says
-					TextLabel.TextColor3 = Color3.new(1, 0, 0) -- color
-					TextLabel.TextScaled = false -- if the text is scaled or not
-				end
-			end
-		until game.Workspace.Camera.FieldOfView == 1
-	end)
-
-Main:AddButton("MedKit",function()
-for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Medkit' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "MedKit" -- what the label says
-				TextLabel.TextColor3 = Color3.new(1, 0, 0) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Meatballs",function()
-for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Meatballs' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Meatballs" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.807843, 0.564706, 0.435294) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Apple",function()
-for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Apple' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Apple" -- what the label says
-				TextLabel.TextColor3 = Color3.new(1, 0.333333, 0.333333) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Lemon",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Lemon' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Lemon" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.6, 0.6, 0) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Burger",function()
-for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Burger' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Burger" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.713725, 0.376471, 0.152941) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Striped Donut",function()
-for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Striped Donut' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Striped Donut" -- what the label says
-				TextLabel.TextColor3 = Color3.new(1, 1, 1) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Chips",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Chips' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Chips" -- what the label says
-				TextLabel.TextColor3 = Color3.new(1, 0.666667, 0.498039) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Ice Cream",function()
-for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Ice Cream' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-				BillboardGui.MaxDistance = 300
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Ice Cream" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.333333, 1, 0.498039) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-
-Main:AddButton("Chocolate",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Chocolate' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Chocolate" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-	
-Main:AddButton("Hotdog",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Hotdog' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Hotdog" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-	
-Main:AddButton("Dr. Bob",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Dr. Bob' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Dr. Bob" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-	
-	Main:AddButton("Lemon Slice",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Lemon Slice' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Lemon Slice" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-	
-	Main:AddButton("Water",function()
-	for i,v in pairs(game.Workspace.GameObjects:GetDescendants()) do
-			if v.Parent.Name == 'Water' then
-	
-				local BillboardGui = Instance.new('BillboardGui') -- Makes Billboardgui
-				local TextLabel = Instance.new('TextLabel') -- makes text label
-	
-				BillboardGui.Parent = v.Parent -- what the billboardgui goes into
-				BillboardGui.AlwaysOnTop = true -- if its on top or not
-				BillboardGui.Size = UDim2.new(0, 50, 0, 50) -- size of it
-				BillboardGui.StudsOffset = Vector3.new(0,2,0)
-	
-				TextLabel.Parent = BillboardGui -- putting textlabel into billboardgui
-				TextLabel.BackgroundTransparency = 1 -- transparency
-				TextLabel.Size = UDim2.new(2, 5, 2, 5) -- size
-				TextLabel.Text = "Water" -- what the label says
-				TextLabel.TextColor3 = Color3.new(0.333333, 1, 1) -- color
-				TextLabel.TextScaled = false -- if the text is scaled or not
-	
-			end
-		end
-	
-	end)
-	
-	
-	Main:AddButton("ClearESP",function()
-			for i,v in pairs(game.Workspace.GameObjects.Physical.Items:GetDescendants()) do
-			if v.Name == 'BillboardGui' then
-				v:Destroy()
-			end
-		end
-	end)
-	
-Teleport:AddSeperator("Teleport food")
-
-Teleport:AddButton("Teleport to Hotdog", function()
-   teleportToItem("Hotdog")
+    end
+)
 end)
 
-Teleport:AddButton("Teleport to Ice Cream", function()
-   teleportToItem("Ice Cream")
+		Main:AddToggle("Auto Hoops Mobile",_G.Hoops,function(value)
+	_G.Hoops = value
+	wait()
+	while _G.Hoops == true do
+		wait()
+    local children = workspace.Hoops:GetChildren()
+    for i, child in ipairs(children) do
+        if child.Name == "Hoop" then
+            child.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        end
+        end
+        end
+		end)
+
+Main:AddSeperator("random Egg")
+
+Main:AddToggle("Best Egg",_G.BestEgg,function(value)
+	_G.BestEgg = value
+	wait()
+	while _G.BestEgg == true do
+		wait()
+		game.ReplicatedStorage.rEvents.openCrystalRemote:InvokeServer("openCrystal", "Electro Legends Crystal")
+		end
+		end)
+
+Main:AddButton("Best Egg",function()
+		game.ReplicatedStorage.rEvents.openCrystalRemote:InvokeServer("openCrystal", "Electro Legends Crystal")
+		end)
+
+Combat:AddSeperator("Teleport")
+
+Combat:AddButton("Spawn", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-559.2, -7.45058e-08, 417.4))
 end)
 
-Teleport:AddButton("Teleport to Chips", function()
-   teleportToItem("Chips")
+Combat:AddButton("Snow City", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(-858.358, 0.5, 2170.35))
 end)
 
-Teleport:AddButton("Teleport to Burger", function()
-   teleportToItem("Burger")
+Combat:AddButton("Magma City", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(1707.25, 0.550008, 4331.05))
 end)
 
-Teleport:AddButton("Teleport to Lemon", function()
-   teleportToItem("Lemon")
+Combat:AddButton("Legends Highway", function()
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(3594.68, 214.804, 7274.56))    
 end)
 
-Teleport:AddButton("Teleport to Apple", function()
-   teleportToItem("Apple")
-end)
-
-Teleport:AddButton("Teleport to Meatballs", function()
-   teleportToItem("Meatballs")
-end)
-
-Teleport:AddButton("Teleport to Medkit", function()
-   teleportToItem("MedKit")
-end)
-
-Teleport:AddButton("Teleport to Pizza", function()
-   teleportToItem("Pizza")
-end)
-
-Teleport:AddButton("Teleport to Banana", function()
-   teleportToItem("Banana")
-end)
-
-Teleport:AddButton("Teleport to Striped Donut", function()
-   teleportToItem("Striped Donut")
-end)
-
-Teleport:AddButton("Teleport to Dr. Bob", function()
-   teleportToItem("Dr. Bob")
-end)
-
-Teleport:AddButton("Teleport to Lemon Slice", function()
-   teleportToItem("Lemon Slice")
-end)
-
-Teleport:AddButton("Teleport to Water", function()
-   teleportToItem("Water")
-end)
-
-Misc:AddSeperator("Setting")
-
-Misc:AddButton("Server Hop",function()
-                                    local PlaceID = game.PlaceId
-                                    local AllIDs = {}
-                                    local foundAnything = ""
-                                    local actualHour = os.date("!*t").hour
-                                    local Deleted = false
-                                    function TPReturner()
-                                        local Site;
-                                        if foundAnything == "" then
-                                            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
-                                        else
-                                            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
-                                        end
-                                        local ID = ""
-                                        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
-                                            foundAnything = Site.nextPageCursor
-                                        end
-                                        local num = 0;
-                                        for i,v in pairs(Site.data) do
-                                            local Possible = true
-                                            ID = tostring(v.id)
-                                            if tonumber(v.maxPlayers) > tonumber(v.playing) then
-                                                for _,Existing in pairs(AllIDs) do
-                                                    if num ~= 0 then
-                                                        if ID == tostring(Existing) then
-                                                            Possible = false
-                                                        end
-                                                    else
-                                                        if tonumber(actualHour) ~= tonumber(Existing) then
-                                                            local delFile = pcall(function()
-                                                                -- delfile("NotSameServers.json")
-                                                                AllIDs = {}
-                                                                table.insert(AllIDs, actualHour)
-                                                            end)
-                                                        end
-                                                    end
-                                                    num = num + 1
-                                                end
-                                                if Possible == true then
-                                                    table.insert(AllIDs, ID)
-                                                    wait()
-                                                    pcall(function()
-                                                        -- writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
-                                                        wait()
-                                                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
-                                                    end)
-                                                    wait(.1)
-                                                end
-                                            end
-                                        end
-                                    end
-                                    function Teleport() 
-                                        while wait() do
-                                            pcall(function()
-                                                TPReturner()
-                                                if foundAnything ~= "" then
-                                                    TPReturner()
-                                                end
-                                            end)
-                                        end
-                                    end
-                                    Teleport()
-                                end)
-
-Misc:AddButton("Rejoin",function()
-		local ts = game:GetService("TeleportService")
-		local p = game:GetService("Players").LocalPlayer
-		ts:Teleport(game.PlaceId, p)
-	end)
-	local function HttpGet(url)
-		return game:GetService("HttpService"):JSONDecode(htgetf(url))
-	end
-	
-Misc:AddButton("Time", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/REWzaKunGz1/REWzaKunGz1/main/Time%20scp'))()
+Combat:AddButton("Teleport To Best egg", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4542.74854, 75.1472473, 6406.27246, 0.227699727, 1.13029879e-08, -0.973731399, 3.16385034e-08, 1, 1.90063361e-08, 0.973731399, -3.5135141e-08, 0.227699727)
 end)
 
 Map:AddSeperator("Legends Of Speed")
