@@ -1213,7 +1213,12 @@ local state = InfiniteJump.Text:sub(string.len("Infinite Jump: ") + 1) --too laz
 end)
 
 Main:AddButton("No Fall Damage", function()
-game.Players.LocalPlayer.Character.FallDamageScript:Destroy()
+while true do
+	wait()
+	if game.Players.LocalPlayer.Character:FindFirstChild("FallDamageScript") then
+		game.Players.LocalPlayer.Character.FallDamageScript:Destroy()
+	end
+end
 end)
 
  Main:AddButton("FullBright", function()
