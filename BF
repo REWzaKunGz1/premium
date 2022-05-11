@@ -2271,15 +2271,6 @@ wait(1)
         _G.BringMonster = value
     end)
     
-    Main:AddButton("Remove Sound",function()
-
-        for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
-            if v.Name == "CurvedRing" or v.Name == "SlashHit" or v.Name == "SwordSlash" or v.Name == "Sounds" then
-            v:Destroy() 
-            end
-       end
-  end)
-    
     WeaponList = {}
     
     for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do  
@@ -2298,6 +2289,15 @@ wait(1)
             SelectWeapona:Add(v.Name)
         end
     end)
+
+    Main:AddButton("Remove Sound",function()
+
+        for i, v in pairs(game.Workspace["_WorldOrigin"]:GetChildren()) do
+            if v.Name == "CurvedRing" or v.Name == "SlashHit" or v.Name == "SwordSlash" or v.Name == "Sounds" then
+            v:Destroy() 
+            end
+       end
+  end)
     
     Main:AddSeperator("Main")
   
@@ -2313,10 +2313,12 @@ wait(1)
                     local QuestTitle = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
                     if not string.find(QuestTitle, NameMon) then
                         StartMagnet = false
+                        _G.FastAttack = false
                         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
                     end
                     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                         StartMagnet = false
+                        _G.FastAttack = false
 			CheckQuest()
                         repeat wait() topos(CFrameQuest) until (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 or not _G.AutoFarm
                         if (CFrameQuest.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 3 then
@@ -2332,15 +2334,17 @@ wait(1)
                                     if v.Name == Mon then
                                         if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text, NameMon) then
                                             repeat task.wait()
+                                                _G.FastAttack = false
                                                 EquipWeapon(_G.SelectWeapon)
                                                 AutoHaki()                                            
                                                 PosMon = v.HumanoidRootPart.CFrame
-                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(5,10,7))
+                                                topos(v.HumanoidRootPart.CFrame * CFrame.new(5,20,5))
                                                 v.HumanoidRootPart.CanCollide = false
                                                 v.Humanoid.WalkSpeed = 0
                                                 v.Head.CanCollide = false
                                                 v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                 StartMagnet = true
+                                                _G.FastAttack = true
                                                 game:GetService'VirtualUser':CaptureController()
                                                 game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
                                             until not _G.AutoFarm or v.Humanoid.Health <= 0 or not v.Parent or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
@@ -2354,12 +2358,13 @@ wait(1)
                             end
                         else
                             StartMagnet = false
+                            _G.FastAttack = false
                             if game:GetService("ReplicatedStorage"):FindFirstChild(Mon) then
                                 topos(game:GetService("ReplicatedStorage"):FindFirstChild(Mon).HumanoidRootPart.CFrame * CFrame.new(5,10,7))
                             else
                                 if (CFrameQuest.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 15 then
                                     if PosMon ~= nil then
-                                        topos(PosMon * CFrame.new(5,10,7))
+                                        topos(PosMon * CFrame.new(5,20,5))
                                     else
                                         if OldPos ~= nil then
                                             topos(OldPos.Position)
@@ -2836,7 +2841,7 @@ wait(1)
                                                     UseSkill = false 
                                                     AutoHaki()
                                                     EquipWeapon(_G.SelectWeapon)
-                                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(5,10,7))
+                                                    topos(v.HumanoidRootPart.CFrame * CFrame.new(5,20,5))
                                                     v.HumanoidRootPart.CanCollide = false
                                                     v.HumanoidRootPart.Size = Vector3.new(50,50,50)
                                                     PosMonMasteryFruit = v.HumanoidRootPart.CFrame
@@ -2860,7 +2865,7 @@ wait(1)
                             UseSkill = false 
                             local Mob = game:GetService("ReplicatedStorage"):FindFirstChild(Mon) 
                             if Mob then
-                                topos(Mob.HumanoidRootPart.CFrame * CFrame.new(5,10,7))
+                                topos(Mob.HumanoidRootPart.CFrame * CFrame.new(5,20,5))
                             else
                                 if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame.Y <= 1 then
                                     game:GetService("Players").LocalPlayer.Character.Humanoid.Jump = true
@@ -3185,7 +3190,7 @@ wait(1)
                         end
                     else
                         if game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss) then
-                            topos(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame * CFrame.new(5,10,7))
+                            topos(game:GetService("ReplicatedStorage"):FindFirstChild(_G.SelectBoss).HumanoidRootPart.CFrame * CFrame.new(5,20,5))
                         end
                     end
                 end)
@@ -3692,7 +3697,7 @@ wait(1)
                                         topos(v.HumanoidRootPart.CFrame * CFrame.new(5,10,7))
                                         game:GetService("VirtualUser"):CaptureController()
                                         game:GetService("VirtualUser"):Button1Down(Vector2.new(1280,672))
-                                    until not _G.Auto_Farm_Bone or not v.Parent or v.Humanoid.Health <= 0
+                                    until not _G.Auto_Bone or not v.Parent or v.Humanoid.Health <= 0
                                 end
                             end
                         end
