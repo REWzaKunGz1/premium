@@ -22,8 +22,8 @@
     end
     
            game:GetService("StarterGui"):SetCore("SendNotification", { 
-    Title = "Pado";
-    Text = "Pado Hub | Made By REWza";
+    Title = "Pado x HUB";
+    Text = "Loading...";
     Icon = "rbxassetid://8825654232"})
 Duration = 14;
     
