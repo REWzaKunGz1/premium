@@ -1,0 +1,16 @@
+local GUI = game:GetService("CoreGui"):FindFirstChild("NotiFrame")
+if not GUI then
+    local NotiFrame = Instance.new("ScreenGui")
+    local NotiFrame = Instance.new("UIListLayout")
+    NotiFrame.Name = "NotiFrame"
+    NotiFrame.Parent = game.CoreGui
+    NotiFrame.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    NotiFrame.ResetOnSpawn = false
+    
+    NotiFrame.Name = "STX_NofiticationUIListLayout"
+    NotiFrame.Parent = STX_Nofitication
+    NotiFrame.HorizontalAlignment = Enum.HorizontalAlignment.Right
+    NotiFrame.SortOrder = Enum.SortOrder.LayoutOrder
+    NotiFrame.VerticalAlignment = Enum.VerticalAlignment.Bottom
+else
+end
