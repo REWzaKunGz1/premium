@@ -1,7 +1,7 @@
 NotiFrame = {}
 		
 		local PADOXHUB = Instance.new("ScreenGui")
-                PADOXHUB.Name = "Pado Hub"
+                PADOXHUB.Name = "PADOXHUB"
                 PADOXHUB.Parent = game.CoreGui
                 PADOXHUB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 		
