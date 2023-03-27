@@ -1,22 +1,5 @@
 NotiFrame = {}
 
-local NotiFrame = Instance.new("Frame")
-NotiFrame.Name = "NotiFrame"
-NotiFrame.Parent = PADOXHUB
-NotiFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-NotiFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-NotiFrame.BackgroundTransparency = 1.000
-NotiFrame.Position = UDim2.new(1.4, 0, 0.0613496937, 0)
-NotiFrame.Size = UDim2.new(0, 5300, 0, 100)
-
-local Notilistlayout = Instance.new("UIListLayout")
-
-Notilistlayout.Name = "Notilistlayout"
-Notilistlayout.Parent = NotiFrame
-Notilistlayout.FillDirection = Enum.FillDirection.Horizontal
-Notilistlayout.SortOrder = Enum.SortOrder.LayoutOrder
-Notilistlayout.Padding = UDim.new(0, 5)
-
 function Notification(text,text2,delays,logo)
 	if logo == nil then
 		logo = 11804855180
