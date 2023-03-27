@@ -2,7 +2,7 @@ NotiFrame = {}
 		
 		local NotiFrame = Instance.new("Frame")
 		NotiFrame.Name = "NotiFrame"
-		NotiFrame.Parent = PADOXHUB
+		NotiFrame.Parent = game.CoreGui
 		NotiFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 		NotiFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		NotiFrame.BackgroundTransparency = 1.000
