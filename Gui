@@ -516,7 +516,7 @@
                 end
             end
     
-            function main:AddTextbox(text,holder,disappear,callback)
+            function main:Textbox(text,holder,disappear,callback)
                 local Textboxx = Instance.new("Frame")
                 local TextboxxCorner = Instance.new("UICorner")
                 local TextboxTitle = Instance.new("TextLabel")
