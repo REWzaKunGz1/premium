@@ -15,7 +15,7 @@
                 wait(1)
                 
                 do
-                    local ui = game.CoreGui:FindFirstChild("SOMEXGUI")
+                    local ui = game.CoreGui:FindFirstChild("PadoUi")
                     if ui then
                         ui:Destroy()
                     end
@@ -83,13 +83,13 @@
                 
                 local library = {}
                 
-                function library:AddWindow(text,keybind)
+                function library:Window(text,keybind)
                     local bind = keybind or Enum.KeyCode.RightControl
                     local ff = false
                     local currenttab = ""
                 
                     local DoctorShiba = Instance.new("ScreenGui")
-                    DoctorShiba.Name = "SOMEXGUI"
+                    DoctorShiba.Name = "PadoUi"
                     DoctorShiba.Parent = game.CoreGui
                     DoctorShiba.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
                 
@@ -264,7 +264,7 @@
                 
                     local uitab = {}
                 
-                    function uitab:AddTab(text,image)
+                    function uitab:Tab(text,image)
                         local Image = image or 6023426915
                 
                         local PageButton = Instance.new("TextButton")
@@ -372,7 +372,7 @@
                         
                         local main = {}
                         
-                        function main:AddButton(text,callback)
+                        function main:Button(text,callback)
                             local Button = Instance.new("TextButton")
                 
                             Button.Name = "Button"
@@ -420,7 +420,7 @@
                             end)
                         end
                         
-                        function main:AddToggle(text,config,callback)
+                        function main:Toggle(text,config,callback)
                             local ToggleImage = Instance.new("Frame")
                             
                             local Toggle = Instance.new("TextButton")
@@ -517,7 +517,7 @@
                             end
                         end
                 
-                        function main:AddTextbox(text,holder,disappear,callback)
+                        function main:Textbox(text,holder,disappear,callback)
                             local Textboxx = Instance.new("Frame")
                             local TextboxxCorner = Instance.new("UICorner")
                             local TextboxTitle = Instance.new("TextLabel")
@@ -571,7 +571,7 @@
                             TextboxCorner.Parent = Textbox
                         end
                 
-                        function main:AddDropdown(text,table,callback)
+                        function main:Dropdown(text,table,callback)
                             local Dropdown = Instance.new("Frame")
                             local UICorner = Instance.new("UICorner")
                             local DropButton = Instance.new("TextButton")
@@ -772,7 +772,7 @@
                             return drop
                         end
                 
-                        function main:AddSlider(text,min,max,set,callback)
+                        function main:Slider(text,min,max,set,callback)
                             set = (math.clamp(set,min,max))
                             if set > max then set = max end
                 
@@ -903,7 +903,7 @@
                                 end
                             end)
                         end
-                        function main:AddSeperator(text)
+                        function main:Seperator(text)
                             local Seperator = Instance.new("Frame")
                             local Sep1 = Instance.new("Frame")
                             local SepLabel = Instance.new("TextLabel")
@@ -941,7 +941,7 @@
                             Sep2.Position = UDim2.new(0, 305, 0, 10)
                             Sep2.Size = UDim2.new(0, 150, 0, 1)
                         end
-                        function main:AddLine()
+                        function main:Line()
                             local Line = Instance.new("Frame")
                             local Linee = Instance.new("Frame")
                 
@@ -959,7 +959,7 @@
                             Linee.Position = UDim2.new(0, 0, 0, 10)
                             Linee.Size = UDim2.new(0, 455, 0, 1)
                         end
-                        function main:AddLabel(text)
+                        function main:Label(text)
                             local Label = Instance.new("TextLabel")
                             local PaddingLabel = Instance.new("UIPadding")
                             local labell = {}
