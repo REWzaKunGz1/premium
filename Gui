@@ -263,7 +263,7 @@
     
         local uitab = {}
     
-        function uitab:AddTab(text,image)
+        function uitab:Tab(text,image)
             local Image = image or 6023426915
     
             local PageButton = Instance.new("TextButton")
@@ -940,7 +940,7 @@
                 Sep2.Position = UDim2.new(0, 305, 0, 10)
                 Sep2.Size = UDim2.new(0, 150, 0, 1)
             end
-            function main:AddLine()
+            function main:Line()
                 local Line = Instance.new("Frame")
                 local Linee = Instance.new("Frame")
     
