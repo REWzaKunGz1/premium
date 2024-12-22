@@ -14,7 +14,7 @@
     wait(1)
     
     do
-        local ui = game.CoreGui:FindFirstChild("SOMEXGUI")
+        local ui = game.CoreGui:FindFirstChild("PadoUi")
         if ui then
             ui:Destroy()
         end
@@ -88,7 +88,7 @@
         local currenttab = ""
     
         local DoctorShiba = Instance.new("ScreenGui")
-        DoctorShiba.Name = "SOMEXGUI"
+        DoctorShiba.Name = "PadoUi"
         DoctorShiba.Parent = game.CoreGui
         DoctorShiba.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     
