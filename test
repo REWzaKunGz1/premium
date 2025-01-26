@@ -1116,13 +1116,13 @@
 	            local rate = math.round(passes / (passes + fails) * 100)
                     local Unc = Instance.new("TextLabel")
                     Unc.Name = "Unc"
-                    Unc.Parent = Page
+                    Unc.Parent = Main
                     Unc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                     Unc.BackgroundTransparency = 1.000
                     Unc.Position = UDim2.new(0.32, 0, 0, 0)
                     Unc.Size = UDim2.new(0, 110, 0, 20)
                     Unc.Font = Enum.Font.GothamSemibold
-                    Unc.Text = " .. rate .. "
+                    Unc.Text = rate
                     Unc.TextColor3 = Color3.fromRGB(225, 0, 0)
                     Unc.TextSize = 11.000
                     Unc.TextXAlignment = Enum.TextXAlignment.Left
