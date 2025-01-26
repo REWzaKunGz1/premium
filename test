@@ -1113,6 +1113,7 @@
               	ws:Close()
               end)
 
+	                  local rate = math.round(passes / (passes + fails) * 100)
                     local Unc = Instance.new("TextLabel")
                     Unc.Name = "Unc"
                     Unc.Parent = Page
