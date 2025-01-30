@@ -1122,7 +1122,7 @@
                     Unc.Position = UDim2.new(0.113, 0,0.071, 0)
                     Unc.Size = UDim2.new(0, 110, 0, 20)
                     Unc.Font = Enum.Font.GothamSemibold
-                    Unc.Text = "Unc : {rate}"
+                    Unc.Text = "Unc : ".. rate
                     Unc.TextColor3 = Color3.fromRGB(225, 0, 0)
                     Unc.TextSize = 11.000
                     Unc.TextXAlignment = Enum.TextXAlignment.Left
