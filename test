@@ -1119,7 +1119,7 @@
                     Unc.Parent = Main
                     Unc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                     Unc.BackgroundTransparency = 1.000
-                    Unc.Position = UDim2.new(0.128, 0,0.117, 0)
+                    Unc.Position = UDim2.new(0.037, 0,0.117, 0)
                     Unc.Size = UDim2.new(0, 110, 0, 20)
                     Unc.Font = Enum.Font.GothamSemibold
                     Unc.Text = rate
