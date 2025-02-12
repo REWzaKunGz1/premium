@@ -1562,7 +1562,7 @@
                                     TweenService:Create(
                                         Dropdown,
                                         TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                                        {Size = UDim2.new(0, 455, 0, 100)}
+                                        {Size = UDim2.new(0, 455, 0, 170)}
                                     ):Play()
                                     TweenService:Create(
                                         DropImage,
