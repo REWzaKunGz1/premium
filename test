@@ -1451,7 +1451,7 @@
                             Dropdown.Active = true
                             Dropdown.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
                             Dropdown.ClipsDescendants = true
-                            Dropdown.Size = UDim2.new(0, 455, 0, 170)
+                            Dropdown.Size = UDim2.new(0, 455, 0, 30)
                             
                             UICorner.CornerRadius = UDim.new(0, 5)
                             UICorner.Parent = Dropdown
