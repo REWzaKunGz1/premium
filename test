@@ -1451,7 +1451,7 @@
                             Dropdown.Active = true
                             Dropdown.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
                             Dropdown.ClipsDescendants = true
-                            Dropdown.Size = UDim2.new(0, 455, 0, 30)
+                            Dropdown.Size = UDim2.new(0, 455, 0, 170)
                             
                             UICorner.CornerRadius = UDim.new(0, 5)
                             UICorner.Parent = Dropdown
@@ -1471,7 +1471,7 @@
                             Droptitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                             Droptitle.BackgroundTransparency = 1.000
                             Droptitle.Position = UDim2.new(0.0281690136, 0, 0, 0)
-                            Droptitle.Size = UDim2.new(0, 410, 0, 100)
+                            Droptitle.Size = UDim2.new(0, 410, 0, 30)
                             Droptitle.Font = Enum.Font.Gotham
                             Droptitle.Text = text.." : "
                             Droptitle.TextColor3 = Color3.fromRGB(225, 225, 225)
