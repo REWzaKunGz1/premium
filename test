@@ -1285,21 +1285,6 @@
                             end)
                         end
 
-   			function main:Text()
-                            local Text = Instance.new("TextButton")
-                
-                            Text.Name = "Text"
-                            Text.Parent = ScrollTab
-                            Text.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
-                            Text.BackgroundTransparency = 0.1
-                            Text.BorderSizePixel = 0
-                            Text.Size = UDim2.new(0, 455, 0, 30)
-                            Text.AutoButtonColor = false
-                            Text.Font = Enum.Font.Gotham
-                            Text.TextColor3 = Color3.fromRGB(225, 225, 225)
-                            Text.TextSize = 11.000
-                            Text.TextWrapped = true
-
                         function main:Toggle(text,config,callback)
                             local ToggleImage = Instance.new("Frame")
                             
@@ -1858,10 +1843,141 @@
                             PaddingLabel.PaddingLeft = UDim.new(0,10)
                             PaddingLabel.Parent = Label
                             PaddingLabel.Name = "PaddingLabel"
-                    
+
                         function labell:Set(newtext)
                             Label.Text = newtext
                         end
+
+	function main:LabelList(name)
+				local NameDropdown = Instance.new("Frame")
+				local UICorner = Instance.new("UICorner")
+				local TitleToggle = Instance.new("TextButton")
+				local Dropdown = Instance.new("ScrollingFrame")
+				local UICorner_2 = Instance.new("UICorner")
+				local DropdownContentLayout = Instance.new("UIListLayout")
+				local add = Instance.new("ImageButton")
+	
+				local DropdownToggled = true
+	
+	
+				NameDropdown.Name = (name.."LabelList")
+				NameDropdown.Parent = ScrollTab
+				NameDropdown.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+				NameDropdown.Position = UDim2.new(0.020833334, 0, 0, 0)
+				NameDropdown.Size = UDim2.new(0, 475, 0, 30)
+				NameDropdown.ZIndex = 5
+
+				NameDropdown.Name = (name.."LabelList")
+				NameDropdown.Parent = ScrollTab
+				NameDropdown.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+				NameDropdown.Position = UDim2.new(0.020833334, 0, 0, 0)
+				NameDropdown.Size = UDim2.new(0, 475, 0, 30)
+				NameDropdown.ZIndex = 5
+	
+				UICorner.Parent = NameDropdown
+	
+				TitleToggle.Name = "TitleToggle"
+				TitleToggle.Parent = NameDropdown
+				TitleToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				TitleToggle.BackgroundTransparency = 1.000
+				TitleToggle.BorderSizePixel = 0
+				TitleToggle.Position = UDim2.new(0, 13, 0, 0)
+				TitleToggle.Size = UDim2.new(0, 475, 0, 30)
+				TitleToggle.ZIndex = 7
+				TitleToggle.Font = Enum.Font.SourceSansBold
+				TitleToggle.Text = (name)
+				TitleToggle.TextColor3 = Color3.fromRGB(185, 185, 185)
+				TitleToggle.TextSize = 15.000
+				TitleToggle.TextXAlignment = Enum.TextXAlignment.Left
+	
+				local Find = Instance.new("TextBox")
+	
+				Find.Name = "Find"
+				Find.Parent = NameDropdown
+				Find.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Find.BackgroundTransparency = 1.000
+				Find.Position = UDim2.new(0, 13, 0, 0)
+				Find.Size = UDim2.new(0, 135, 0, 30)
+				Find.ZIndex = 10
+				Find.Font = Enum.Font.SourceSansBold
+				Find.PlaceholderColor3 = Color3.fromRGB(255,255,255)
+				Find.PlaceholderText = "Search : ..."
+				Find.Text = ""
+				Find.TextColor3 = Color3.fromRGB(185, 185, 185)
+				Find.TextSize = 15.000
+				Find.TextXAlignment = Enum.TextXAlignment.Left
+				Find.Visible = false
+	
+				Dropdown.Name = "Dropdown"
+				Dropdown.Parent = NameDropdown
+				Dropdown.Active = true
+				Dropdown.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+				Dropdown.BorderSizePixel = 0
+				Dropdown.Position = UDim2.new(0, 15, 0, 30)
+				Dropdown.Size = UDim2.new(0, 450, 0, 0)
+				Dropdown.ZIndex = 15
+				Dropdown.CanvasSize = UDim2.new(0, 0, 0, 0)
+				Dropdown.ScrollBarThickness = 5
+	
+				UICorner_2.Parent = Dropdown
+	
+				DropdownContentLayout.Name = "DropdownContentLayout"
+				DropdownContentLayout.Parent = Dropdown
+				DropdownContentLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	
+				local function ResetAllDropdownItems()
+					for i, v in pairs(Dropdown:GetChildren()) do
+						if v:IsA("TextButton") then
+							TweenService:Create(v, TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+						end
+					end
+				end
+	
+				local function ClearAllDropdownItems()
+					for i, v in pairs(Dropdown:GetChildren()) do
+						if v:IsA("TextButton") then
+							v:Destroy()
+						end
+					end
+					TweenService:Create(NameDropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 475, 0, DropdownContentLayout.AbsoluteContentSize.Y + 45)}):Play()
+					TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, DropdownContentLayout.AbsoluteContentSize.Y + 5)}):Play()
+				end
+	
+				TweenService:Create(TitleToggle, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(185, 185, 185)}):Play()
+				TweenService:Create(NameDropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 475, 0, DropdownContentLayout.AbsoluteContentSize.Y + 30)}):Play()
+				TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {CanvasSize = UDim2.new(0, 0, 0, DropdownContentLayout.AbsoluteContentSize.Y)}):Play()
+				TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, DropdownContentLayout.AbsoluteContentSize.Y)}):Play()
+				TweenService:Create(add, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Rotation = 360}):Play()
+	
+				local funcdrop = {}
+	
+				function funcdrop:Add(text)
+					local NameButton = Instance.new("TextButton")
+	
+					NameButton.Name = (text .. "DropdownButton")
+					NameButton.Parent = Dropdown
+					NameButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					NameButton.BackgroundTransparency = 1.000
+					NameButton.BorderSizePixel = 0
+					NameButton.Size = UDim2.new(0, 450, 0, 25)
+					NameButton.ZIndex = 15
+					NameButton.AutoButtonColor = false
+					NameButton.RichText = true
+					NameButton.Font = Enum.Font.SourceSansBold
+					NameButton.Text = text
+					NameButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+					NameButton.TextSize = 15.000
+	
+					TweenService:Create(TitleToggle, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(185, 185, 185)}):Play()
+					TweenService:Create(NameDropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 475, 0, DropdownContentLayout.AbsoluteContentSize.Y + 45)}):Play()
+					TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, DropdownContentLayout.AbsoluteContentSize.Y + 5)}):Play()
+					TweenService:Create(add, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Rotation = 360}):Play()
+				end
+				function funcdrop:Clear()
+					ClearAllDropdownItems()
+				end
+				return funcdrop
+			end
                     return labell
                 end
             return main
