@@ -1824,31 +1824,7 @@
                             Linee.Position = UDim2.new(0, 0, 0, 10)
                             Linee.Size = UDim2.new(0, 455, 0, 1)
                         end
-                        function main:Label(text)
-                            local Label = Instance.new("TextLabel")
-                            local PaddingLabel = Instance.new("UIPadding")
-                            local labell = {}
-                    
-                            Label.Name = "Label"
-                            Label.Parent = ScrollTab
-                            Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                            Label.BackgroundTransparency = 1.000
-                            Label.Size = UDim2.new(0, 455, 0, 20)
-                            Label.Font = Enum.Font.Gotham
-                            Label.TextColor3 = Color3.fromRGB(225, 225, 225)
-                            Label.TextSize = 11.000
-                            Label.Text = text
-                            Label.TextXAlignment = Enum.TextXAlignment.Left
-                
-                            PaddingLabel.PaddingLeft = UDim.new(0,10)
-                            PaddingLabel.Parent = Label
-                            PaddingLabel.Name = "PaddingLabel"
-
-                        function labell:Set(newtext)
-                            Label.Text = newtext
-                        end
-
-	function main:LabelList(name)
+			function main:LabelList(name)
 				local NameDropdown = Instance.new("Frame")
 				local UICorner = Instance.new("UICorner")
 				local TitleToggle = Instance.new("TextButton")
@@ -1866,7 +1842,7 @@
 				NameDropdown.Position = UDim2.new(0.020833334, 0, 0, 0)
 				NameDropdown.Size = UDim2.new(0, 475, 0, 30)
 				NameDropdown.ZIndex = 5
-
+	
 				NameDropdown.Name = (name.."LabelList")
 				NameDropdown.Parent = ScrollTab
 				NameDropdown.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
@@ -1978,6 +1954,29 @@
 				end
 				return funcdrop
 			end
+                        function main:Label(text)
+                            local Label = Instance.new("TextLabel")
+                            local PaddingLabel = Instance.new("UIPadding")
+                            local labell = {}
+                    
+                            Label.Name = "Label"
+                            Label.Parent = ScrollTab
+                            Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+                            Label.BackgroundTransparency = 1.000
+                            Label.Size = UDim2.new(0, 455, 0, 20)
+                            Label.Font = Enum.Font.Gotham
+                            Label.TextColor3 = Color3.fromRGB(225, 225, 225)
+                            Label.TextSize = 11.000
+                            Label.Text = text
+                            Label.TextXAlignment = Enum.TextXAlignment.Left
+                
+                            PaddingLabel.PaddingLeft = UDim.new(0,10)
+                            PaddingLabel.Parent = Label
+                            PaddingLabel.Name = "PaddingLabel"
+
+                        function labell:Set(newtext)
+                            Label.Text = newtext
+                        end
                     return labell
                 end
             return main
