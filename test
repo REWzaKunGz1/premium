@@ -1284,7 +1284,22 @@
                                 ):Play()
                             end)
                         end
-                        
+
+   			function main:Text()
+                            local Text = Instance.new("TextButton")
+                
+                            Text.Name = "Text"
+                            Text.Parent = ScrollTab
+                            Text.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
+                            Text.BackgroundTransparency = 0.1
+                            Text.BorderSizePixel = 0
+                            Text.Size = UDim2.new(0, 455, 0, 30)
+                            Text.AutoButtonColor = false
+                            Text.Font = Enum.Font.Gotham
+                            Text.TextColor3 = Color3.fromRGB(225, 225, 225)
+                            Text.TextSize = 11.000
+                            Text.TextWrapped = true
+
                         function main:Toggle(text,config,callback)
                             local ToggleImage = Instance.new("Frame")
                             
