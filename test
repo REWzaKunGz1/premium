@@ -118,11 +118,6 @@
                     Top.BorderSizePixel = 0
                     Top.Size = UDim2.new(0, 600, 0, 20)
 
-		    local TopCorner = Instance.new("UICorner")
-		    TopCorner.Name = "TopCorner"
-		    TopCorner.CornerRadius = UDim.new(0, 5)
-		    TopCorner.Parent = Top
-                
                     local Page = Instance.new("Frame")
                     Page.Name = "Page"
                     Page.Parent = Main
@@ -1870,7 +1865,7 @@
 				TitleToggle.Position = UDim2.new(0, 13, 0, 0)
 				TitleToggle.Size = UDim2.new(0, 455, 0, 30)
 				TitleToggle.ZIndex = 7
-				TitleToggle.Font = Enum.Font.SourceSansBold
+				TitleToggle.Font = Enum.Font.Gotham
 				TitleToggle.Text = (name)
 				TitleToggle.TextColor3 = Color3.fromRGB(185, 185, 185)
 				TitleToggle.TextSize = 15.000
@@ -1885,7 +1880,7 @@
 				Find.Position = UDim2.new(0, 13, 0, 0)
 				Find.Size = UDim2.new(0, 135, 0, 30)
 				Find.ZIndex = 10
-				Find.Font = Enum.Font.SourceSansBold
+				Find.Font = Enum.Font.Gotham
 				Find.PlaceholderColor3 = Color3.fromRGB(255,255,255)
 				Find.PlaceholderText = "Search : ..."
 				Find.Text = ""
