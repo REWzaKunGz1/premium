@@ -1847,7 +1847,7 @@
 				NameDropdown.Parent = ScrollTab
 				NameDropdown.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
 				NameDropdown.Position = UDim2.new(0.020833334, 0, 0, 0)
-				NameDropdown.Size = UDim2.new(0, 475, 0, 30)
+				NameDropdown.Size = UDim2.new(0, 455, 0, 30)
 				NameDropdown.ZIndex = 5
 	
 				UICorner.Parent = NameDropdown
@@ -1858,7 +1858,7 @@
 				TitleToggle.BackgroundTransparency = 1.000
 				TitleToggle.BorderSizePixel = 0
 				TitleToggle.Position = UDim2.new(0, 13, 0, 0)
-				TitleToggle.Size = UDim2.new(0, 475, 0, 30)
+				TitleToggle.Size = UDim2.new(0, 455, 0, 30)
 				TitleToggle.ZIndex = 7
 				TitleToggle.Font = Enum.Font.SourceSansBold
 				TitleToggle.Text = (name)
