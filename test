@@ -1838,14 +1838,14 @@
 	
 				NameDropdown.Name = (name.."LabelList")
 				NameDropdown.Parent = ScrollTab
-				NameDropdown.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+				NameDropdown.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
 				NameDropdown.Position = UDim2.new(0.020833334, 0, 0, 0)
-				NameDropdown.Size = UDim2.new(0, 475, 0, 30)
+				NameDropdown.Size = UDim2.new(0, 455, 0, 30)
 				NameDropdown.ZIndex = 5
 	
 				NameDropdown.Name = (name.."LabelList")
 				NameDropdown.Parent = ScrollTab
-				NameDropdown.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+				NameDropdown.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
 				NameDropdown.Position = UDim2.new(0.020833334, 0, 0, 0)
 				NameDropdown.Size = UDim2.new(0, 475, 0, 30)
 				NameDropdown.ZIndex = 5
