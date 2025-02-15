@@ -1943,7 +1943,6 @@
 					NameButton.Size = UDim2.new(0, 425, 0, 25)
 					NameButton.ZIndex = 15
 					NameButton.AutoButtonColor = false
-					NameButton.RichText = true
 					NameButton.Font = Enum.Font.Gotham
 					NameButton.Text = text
 					NameButton.TextColor3 = Color3.fromRGB(255, 255, 255)
