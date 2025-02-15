@@ -1890,7 +1890,7 @@
 				Dropdown.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 				Dropdown.BorderSizePixel = 0
 				Dropdown.Position = UDim2.new(0, 15, 0, 30)
-				Dropdown.Size = UDim2.new(0, 450, 0, 0)
+				Dropdown.Size = UDim2.new(0, 425, 0, 0)
 				Dropdown.ZIndex = 15
 				Dropdown.CanvasSize = UDim2.new(0, 0, 0, 0)
 				Dropdown.ScrollBarThickness = 5
@@ -1916,13 +1916,13 @@
 						end
 					end
 					TweenService:Create(NameDropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 455, 0, DropdownContentLayout.AbsoluteContentSize.Y + 45)}):Play()
-					TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, DropdownContentLayout.AbsoluteContentSize.Y + 5)}):Play()
+					TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 425, 0, DropdownContentLayout.AbsoluteContentSize.Y + 5)}):Play()
 				end
 	
 				TweenService:Create(TitleToggle, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(185, 185, 185)}):Play()
 				TweenService:Create(NameDropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 455, 0, DropdownContentLayout.AbsoluteContentSize.Y + 30)}):Play()
 				TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {CanvasSize = UDim2.new(0, 0, 0, DropdownContentLayout.AbsoluteContentSize.Y)}):Play()
-				TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, DropdownContentLayout.AbsoluteContentSize.Y)}):Play()
+				TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 425, 0, DropdownContentLayout.AbsoluteContentSize.Y)}):Play()
 				TweenService:Create(add, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Rotation = 360}):Play()
 	
 				local funcdrop = {}
@@ -1935,7 +1935,7 @@
 					NameButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					NameButton.BackgroundTransparency = 1.000
 					NameButton.BorderSizePixel = 0
-					NameButton.Size = UDim2.new(0, 450, 0, 25)
+					NameButton.Size = UDim2.new(0, 425, 0, 25)
 					NameButton.ZIndex = 15
 					NameButton.AutoButtonColor = false
 					NameButton.RichText = true
@@ -1946,7 +1946,7 @@
 	
 					TweenService:Create(TitleToggle, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {TextColor3 = Color3.fromRGB(185, 185, 185)}):Play()
 					TweenService:Create(NameDropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 455, 0, DropdownContentLayout.AbsoluteContentSize.Y + 45)}):Play()
-					TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 450, 0, DropdownContentLayout.AbsoluteContentSize.Y + 5)}):Play()
+					TweenService:Create(Dropdown, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Size = UDim2.new(0, 425, 0, DropdownContentLayout.AbsoluteContentSize.Y + 5)}):Play()
 					TweenService:Create(add, TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Rotation = 360}):Play()
 				end
 				function funcdrop:Clear()
