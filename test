@@ -104,7 +104,12 @@
                     Main.ClipsDescendants = true
                     Main.Position = UDim2.new(0.499526083, 0, 0.499241292, 0)
                     Main.Size = UDim2.new(0, 600, 0, 350)
-                
+
+		    local MainCorner = Instance.new("UICorner")
+		    MainCorner.Name = "ButtonCorner"
+		    MainCorner.CornerRadius = UDim.new(0, 5)
+		    MainCorner.Parent = Main
+
                     local Top = Instance.new("Frame")
                     Top.Name = "Top"
                     Top.Parent = Main
