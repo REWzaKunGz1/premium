@@ -272,7 +272,7 @@
                     local uitab = {}
                 
                     function uitab:Tab(text,image)
-                        local Image = image or 6023426915
+                        local Image = image
                 
                         local PageButton = Instance.new("TextButton")
                         PageButton.Name = "PageButton"
@@ -296,7 +296,8 @@
                         PageImage.BackgroundTransparency = 1.000
                         PageImage.Position = UDim2.new(0, -20, 0, 3)
                         PageImage.Size = UDim2.new(0, 15, 0, 15)
-                
+                  	PageImage.Image = "rbxassetid://"..tostring(Image)
+
                         local MainTab = Instance.new("Frame")
                         MainTab.Name = "MainTab"
                         MainTab.Parent = TabFolder
