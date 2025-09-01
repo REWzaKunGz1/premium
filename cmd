@@ -1,3 +1,70 @@
+-- Services
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "DevConsole"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 500, 0, 300)
+frame.Position = UDim2.new(0.5, -250, 0.5, -150)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+-- Title bar
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+title.BorderSizePixel = 0
+title.Text = "Developer Console"
+title.TextColor3 = Color3.new(1,1,1)
+title.Parent = frame
+
+-- Scrollable output area
+local scrollFrame = Instance.new("ScrollingFrame")
+scrollFrame.Size = UDim2.new(1, -20, 1, -50)
+scrollFrame.Position = UDim2.new(0, 10, 0, 40)
+scrollFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+scrollFrame.BorderSizePixel = 0
+scrollFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+scrollFrame.ScrollBarThickness = 10
+scrollFrame.Parent = frame
+
+local uiListLayout = Instance.new("UIListLayout")
+uiListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+uiListLayout.Padding = UDim.new(0,2)
+uiListLayout.Parent = scrollFrame
+
+-- Copy button
+local copyButton = Instance.new("TextButton")
+copyButton.Size = UDim2.new(0, 100, 0, 30)
+copyButton.Position = UDim2.new(1, -110, 1, -40)
+copyButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+copyButton.TextColor3 = Color3.new(1,1,1)
+copyButton.Text = "Copy"
+copyButton.Parent = frame
+
+copyButton.MouseButton1Click:Connect(function()
+    local allText = ""
+    for _,v in pairs(scrollFrame:GetChildren()) do
+        if v:IsA("TextLabel") then
+            allText = allText .. v.Text .. "\n"
+        end
+    end
+    local success, err = pcall(function()
+        setclipboard(allText)
+    end)
+    if not success then
+        oldPrint("Copy failed: ", err)
+    end
+end)
+
 -- Drag functionality
 local dragging = false
 local dragInput, mousePos, framePos
