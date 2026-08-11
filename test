@@ -802,138 +802,158 @@
                             return drop
                         end
                 
-                        function main:Slider(text,min,max,set,callback)
-                            set = (math.clamp(set,min,max))
-                            if set > max then set = max end
-                
-                            local Slider = Instance.new("Frame")
-                            local UICorner = Instance.new("UICorner")
-                            local SliderTitle = Instance.new("TextLabel")
-                            local SliderValue = Instance.new("TextLabel")
-                            local SliderButton = Instance.new("TextButton")
-                            local Bar1 = Instance.new("Frame")
-                            local Bar = Instance.new("Frame")
-                            local UICorner_2 = Instance.new("UICorner")
-                            local CircleBar = Instance.new("Frame")
-                            local UICorner_3 = Instance.new("UICorner")
-                            local UICorner_4 = Instance.new("UICorner")
-                
-                            Slider.Name = "Slider"
-                            Slider.Parent = ScrollTab
-                            Slider.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
-                            Slider.Size = UDim2.new(0, 455, 0, 40)
-                
-                            UICorner.CornerRadius = UDim.new(0, 5)
-                            UICorner.Parent = Slider
-                
-                            SliderTitle.Name = "SliderTitle"
-                            SliderTitle.Parent = Slider
-                            SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                            SliderTitle.BackgroundTransparency = 1.000
-                            SliderTitle.Position = UDim2.new(0.0283286124, 0, 0, 0)
-                            SliderTitle.Size = UDim2.new(0, 290, 0, 20)
-                            SliderTitle.Font = Enum.Font.Gotham
-                            SliderTitle.Text = text
-                            SliderTitle.TextColor3 = Color3.fromRGB(225, 225, 225)
-                            SliderTitle.TextSize = 11.000
-                            SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
-                
-                            SliderValue.Name = "SliderValue"
-                            SliderValue.Parent = Slider
-                            SliderValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                            SliderValue.BackgroundTransparency = 1.000
-                            SliderValue.Position = UDim2.new(0.887778878, 0, 0, 0)
-                            SliderValue.Size = UDim2.new(0, 40, 0, 20)
-                            SliderValue.Font = Enum.Font.Gotham
-                            SliderValue.Text =  tostring(set and math.floor( (set / max) * (max - min) + min) or 0)
-                            SliderValue.TextColor3 = Color3.fromRGB(225, 225, 225)
-                            SliderValue.TextSize = 11.000
-                
-                            SliderButton.Name = "SliderButton"
-                            SliderButton.Parent = Slider
-                            SliderButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                            SliderButton.BackgroundTransparency = 1.000
-                            SliderButton.Position = UDim2.new(0, 10, 0, 25)
-                            SliderButton.Size = UDim2.new(0, 435, 0, 5)
-                            SliderButton.AutoButtonColor = false
-                            SliderButton.Font = Enum.Font.SourceSans
-                            SliderButton.Text = ""
-                            SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
-                            SliderButton.TextSize = 14.000
-                
-                            Bar1.Name = "Bar1"
-                            Bar1.Parent = SliderButton
-                            Bar1.BackgroundColor3 = Color3.fromRGB(30, 28, 39)
-                            Bar1.Size = UDim2.new(0, 435, 0, 5)
-                
-                            Bar.Name = "Bar"
-                            Bar.Parent = Bar1
-                            Bar.BackgroundColor3 = Color3.fromRGB(255,0,0)
-                            Bar.Size = UDim2.new(set/max, 0, 0, 5)
-                
-                            UICorner_2.CornerRadius = UDim.new(0, 100)
-                            UICorner_2.Parent = Bar
-                
-                            CircleBar.Name = "CircleBar"
-                            CircleBar.Parent = Bar
-                            CircleBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                            CircleBar.Position = UDim2.new(1, -2, 0, -2)
-                            CircleBar.AnchorPoint = Vector2.new(0, 0.1)
-                            CircleBar.Size = UDim2.new(0, 10, 0, 10)
-                
-                            UICorner_3.CornerRadius = UDim.new(0, 100)
-                            UICorner_3.Parent = CircleBar
-                
-                            UICorner_4.CornerRadius = UDim.new(0, 100)
-                            UICorner_4.Parent = Bar1
-                            
-                            local mouse = game.Players.LocalPlayer:GetMouse()
-                            local uis = game:GetService("UserInputService")
-                
-                            if Value == nil then
-                                Value = set
-                                pcall(function()
-                                    callback(Value)
-                                end)
-                            end
-                            
-                            SliderButton.MouseButton1Down:Connect(function()
-                                Value = math.floor((((tonumber(max) - tonumber(min)) / 435) * Bar.AbsoluteSize.X) + tonumber(min)) or 0
-                                pcall(function()
-                                    callback(Value)
-                                end)
-                                Bar.Size = UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 435), 0, 5)
-                                CircleBar.Position = UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X - 2, 0, 425), 0, -2)
-                                moveconnection = mouse.Move:Connect(function()
-                                    SliderValue.Text = Value
-                                    Value = math.floor((((tonumber(max) - tonumber(min)) / 435) * Bar.AbsoluteSize.X) + tonumber(min))
-                                    pcall(function()
-                                        callback(Value)
-                                    end)
-                                    Bar.Size = UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 435), 0, 5)
-                                    CircleBar.Position = UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X - 2, 0, 425), 0, -2)
-                                end)
-                                releaseconnection = uis.InputEnded:Connect(function(Mouse)
-                                    if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                                        Value = math.floor((((tonumber(max) - tonumber(min)) / 435) * Bar.AbsoluteSize.X) + tonumber(min))
-                                        pcall(function()
-                                            callback(Value)
-                                        end)
-                                        Bar.Size = UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 435), 0, 5)
-                                        CircleBar.Position = UDim2.new(0, math.clamp(mouse.X - Bar.AbsolutePosition.X - 2, 0, 425), 0, -2)
-                                        moveconnection:Disconnect()
-                                        releaseconnection:Disconnect()
-                                    end
-                                end)
-                            end)
-                            releaseconnection = uis.InputEnded:Connect(function(Mouse)
-                                if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                                    Value = math.floor((((tonumber(max) - tonumber(min)) / 435) * Bar.AbsoluteSize.X) + tonumber(min))
-                                    SliderValue.Text = Value
-                                end
-                            end)
-                        end
-
+						function main:Slider(text, min, max, set, callback)
+						    set = math.clamp(set, min, max)
+						    if set > max then set = max end
+						  
+						    local Slider = Instance.new("Frame")
+						    local UICorner = Instance.new("UICorner")
+						    local SliderTitle = Instance.new("TextLabel")
+						    
+						    -- เปลี่ยนจาก TextLabel ปกติ เป็น TextBox สำหรับใส่ค่า
+						    local SliderValue = Instance.new("TextBox")
+						    local SliderValueCorner = Instance.new("UICorner")
+						    
+						    local SliderButton = Instance.new("TextButton")
+						    local Bar1 = Instance.new("Frame")
+						    local Bar = Instance.new("Frame")
+						    local UICorner_2 = Instance.new("UICorner")
+						    local CircleBar = Instance.new("Frame")
+						    local UICorner_3 = Instance.new("UICorner")
+						    local UICorner_4 = Instance.new("UICorner")
+						  
+						    Slider.Name = "Slider"
+						    Slider.Parent = ScrollTab
+						    Slider.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
+						    Slider.Size = UDim2.new(0, 455, 0, 40)
+						  
+						    UICorner.CornerRadius = UDim.new(0, 5)
+						    UICorner.Parent = Slider
+						  
+						    SliderTitle.Name = "SliderTitle"
+						    SliderTitle.Parent = Slider
+						    SliderTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+						    SliderTitle.BackgroundTransparency = 1.000
+						    SliderTitle.Position = UDim2.new(0.0283286124, 0, 0, 0)
+						    SliderTitle.Size = UDim2.new(0, 290, 0, 20)
+						    SliderTitle.Font = Enum.Font.Gotham
+						    SliderTitle.Text = text
+						    SliderTitle.TextColor3 = Color3.fromRGB(225, 225, 225)
+						    SliderTitle.TextSize = 11.000
+						    SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
+						  
+						    -- ตั้งค่า Textbox สำหรับแสดงและกรอกค่า Slider
+						    SliderValue.Name = "SliderValue"
+						    SliderValue.Parent = Slider
+						    SliderValue.BackgroundColor3 = Color3.fromRGB(30, 28, 39)
+						    SliderValue.Position = UDim2.new(0.85, 0, 0, 2)
+						    SliderValue.Size = UDim2.new(0, 55, 0, 18)
+						    SliderValue.Font = Enum.Font.Gotham
+						    SliderValue.Text = tostring(math.floor(set))
+						    SliderValue.TextColor3 = Color3.fromRGB(225, 225, 225)
+						    SliderValue.TextSize = 11.000
+						    SliderValue.ClearTextOnFocus = false
+						  
+						    SliderValueCorner.CornerRadius = UDim.new(0, 4)
+						    SliderValueCorner.Parent = SliderValue
+						
+						    SliderButton.Name = "SliderButton"
+						    SliderButton.Parent = Slider
+						    SliderButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+						    SliderButton.BackgroundTransparency = 1.000
+						    SliderButton.Position = UDim2.new(0, 10, 0, 25)
+						    SliderButton.Size = UDim2.new(0, 435, 0, 5)
+						    SliderButton.AutoButtonColor = false
+						    SliderButton.Font = Enum.Font.SourceSans
+						    SliderButton.Text = ""
+						  
+						    Bar1.Name = "Bar1"
+						    Bar1.Parent = SliderButton
+						    Bar1.BackgroundColor3 = Color3.fromRGB(30, 28, 39)
+						    Bar1.Size = UDim2.new(0, 435, 0, 5)
+						  
+						    Bar.Name = "Bar"
+						    Bar.Parent = Bar1
+						    Bar.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+						    Bar.Size = UDim2.new((set - min) / (max - min), 0, 0, 5)
+						  
+						    UICorner_2.CornerRadius = UDim.new(0, 100)
+						    UICorner_2.Parent = Bar
+						  
+						    CircleBar.Name = "CircleBar"
+						    CircleBar.Parent = Bar
+						    CircleBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+						    CircleBar.Position = UDim2.new(1, -2, 0, -2)
+						    CircleBar.AnchorPoint = Vector2.new(0, 0.1)
+						    CircleBar.Size = UDim2.new(0, 10, 0, 10)
+						  
+						    UICorner_3.CornerRadius = UDim.new(0, 100)
+						    UICorner_3.Parent = CircleBar
+						  
+						    UICorner_4.CornerRadius = UDim.new(0, 100)
+						    UICorner_4.Parent = Bar1
+						    
+						    local mouse = game.Players.LocalPlayer:GetMouse()
+						    local uis = game:GetService("UserInputService")
+						    local Value = set
+						  
+						    -- ฟังก์ชันอัปเดตตำแหน่ง Bar และค่า
+						    local function updateValue(val)
+						        val = math.clamp(val, min, max)
+						        Value = val
+						        SliderValue.Text = tostring(math.floor(val))
+						        
+						        local percent = (val - min) / (max - min)
+						        Bar.Size = UDim2.new(percent, 0, 0, 5)
+						        CircleBar.Position = UDim2.new(1, -2, 0, -2)
+						        
+						        pcall(function()
+						            callback(Value)
+						        end)
+						    end
+						
+						    -- เรียกใช้ค่าเริ่มต้น
+						    pcall(function()
+						        callback(Value)
+						    end)
+						    
+						    -- รองรับการพิมพ์ค่าลงใน Textbox โดยตรง
+						    SliderValue.FocusLost:Connect(function(enterPressed)
+						        local num = tonumber(SliderValue.Text)
+						        if num then
+						            updateValue(num)
+						        else
+						            SliderValue.Text = tostring(math.floor(Value))
+						        end
+						    end)
+						
+						    -- การคลิก/ลาก Slider ปกติ
+						    SliderButton.MouseButton1Down:Connect(function()
+						        local function moveSlider()
+						            local pos = math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 435)
+						            local percent = pos / 435
+						            local calcValue = math.floor(((max - min) * percent) + min)
+						            updateValue(calcValue)
+						        end
+						
+						        moveSlider()
+						        
+						        local moveconnection
+						        local releaseconnection
+						        
+						        moveconnection = mouse.Move:Connect(function()
+						            moveSlider()
+						        end)
+						        
+						        releaseconnection = uis.InputEnded:Connect(function(Mouse)
+						            if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+						                moveSlider()
+						                if moveconnection then moveconnection:Disconnect() end
+						                if releaseconnection then releaseconnection:Disconnect() end
+						            end
+						        end)
+						    end)
+						end
                         function main:Seperator(text)
                             local Seperator = Instance.new("Frame")
                             local Sep1 = Instance.new("Frame")
