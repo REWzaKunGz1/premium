@@ -809,11 +809,8 @@
 						    local Slider = Instance.new("Frame")
 						    local UICorner = Instance.new("UICorner")
 						    local SliderTitle = Instance.new("TextLabel")
-						    
-						    -- เปลี่ยนจาก TextLabel ปกติ เป็น TextBox สำหรับใส่ค่า
 						    local SliderValue = Instance.new("TextBox")
 						    local SliderValueCorner = Instance.new("UICorner")
-						    
 						    local SliderButton = Instance.new("TextButton")
 						    local Bar1 = Instance.new("Frame")
 						    local Bar = Instance.new("Frame")
@@ -842,14 +839,13 @@
 						    SliderTitle.TextSize = 11.000
 						    SliderTitle.TextXAlignment = Enum.TextXAlignment.Left
 						  
-						    -- ตั้งค่า Textbox สำหรับแสดงและกรอกค่า Slider
 						    SliderValue.Name = "SliderValue"
 						    SliderValue.Parent = Slider
 						    SliderValue.BackgroundColor3 = Color3.fromRGB(30, 28, 39)
 						    SliderValue.Position = UDim2.new(0.85, 0, 0, 2)
 						    SliderValue.Size = UDim2.new(0, 55, 0, 18)
 						    SliderValue.Font = Enum.Font.Gotham
-						    SliderValue.Text = tostring(math.floor(set))
+						    SliderValue.Text = tostring(set)
 						    SliderValue.TextColor3 = Color3.fromRGB(225, 225, 225)
 						    SliderValue.TextSize = 11.000
 						    SliderValue.ClearTextOnFocus = false
@@ -875,7 +871,8 @@
 						    Bar.Name = "Bar"
 						    Bar.Parent = Bar1
 						    Bar.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-						    Bar.Size = UDim2.new((set - min) / (max - min), 0, 0, 5)
+						    local initialPercent = (set - min) / (max - min)
+						    Bar.Size = UDim2.new(initialPercent, 0, 0, 5)
 						  
 						    UICorner_2.CornerRadius = UDim.new(0, 100)
 						    UICorner_2.Parent = Bar
@@ -897,42 +894,44 @@
 						    local uis = game:GetService("UserInputService")
 						    local Value = set
 						  
-						    -- ฟังก์ชันอัปเดตตำแหน่ง Bar และค่า
+						    -- ฟังก์ชันปัดทศนิยม 2 ตำแหน่ง ป้องกันค่ากลายเป็น 0
+						    local function round(val, decimalPlaces)
+						        local mult = 10^(decimalPlaces or 0)
+						        return math.floor(val * mult + 0.5) / mult
+						    end
+						
 						    local function updateValue(val)
 						        val = math.clamp(val, min, max)
+						        val = round(val, 2)
 						        Value = val
-						        SliderValue.Text = tostring(math.floor(val))
+						        SliderValue.Text = tostring(val)
 						        
 						        local percent = (val - min) / (max - min)
 						        Bar.Size = UDim2.new(percent, 0, 0, 5)
-						        CircleBar.Position = UDim2.new(1, -2, 0, -2)
 						        
 						        pcall(function()
 						            callback(Value)
 						        end)
 						    end
 						
-						    -- เรียกใช้ค่าเริ่มต้น
 						    pcall(function()
 						        callback(Value)
 						    end)
 						    
-						    -- รองรับการพิมพ์ค่าลงใน Textbox โดยตรง
 						    SliderValue.FocusLost:Connect(function(enterPressed)
 						        local num = tonumber(SliderValue.Text)
 						        if num then
 						            updateValue(num)
 						        else
-						            SliderValue.Text = tostring(math.floor(Value))
+						            SliderValue.Text = tostring(Value)
 						        end
 						    end)
 						
-						    -- การคลิก/ลาก Slider ปกติ
 						    SliderButton.MouseButton1Down:Connect(function()
 						        local function moveSlider()
 						            local pos = math.clamp(mouse.X - Bar.AbsolutePosition.X, 0, 435)
 						            local percent = pos / 435
-						            local calcValue = math.floor(((max - min) * percent) + min)
+						            local calcValue = ((max - min) * percent) + min
 						            updateValue(calcValue)
 						        end
 						
@@ -954,6 +953,7 @@
 						        end)
 						    end)
 						end
+
                         function main:Seperator(text)
                             local Seperator = Instance.new("Frame")
                             local Sep1 = Instance.new("Frame")
