@@ -523,27 +523,25 @@
                                 callback(toggled)
                             end
                         end
-
-						function main:Textbox(text, holder, disappear, callback)
+						
+						local function CreateDynamicTextbox(ScrollTab, text, holder, disappear, callback)
 						    local Textboxx = Instance.new("Frame")
 						    local TextboxxCorner = Instance.new("UICorner")
 						    local TextboxTitle = Instance.new("TextLabel")
 						    local Textbox = Instance.new("TextBox")
 						    local TextboxCorner = Instance.new("UICorner")
 						
-						    Textboxx.Name = "Textboxx"
+						    Textboxx.Name = "DynamicTextboxx" -- ตั้งชื่อเผื่อสั่งลบทีหลัง
 						    Textboxx.Parent = ScrollTab
 						    Textboxx.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
 						    Textboxx.Size = UDim2.new(0, 455, 0, 30)
 						    Textboxx.ClipsDescendants = true 
 						
 						    TextboxxCorner.CornerRadius = UDim.new(0, 5)
-						    TextboxxCorner.Name = "TextboxxCorner"
 						    TextboxxCorner.Parent = Textboxx
 						
 						    TextboxTitle.Name = "TextboxTitle"
 						    TextboxTitle.Parent = Textboxx
-						    TextboxTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 						    TextboxTitle.BackgroundTransparency = 1.000
 						    TextboxTitle.Position = UDim2.new(0, 15, 0, 0)
 						    TextboxTitle.Size = UDim2.new(0, 150, 0, 30)
