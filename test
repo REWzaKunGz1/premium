@@ -523,10 +523,6 @@
                                 callback(toggled)
                             end
                         end
-
-					function uitab:Tab(text,image)
-				    
-				    local main = {}
 				    
 				    function main:TextBox(text, holder, disappear, callback)
 				        local Textboxx = Instance.new("Frame")
