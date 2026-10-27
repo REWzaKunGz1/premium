@@ -105,10 +105,10 @@
                     Main.Position = UDim2.new(0.499526083, 0, 0.499241292, 0)
                     Main.Size = UDim2.new(0, 600, 0, 350)
 
-		    local MainCorner = Instance.new("UICorner")
-		    MainCorner.Name = "MainCorner"
-		    MainCorner.CornerRadius = UDim.new(0, 5)
-		    MainCorner.Parent = Main
+				    local MainCorner = Instance.new("UICorner")
+				    MainCorner.Name = "MainCorner"
+				    MainCorner.CornerRadius = UDim.new(0, 5)
+				    MainCorner.Parent = Main
 
                     local Top = Instance.new("Frame")
                     Top.Name = "Top"
@@ -524,82 +524,81 @@
                             end
                         end
 				    
-				    function main:TextBox(text, holder, disappear, callback)
-				        local Textboxx = Instance.new("Frame")
-				        local TextboxxCorner = Instance.new("UICorner")
-				        local TextboxTitle = Instance.new("TextLabel")
-				        local Textbox = Instance.new("TextBox")
-				        local TextboxCorner = Instance.new("UICorner")
-				
-				        Textboxx.Name = "Textboxx"
-				        Textboxx.Parent = ScrollTab -- อ้างอิง ScrollTab ของ Tab นี้โดยตรง
-				        Textboxx.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
-				        Textboxx.Size = UDim2.new(0, 455, 0, 30)
-				        Textboxx.ClipsDescendants = true 
-				
-				        TextboxxCorner.CornerRadius = UDim.new(0, 5)
-				        TextboxxCorner.Name = "TextboxxCorner"
-				        TextboxxCorner.Parent = Textboxx
-				
-				        TextboxTitle.Name = "TextboxTitle"
-				        TextboxTitle.Parent = Textboxx
-				        TextboxTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				        TextboxTitle.BackgroundTransparency = 1.000
-				        TextboxTitle.Position = UDim2.new(0, 15, 0, 0)
-				        TextboxTitle.Size = UDim2.new(0, 150, 0, 30)
-				        TextboxTitle.Font = Enum.Font.Gotham
-				        TextboxTitle.Text = text
-				        TextboxTitle.TextColor3 = Color3.fromRGB(225, 225, 225)
-				        TextboxTitle.TextSize = 11.000
-				        TextboxTitle.TextXAlignment = Enum.TextXAlignment.Left
-				
-				        Textbox.Name = "Textbox"
-				        Textbox.Parent = Textboxx
-				        Textbox.BackgroundColor3 = Color3.fromRGB(30, 28, 39)
-				        Textbox.Position = UDim2.new(0, 170, 0, 5)
-				        Textbox.Size = UDim2.new(0, 275, 0, 20)
-				        Textbox.Font = Enum.Font.Gotham
-				        Textbox.Text = holder
-				        Textbox.TextColor3 = Color3.fromRGB(225, 225, 225)
-				        Textbox.TextSize = 11.000
-				        Textbox.ClearTextOnFocus = false
-				        Textbox.MultiLine = true 
-				        Textbox.TextWrapped = true 
-				
-				        local defaultRowHeight = 30
-				        local minBoxHeight = 20
-				
-				        local function updateSize()
-				            local textSizeY = Textbox.TextBounds.Y
-				            local targetBoxHeight = math.max(minBoxHeight, textSizeY + 6)
-				            local targetRowHeight = math.max(defaultRowHeight, targetBoxHeight + 10)
-				
-				            Textbox.Size = UDim2.new(0, 275, 0, targetBoxHeight)
-				            Textboxx.Size = UDim2.new(0, 455, 0, targetRowHeight)
-				        end
-				
-				        Textbox:GetPropertyChangedSignal("Text"):Connect(updateSize)
-				        Textbox:GetPropertyChangedSignal("TextBounds"):Connect(updateSize)
-				
-				        Textbox.FocusLost:Connect(function(enterPressed)
-				            if #Textbox.Text > 0 then
-				                callback(Textbox.Text)
-				            end
-				
-				            if disappear then
-				                Textbox.Text = ""
-				            else
-				                if #Textbox.Text == 0 then
-				                    Textbox.Text = holder
-				                end
-				            end
-				            updateSize()
-				        end)
-				
-				        TextboxCorner.Name = "TextboxCorner"
-				        TextboxCorner.CornerRadius = UDim.new(0, 5)
-				        TextboxCorner.Parent = Textbox
-				    end
+					function main:TextBox(text, holder, disappear, callback)
+					    local Textboxx = Instance.new("Frame")
+					    local TextboxxCorner = Instance.new("UICorner")
+					    local TextboxTitle = Instance.new("TextLabel")
+					    local Textbox = Instance.new("TextBox")
+					    local TextboxCorner = Instance.new("UICorner")
+					
+					    Textboxx.Name = "DynamicTextboxx" -- ตั้งชื่อนี้เพื่อให้ระบบลบของเก่าทิ้งได้อัตโนมัติเวลาเปลี่ยนรถ
+					    Textboxx.Parent = ScrollTab
+					    Textboxx.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
+					    Textboxx.Size = UDim2.new(0, 455, 0, 30)
+					    Textboxx.ClipsDescendants = true 
+					
+					    TextboxxCorner.CornerRadius = UDim.new(0, 5)
+					    TextboxxCorner.Name = "TextboxxCorner"
+					    TextboxxCorner.Parent = Textboxx
+					
+					    TextboxTitle.Name = "TextboxTitle"
+					    TextboxTitle.Parent = Textboxx
+					    TextboxTitle.BackgroundTransparency = 1.000
+					    TextboxTitle.Position = UDim2.new(0, 15, 0, 0)
+					    TextboxTitle.Size = UDim2.new(0, 150, 0, 30)
+					    TextboxTitle.Font = Enum.Font.Gotham
+					    TextboxTitle.Text = text
+					    TextboxTitle.TextColor3 = Color3.fromRGB(225, 225, 225)
+					    TextboxTitle.TextSize = 11.000
+					    TextboxTitle.TextXAlignment = Enum.TextXAlignment.Left
+					
+					    Textbox.Name = "Textbox"
+					    Textbox.Parent = Textboxx
+					    Textbox.BackgroundColor3 = Color3.fromRGB(30, 28, 39)
+					    Textbox.Position = UDim2.new(0, 170, 0, 5)
+					    Textbox.Size = UDim2.new(0, 275, 0, 20)
+					    Textbox.Font = Enum.Font.Gotham
+					    Textbox.Text = holder
+					    Textbox.TextColor3 = Color3.fromRGB(225, 225, 225)
+					    Textbox.TextSize = 11.000
+					    Textbox.ClearTextOnFocus = false
+					    Textbox.MultiLine = true 
+					    Textbox.TextWrapped = true 
+					
+					    local defaultRowHeight = 30
+					    local minBoxHeight = 20
+					
+					    local function updateSize()
+					        local textSizeY = Textbox.TextBounds.Y
+					        local targetBoxHeight = math.max(minBoxHeight, textSizeY + 6)
+					        local targetRowHeight = math.max(defaultRowHeight, targetBoxHeight + 10)
+					
+					        Textbox.Size = UDim2.new(0, 275, 0, targetBoxHeight)
+					        Textboxx.Size = UDim2.new(0, 455, 0, targetRowHeight)
+					    end
+					
+					    Textbox:GetPropertyChangedSignal("Text"):Connect(updateSize)
+					    Textbox:GetPropertyChangedSignal("TextBounds"):Connect(updateSize)
+					
+					    Textbox.FocusLost:Connect(function(enterPressed)
+					        if #Textbox.Text > 0 then
+					            callback(Textbox.Text)
+					        end
+					
+					        if disappear then
+					            Textbox.Text = ""
+					        else
+					            if #Textbox.Text == 0 then
+					                Textbox.Text = holder
+					            end
+					        end
+					        updateSize()
+					    end)
+					
+					    TextboxCorner.Name = "TextboxCorner"
+					    TextboxCorner.CornerRadius = UDim.new(0, 5)
+					    TextboxCorner.Parent = Textbox
+					end
 
 										
                         function main:Dropdown(text,table,callback)
