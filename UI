@@ -599,7 +599,109 @@
 					    TextboxCorner.CornerRadius = UDim.new(0, 5)
 					    TextboxCorner.Parent = Textbox
 					end
-
+						
+						function Tab:MultiLineTextBox(text, holder, disappear, callback)
+						    -- ดึง ScrollContainer ของ Tab นั้นๆ (ปรับชื่อตัวแปรตาม Library ของคุณ เช่น self.Container หรือ self.ScrollTab)
+						    local ScrollTab = self.Container or self.ScrollTab or GetScrollTabByName(self.Name)
+						    if not ScrollTab then return nil end
+						
+						    local Textboxx = Instance.new("Frame")
+						    local TextboxxCorner = Instance.new("UICorner")
+						    local TextboxTitle = Instance.new("TextLabel")
+						    local Textbox = Instance.new("TextBox")
+						    local TextboxCorner = Instance.new("UICorner")
+						
+						    Textboxx.Name = "DynamicTextboxx"
+						    Textboxx.Parent = ScrollTab
+						    Textboxx.BackgroundColor3 = Color3.fromRGB(50, 48, 59)
+						    Textboxx.Size = UDim2.new(0, 455, 0, 30)
+						    Textboxx.ClipsDescendants = true 
+						
+						    TextboxxCorner.CornerRadius = UDim.new(0, 5)
+						    TextboxxCorner.Name = "TextboxxCorner"
+						    TextboxxCorner.Parent = Textboxx
+						
+						    TextboxTitle.Name = "TextboxTitle"
+						    TextboxTitle.Parent = Textboxx
+						    TextboxTitle.BackgroundTransparency = 1.000
+						    TextboxTitle.Position = UDim2.new(0, 15, 0, 5) -- ปรับ Offset Y ลงมาเล็กน้อย
+						    TextboxTitle.Size = UDim2.new(0, 150, 0, 20)
+						    TextboxTitle.Font = Enum.Font.Gotham
+						    TextboxTitle.Text = text
+						    TextboxTitle.TextColor3 = Color3.fromRGB(225, 225, 225)
+						    TextboxTitle.TextSize = 11.000
+						    TextboxTitle.TextXAlignment = Enum.TextXAlignment.Left
+						    TextboxTitle.TextYAlignment = Enum.TextYAlignment.Top 
+						
+						    Textbox.Name = "Textbox"
+						    Textbox.Parent = Textboxx
+						    Textbox.BackgroundColor3 = Color3.fromRGB(30, 28, 39)
+						    Textbox.Position = UDim2.new(0, 170, 0, 5)
+						    Textbox.Size = UDim2.new(0, 275, 0, 20)
+						    Textbox.Font = Enum.Font.Gotham
+						    Textbox.Text = holder
+						    Textbox.TextColor3 = Color3.fromRGB(225, 225, 225)
+						    Textbox.TextSize = 11.000
+						    Textbox.ClearTextOnFocus = false
+						    Textbox.MultiLine = true 
+						    Textbox.TextWrapped = true 
+						    Textbox.TextYAlignment = Enum.TextYAlignment.Top
+						
+						    local defaultRowHeight = 30
+						    local minBoxHeight = 20
+						
+						    local function updateSize()
+						        local textSizeY = Textbox.TextBounds.Y
+						        local targetBoxHeight = math.max(minBoxHeight, textSizeY + 6)
+						        local targetRowHeight = math.max(defaultRowHeight, targetBoxHeight + 10)
+						
+						        Textbox.Size = UDim2.new(0, 275, 0, targetBoxHeight)
+						        Textboxx.Size = UDim2.new(0, 455, 0, targetRowHeight)
+						    end
+						
+						    Textbox:GetPropertyChangedSignal("Text"):Connect(updateSize)
+						    Textbox:GetPropertyChangedSignal("TextBounds"):Connect(updateSize)
+						
+						    Textbox.FocusLost:Connect(function(enterPressed)
+						        if #Textbox.Text > 0 and callback then
+						            callback(Textbox.Text)
+						        end
+						        if disappear then
+						            Textbox.Text = ""
+						        else
+						            if #Textbox.Text == 0 then
+						                Textbox.Text = holder
+						            end
+						        end
+						        updateSize()
+						    end)
+						
+						    TextboxCorner.Name = "TextboxCorner"
+						    TextboxCorner.CornerRadius = UDim.new(0, 5)
+						    TextboxCorner.Parent = Textbox
+						
+						    local textboxObj = {
+						        Instance = Textboxx,
+						        Parent = Textboxx.Parent
+						    }
+						    
+						    function textboxObj:Set(newText)
+						        Textbox.Text = newText
+						        updateSize()
+						    end
+						    
+						    function textboxObj:Get()
+						        return Textbox.Text
+						    end
+						
+						    function textboxObj:Destroy()
+						        if Textboxx then
+						            Textboxx:Destroy()
+						        end
+						    end
+						
+						    return textboxObj
+						end
 										
                         function main:Dropdown(text,table,callback)
                             local Dropdown = Instance.new("Frame")
